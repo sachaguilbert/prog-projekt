@@ -1,3 +1,6 @@
 .DS_Store
 Debug/
 *.launch
+.cproject
+.settings/
+Src/main.c
