@@ -18,29 +18,28 @@ void drawGameStart(){
 
 	gameWindow(p1,p2,1);
 	player_t p;
-	p.pos[0] = 10;
-	p.pos[1] = 10;
+	p.posx = 10;
+	p.posy = 10;
 	drawPlayer(p);
 
 }
 
 void drawPlayer(player_t p){
-	uint8_t x = p.pos[0];
-	uint8_t y = p.pos[1];
-	gotoxy(x,y);
+
+	gotoxy(p.posx,p.posy);
 	printf("%c",219);
-	gotoxy(x+1,y);
+	gotoxy(p.posx+1,p.posy);
 	printf("%c",219);
-	gotoxy(x+2,y);
+	gotoxy(p.posx+2,p.posy);
 	printf("%c",219);
 
-	gotoxy(x,y-1);
+	gotoxy(p.posx,p.posy-1);
 	printf("%c",220);
 
-	gotoxy(x,y+1);
+	gotoxy(p.posx,p.posy+1);
 	printf("%c",223);
-
-
-
 }
+
+void drawBullet(bullet_t p){}
+
 
