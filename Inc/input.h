@@ -11,7 +11,7 @@
 
 /* Exported functions ------------------------------------------------------- */
 uint8_t get_keyboard_input();
-void update_player_input(struct player *p);
+void update_player_input(player_t *p);
 
 
 
