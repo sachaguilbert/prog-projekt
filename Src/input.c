@@ -16,7 +16,7 @@ void update_player_input(player_t *p)
 		p->accy = sinLUT(p->dir);
 		break;
 	case 100: //d right
-		p->dir-=1;
+		p->dir-=10;
 		p->accx = cosLUT(p->dir);
 		p->accy = sinLUT(p->dir);
 		break;
