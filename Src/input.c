@@ -11,7 +11,7 @@ void update_player_input(player_t *p)
 	switch(input)
 	{
 	case 97: //a left
-		p->dir+=1;
+		p->dir+=10;
 		p->accx = cosLUT(p->dir);
 		p->accy = sinLUT(p->dir);
 		break;
@@ -32,4 +32,9 @@ void update_player_input(player_t *p)
 //		create_bullet();
 		break;
 	}
+}
+void update_player_pos(player_t *p)
+{
+	p->posx += p->velx;
+	p->posy += p->vely;
 }
