@@ -11,6 +11,7 @@
 #include "ansi.h"
 #include "entities.h"
 #include <math.h>
+#define velfactor 0.1
 
 
 void drawGameStart(){
@@ -27,6 +28,23 @@ void drawGameStart(){
 
 void drawPlayer(player_t p){
 
+//******Deletes previous position*******
+	gotoxy((p.posx-p.velx*velfactor)/pow(2,14),(p.posy-p.vely*velfactor)/pow(2,14));
+	printf("%c",32);
+	gotoxy((p.posx-p.velx*velfactor)/pow(2,14)+1,(p.posy-p.vely*velfactor)/pow(2,14));
+	printf("%c",32);
+	gotoxy((p.posx-p.velx*velfactor)/pow(2,14)+2,(p.posy-p.vely*velfactor)/pow(2,14));
+	printf("%c",32);
+
+	gotoxy((p.posx-p.velx*velfactor)/pow(2,14),(p.posy-p.vely*velfactor)/pow(2,14)-1);
+	printf("%c",32);
+
+	gotoxy((p.posx-p.velx*velfactor)/pow(2,14),(p.posy-p.vely*velfactor)/pow(2,14)+1);
+	printf("%c",32);
+
+//******Deletes previous position*******
+
+
 	gotoxy(p.posx/pow(2,14),p.posy/pow(2,14));
 	printf("%c",219);
 	gotoxy(p.posx/pow(2,14)+1,p.posy/pow(2,14));
@@ -40,6 +58,7 @@ void drawPlayer(player_t p){
 	gotoxy(p.posx/pow(2,14),p.posy/pow(2,14)+1);
 	printf("%c",223);
 }
+
 
 void drawBullet(bullet_t p){}
 
