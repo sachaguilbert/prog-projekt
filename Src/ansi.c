@@ -170,16 +170,16 @@ void window(uint8_t p1[2],uint8_t p2[2],char title[], uint8_t style){
 			}
 
 }
-void gameWindow(uint8_t p1[2],uint8_t p2[2], uint8_t style){
-	uint8_t i,ver,hor,TL,TR,BL,BR,CL,CR;
+void gameWindow(uint16_t p1[2],uint16_t p2[2], uint8_t style){
+	uint16_t i,ver,hor,TL,TR,BL,BR;
 
 
 	switch(style){
 	case 1: ;
-		ver = 179; hor = 196;TL = 218; TR = 191;BL=192;BR=217;CL=180;CR=181;
+		ver = 179; hor = 196;TL = 218; TR = 191;BL=192;BR=217;
 		break;
 	case 2:
-		ver = 186; hor = 205; TL = 201; TR = 187;BL=192;BR=188;CL=185;CR=204;
+		ver = 186; hor = 205; TL = 201; TR = 187;BL=192;BR=188;
 		break;
 	}
 
