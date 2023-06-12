@@ -10,6 +10,7 @@
 #include "stdint.h"
 #include "ansi.h"
 #include "entities.h"
+#include <math.h>
 
 
 void drawGameStart(){
@@ -18,25 +19,25 @@ void drawGameStart(){
 
 	gameWindow(p1,p2,1);
 	player_t p;
-	p.posx = 10;
-	p.posy = 10;
+	p.posx = 10 << 14;
+	p.posy = 10 << 14;
 	drawPlayer(p);
 
 }
 
 void drawPlayer(player_t p){
 
-	gotoxy(p.posx,p.posy);
+	gotoxy(p.posx/pow(2,14),p.posy/pow(2,14));
 	printf("%c",219);
-	gotoxy(p.posx+1,p.posy);
+	gotoxy(p.posx/pow(2,14)+1,p.posy/pow(2,14));
 	printf("%c",219);
-	gotoxy(p.posx+2,p.posy);
+	gotoxy(p.posx/pow(2,14)+2,p.posy/pow(2,14));
 	printf("%c",219);
 
-	gotoxy(p.posx,p.posy-1);
+	gotoxy(p.posx/pow(2,14),p.posy/pow(2,14)-1);
 	printf("%c",220);
 
-	gotoxy(p.posx,p.posy+1);
+	gotoxy(p.posx/pow(2,14),p.posy/pow(2,14)+1);
 	printf("%c",223);
 }
 

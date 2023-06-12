@@ -1,4 +1,6 @@
 #include "input.h"
+#define accfactor 0.1
+#define velfactor 0.1
 
 uint8_t get_keyboard_input()
 {
@@ -11,22 +13,22 @@ void update_player_input(player_t *p)
 	switch(input)
 	{
 	case 97: //a left
-		p->dir+=10;
+		p->dir+=1;
 		p->accx = cosLUT(p->dir);
 		p->accy = sinLUT(p->dir);
 		break;
 	case 100: //d right
-		p->dir-=10;
+		p->dir-=1;
 		p->accx = cosLUT(p->dir);
 		p->accy = sinLUT(p->dir);
 		break;
 	case 119: //w forward
-		p->velx+= p->accx;
-		p->vely+= p->accy;
+		p->velx+= p->accx * accfactor;
+		p->vely+= p->accy * accfactor;
 		break;
 	case 115: //s back
-		p->velx-= p->accx;
-		p->vely-= p->accy;
+		p->velx-= p->accx * accfactor;
+		p->vely-= p->accy * accfactor;
 		break;
 	case 32: //SPACE shoot
 //		create_bullet();
@@ -35,6 +37,6 @@ void update_player_input(player_t *p)
 }
 void update_player_pos(player_t *p)
 {
-	p->posx += p->velx;
-	p->posy += p->vely;
+	p->posx += p->velx * velfactor;
+	p->posy += p->vely * velfactor;
 }
