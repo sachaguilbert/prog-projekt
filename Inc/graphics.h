@@ -13,5 +13,7 @@
 void drawGameStart();
 
 void drawPlayer(player_t p);
+void deletePlayer(player_t p);
+
 
 #endif /* GRAPHICS_H_ */
