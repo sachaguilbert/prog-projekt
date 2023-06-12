@@ -34,6 +34,8 @@ typedef struct{
 	uint16_t damagevalue;
 }bullet_t;
 
+void initPlayer(player_t *pla, uint32_t x, uint32_t y, uint32_t dx, uint32_t dy);
+void initAsteroid(astroid_t *ast, uint32_t x, uint32_t y, uint32_t dx, uint32_t dy);
 
 void createBullet(player_t p,bullet_t *b);
 
