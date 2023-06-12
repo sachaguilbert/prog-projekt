@@ -10,6 +10,10 @@
 
 int main(void)
 {
+	bullet_t bullets[100];
+	astroid_t astriods[100];
+
+
 	uart_init(115200);
 	clrscr();
 	//drawGameStart();
@@ -21,6 +25,7 @@ int main(void)
 	p.vely = 0;
 	p.accx = 1 << 14;
 	p.accy = 0;
+
 	while(1){
 		if(uart_get_count() > 0)
 		{
@@ -32,6 +37,7 @@ int main(void)
 			gotoxy(0,14);
 			printf("false");
 		}
+		drawBullets(bullet_t p[]);
 		update_player_pos(&p);
 		stm_sleep(10);
 		gotoxy(0,0);

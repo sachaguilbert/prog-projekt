@@ -17,6 +17,7 @@ typedef struct{
 	int16_t dir;
 	uint8_t style,weapon;
 	uint16_t hitpoints;
+	uint8_t mass;
 }player_t;
 
 typedef struct{
@@ -24,6 +25,7 @@ typedef struct{
 	int32_t velx, vely, accx, accy;
 	uint8_t style;
 	uint16_t hitpoints;
+	uint8_t mass;
 }astroid_t;
 
 typedef struct{
@@ -33,5 +35,7 @@ typedef struct{
 }bullet_t;
 void initPlayer(player_t *pla, uint32_t x, uint32_t y, uint32_t dx, uint32_t dy);
 void initAsteroid(astroid_t *ast, uint32_t x, uint32_t y, uint32_t dx, uint32_t dy);
+
+void createBullet(player_t p,bullet_t *b[]);
 
 #endif /* ENTITIES_H_ */
