@@ -1,26 +1,16 @@
 #include "math_st.h"
 
-signed short sinLUT(int x) //512 = 360 degrees, to convert degrees to 512 format: x*512/360
-{
-	uint8_t negative = 0;
-	if(x < 0) {
-		negative = 1;
-		x = -x;
+signed short sinLUT(int32_t angel){
+	while(angel >= 512){angel-=512;}
+	if(angel<0){
+		return -SIN[-angel];
 	}
-	x %= 512;
-	if (negative) {
-		return -(SIN[x]);
-	} else {
-		return SIN[x];
-	}
+
+	return SIN[angel];
 }
 
-signed short cosLUT(int x)//512 = 360 degrees, to convert degrees to 512 format: x*512/360
-{
-	x = x < 0 ? -x : x;
-	x+=128;
-	x %= 512;
-	return SIN[x];
+signed short cosLut(int32_t angel){
+	return sinLUT(angel+128);
 }
 void stm_sleep(uint32_t t)
 {
