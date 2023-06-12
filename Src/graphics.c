@@ -59,7 +59,19 @@ void drawPlayer(player_t p){
 	printf("%c",223);
 }
 
+<<<<<<< HEAD
 
 void drawBullet(bullet_t p){}
+=======
+void drawBullets(bullet_t p[]){
+	uint16_t size = sizeof(p)/sizeof(p[0]);
+	for(uint16_t i =0; i<size;i++){
+		if(p[i] != null){
+		gotoxy(p[0].posx,p[0].posy);
+		printf("%c","*");
+		}
+	}
+}
+>>>>>>> e6410ba4f08fb78a7cc94fa7d5e6212d6a4a8511
 
 

@@ -7,7 +7,7 @@ uint8_t get_keyboard_input()
 	return uart_get_char();
 }
 
-void update_player_input(player_t *p)
+void update_player_input(player_t *p,bullet_t *b[])
 {
 	uint8_t input = get_keyboard_input();
 	switch(input)
@@ -31,7 +31,7 @@ void update_player_input(player_t *p)
 		p->vely-= p->accy * accfactor;
 		break;
 	case 32: //SPACE shoot
-//		create_bullet();
+		create_bullet(&p,&b);
 		break;
 	}
 }
