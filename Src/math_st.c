@@ -22,3 +22,16 @@ void stm_sleep(uint32_t t)
 	}
 
 }
+
+void rotateVector(vector_t *v, int16_t a)
+{
+	int64_t xcos = v->x*cosLUT(a);
+	int64_t ysin = v->y*sinLUT(a);
+	int64_t xsin = v->x*sinLUT(a);
+	int64_t ycos = v->y*cosLUT(a);
+	v->x = (xcos - ysin) >> 14;
+	v->y = (xsin + ycos) >> 14;
+}
+
+
+

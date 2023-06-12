@@ -11,6 +11,7 @@
 #include "ansi.h"
 #include "entities.h"
 #include <math.h>
+#include "math_st.h"
 #define velfactor 0.1
 
 
@@ -23,36 +24,49 @@ void drawGameStart(player_t p){
 	gameWindow(p1,p2,1);
 }
 
+void deletePlayer(player_t p)
+{
+
+	gotoxy(p.posx >> 14,p.posy >> 14);
+	printf("%c",32);
+	vector_t v1 = {1 << 14,0 << 14};
+	rotateVector(&v1,p.dir);
+	gotoxy((p.posx+v1.x) >> 14,(p.posy+v1.y) >> 14);
+	printf("%c",32);
+	vector_t v2 = {2 << 14,0 << 14};
+	rotateVector(&v2,p.dir);
+	gotoxy((p.posx+v2.x) >> 14,(p.posy+v2.y) >> 14);
+	printf("%c",32);
+	vector_t v3 = {0 << 14,-1 << 14};
+	rotateVector(&v3,p.dir);
+	gotoxy((p.posx+v3.x) >> 14,(p.posy+v3.y) >> 14);
+	printf("%c",32);
+	vector_t v4 = {0 << 14,1 << 14};
+	rotateVector(&v4,p.dir);
+	gotoxy((p.posx + v4.x),(p.posy+v4.y));
+	printf("%c",32);
+}
+
 void drawPlayer(player_t p){
 
-//******Deletes previous position*******
-	gotoxy((p.posx-p.velx*velfactor)/pow(2,14),(p.posy-p.vely*velfactor)/pow(2,14));
-	printf("%c",32);
-	gotoxy((p.posx-p.velx*velfactor)/pow(2,14)+1,(p.posy-p.vely*velfactor)/pow(2,14));
-	printf("%c",32);
-	gotoxy((p.posx-p.velx*velfactor)/pow(2,14)+2,(p.posy-p.vely*velfactor)/pow(2,14));
-	printf("%c",32);
 
-	gotoxy((p.posx-p.velx*velfactor)/pow(2,14),(p.posy-p.vely*velfactor)/pow(2,14)-1);
-	printf("%c",32);
-
-	gotoxy((p.posx-p.velx*velfactor)/pow(2,14),(p.posy-p.vely*velfactor)/pow(2,14)+1);
-	printf("%c",32);
-
-//******Deletes previous position*******
-
-
-	gotoxy(p.posx/pow(2,14),p.posy/pow(2,14));
+	gotoxy(p.posx >> 14,p.posy >> 14);
 	printf("%c",219);
-	gotoxy(p.posx/pow(2,14)+1,p.posy/pow(2,14));
+	vector_t v1 = {1 << 14,0 << 14};
+	rotateVector(&v1,p.dir);
+	gotoxy((p.posx+v1.x) >> 14,(p.posy+v1.y) >> 14);
 	printf("%c",219);
-	gotoxy(p.posx/pow(2,14)+2,p.posy/pow(2,14));
+	vector_t v2 = {2 << 14,0 << 14};
+	rotateVector(&v2,p.dir);
+	gotoxy((p.posx+v2.x) >> 14,(p.posy+v2.y) >> 14);
 	printf("%c",219);
-
-	gotoxy(p.posx/pow(2,14),p.posy/pow(2,14)-1);
+	vector_t v3 = {0 << 14,-1 << 14};
+	rotateVector(&v3,p.dir);
+	gotoxy((p.posx+v3.x) >> 14,(p.posy+v3.y) >> 14);
 	printf("%c",220);
-
-	gotoxy(p.posx/pow(2,14),p.posy/pow(2,14)+1);
+	vector_t v4 = {0 << 14,1 << 14};
+	rotateVector(&v4,p.dir);
+	gotoxy((p.posx + v4.x),(p.posy+v4.y));
 	printf("%c",223);
 }
 

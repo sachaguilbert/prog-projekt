@@ -13,6 +13,8 @@
 void drawGameStart();
 
 void drawPlayer(player_t p);
+void deletePlayer(player_t p);
+
 void drawBullets(bullet_t *p);
 void drawAstroids(astroid_t *a);
 
