@@ -69,4 +69,13 @@ void drawBullets(bullet_t p[]){
 	}
 }
 
-
+void drawPlanet(planet_t p){
+	gotoxy(p.posx>>14,p.posy>>14);
+	printf(" ####O# ");
+	gotoxy(p.posx>>14,(p.posy>>14)+1);
+	printf("#O######");
+	gotoxy(p.posx>>14,(p.posy>>14)+2);
+	printf("###O####");
+	gotoxy(p.posx>>14,(p.posy>>14)+3);
+	printf(" ###### ");
+}

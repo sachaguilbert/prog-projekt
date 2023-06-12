@@ -13,5 +13,6 @@
 void drawGameStart();
 
 void drawPlayer(player_t p);
+void drawPlanet(planet_t p);
 
 #endif /* GRAPHICS_H_ */

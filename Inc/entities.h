@@ -12,7 +12,7 @@
 
 
 typedef struct{
-	uint32_t posx,posy;
+	int32_t posx,posy;
 	int32_t velx,vely,accx,accy;
 	int16_t dir;
 	uint8_t style,weapon;
@@ -21,7 +21,7 @@ typedef struct{
 }player_t;
 
 typedef struct{
-	uint32_t posx,posy;
+	int32_t posx,posy;
 	int32_t velx, vely, accx, accy;
 	uint8_t style;
 	uint16_t hitpoints;
@@ -29,13 +29,19 @@ typedef struct{
 }astroid_t;
 
 typedef struct{
-	uint32_t posx,posy;
+	int32_t posx,posy;
 	int32_t velx,vely,accx,accy;
 	uint16_t damagevalue;
 }bullet_t;
 
-void initPlayer(player_t *pla, uint32_t x, uint32_t y, uint32_t dx, uint32_t dy);
-void initAsteroid(astroid_t *ast, uint32_t x, uint32_t y, uint32_t dx, uint32_t dy);
+typedef struct{
+	int32_t posx,posy;
+	uint16_t style;
+}planet_t;
+
+void initPlayer(player_t *pla, int32_t x, int32_t y, int32_t dx, int32_t dy);
+void initAsteroid(astroid_t *ast, int32_t x, int32_t y, int32_t dx, int32_t dy);
+void initPlanet(planet_t *planet, int32_t x, int32_t y, uint8_t style);
 
 void createBullet(player_t p,bullet_t *b);
 

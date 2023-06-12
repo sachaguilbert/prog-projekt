@@ -4,13 +4,13 @@
 #include "stdint.h"
 #include "entities.h"
 
-void initPlayer(player_t *pla, uint32_t x, uint32_t y, uint32_t dx, uint32_t dy){
+void initPlayer(player_t *pla, int32_t x, int32_t y, int32_t dx, int32_t dy){
 	pla->posx = x;
 	pla->posy = y;
 	pla->velx = dx;
 	pla->vely = dy;
 }
-void initAsteroid(astroid_t *ast, uint32_t x, uint32_t y, uint32_t dx, uint32_t dy){
+void initAsteroid(astroid_t *ast, int32_t x, int32_t y, int32_t dx, int32_t dy){
 	ast->posx = x;
 	ast->posy = y;
 	ast->velx = dx;
@@ -23,6 +23,11 @@ void initAsteroid(astroid_t *ast, uint32_t x, uint32_t y, uint32_t dx, uint32_t 
 	}else{
 		ast->hitpoints = 30;
 	}
+}
+void initPlanet(planet_t *planet, int32_t x, int32_t y, uint8_t style){
+	planet->posx = x;
+	planet->posy = y;
+	planet->style = style;
 }
 
 void createBullet(player_t p,bullet_t *b){
