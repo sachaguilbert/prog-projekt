@@ -82,7 +82,7 @@ void drawBullets(bullet_t *p){
 
 		 	 // New draw
 			 gotoxy(p[i].posx>>14,p[i].posy>>14);
-			 printf("%c",'*');
+			 printf("*");
 		}
 
 	}
@@ -93,6 +93,8 @@ void drawAstroids(astroid_t *a){
 	for(uint8_t i = 0; i<100;i++){
 		if(a[i].hitpoints > 0){
 
+		 	 gotoxy((a[i].posx-a[i].velx*0.5)/pow(2,14),(a[i].posy-a[i].vely*0.5)/pow(2,14));
+		 	 printf("%c",32);
 			// Allows for different styles with different HP values, see astroid init
 			switch(a[i].style){
 				case 1:

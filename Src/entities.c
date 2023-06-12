@@ -1,6 +1,7 @@
 #include "stm32f30x_conf.h" // STM32 config
 #include "30010_io.h" // Input/output library for this course
 #include "stdio.h"
+#include "stdlib.h"
 #include "stdint.h"
 #include "entities.h"
 #include "ansi.h"
@@ -14,7 +15,8 @@ void initPlayer(player_t *pla, uint32_t x, uint32_t y, uint32_t dx, uint32_t dy)
 	pla->velx = dx;
 	pla->vely = dy;
 }
-void initAsteroid(astroid_t *ast, uint32_t x, uint32_t y, uint32_t dx, uint32_t dy){
+
+void initAsteroid(astroid_t *ast, uint32_t x, uint32_t y, int32_t dx, int32_t dy){
 	ast->posx = x;
 	ast->posy = y;
 	ast->velx = dx;
@@ -27,6 +29,50 @@ void initAsteroid(astroid_t *ast, uint32_t x, uint32_t y, uint32_t dx, uint32_t 
 	}else{
 		ast->hitpoints = 30;
 	}
+}
+
+void astroidRandom(astroid_t *a){
+	astroid_t ast;
+	ast.style =1;
+	uint8_t sel = rand() % 4;
+	ast.velx = ((rand() % 3)<<14)*0.1;
+	ast.vely = ((rand() % 3)<<14)*0.1;
+	switch(sel){
+	case 0:
+		initAsteroid(&ast,(rand() % 150)<<14,2<<14,rand() %2 ? ast.velx : -ast.velx,ast.vely);
+		break;
+	case 1:
+		initAsteroid(&ast,(rand() % 150)<<14,50<<14,rand() %2 ? ast.velx : -ast.velx,-ast.vely);
+		break;
+	case 2:
+		initAsteroid(&ast,2<<14,(rand() % 50)<<14,ast.velx,rand() %2 ? ast.vely : -ast.vely);
+		break;
+	case 3:
+		initAsteroid(&ast,150<<14,(rand() % 50)<<14,-ast.velx,rand() %2 ? ast.vely : -ast.vely);
+		break;
+
+	}
+
+	uint16_t j =0;
+	while(j<100){
+		if(a[j].hitpoints == 0){
+			a[j] = ast;
+			return;
+		}
+		j++;
+	}
+}
+
+void updateAsteroid(astroid_t *p){
+	for(uint8_t i = 0;i<100;i++){
+
+		// move bullet if its initialised, ie dmg not 0
+		if(p[i].hitpoints != 0){
+			p[i].posx += p[i].velx * velfactor;
+			p[i].posy += p[i].vely * velfactor;
+		}
+	}
+
 }
 
 void createBullet(player_t p,bullet_t *b){
@@ -81,7 +127,7 @@ void bulletCollisions(bullet_t *b,astroid_t *a){
 		if(b[i].damagevalue !=0){
 			for(uint8_t j =0;j<100;j++){
 				if(a[j].hitpoints !=0){
-					if(b[i].posx == a[j].posx && b[i].posy == a[j].posy){
+					if(b[i].posx>>14 == a[j].posx>>14 && b[i].posy>>14 == a[j].posy>>14){
 						a[j].hitpoints -= b[i].damagevalue;
 						bulletDeath(&b[i]);
 
