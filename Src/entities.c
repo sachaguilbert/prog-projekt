@@ -3,6 +3,9 @@
 #include "stdio.h"
 #include "stdint.h"
 #include "entities.h"
+#include "ansi.h"
+#define velfactor 0.5
+
 
 void initPlayer(player_t *pla, uint32_t x, uint32_t y, uint32_t dx, uint32_t dy){
 	pla->posx = x;
@@ -32,13 +35,28 @@ void createBullet(player_t p,bullet_t *b){
 	newB.posx = p.posx;
 	newB.posy = p.posy;
 	newB.velx = p.accx*speedConst;
-	newB.velx = p.accy*speedConst;
+	newB.vely = p.accy*speedConst;
+	newB.accx = 0;
+	newB.accy = 0;
+	newB.damagevalue = 1;
 	uint16_t j =0;
 	while(j<100){
-		if(b[j].posx != NULL){
+		if(b[j].damagevalue == 0){
 			b[j] = newB;
 			return;
 		}
 		j++;
 	}
+}
+
+void updateBullets(bullet_t *p){
+	for(uint8_t i = 0;i<100;i++){
+
+		// move bullet if its initialised, ie dmg not 0
+		if(p[i].damagevalue != 0){
+			p[i].posx += p[i].velx * velfactor;
+			p[i].posy += p[i].vely * velfactor;
+		}
+	}
+
 }

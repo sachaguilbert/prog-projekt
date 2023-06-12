@@ -73,13 +73,18 @@ void drawPlayer(player_t p){
 }
 
 
-void drawBullets(bullet_t p[]){
-	uint16_t size = sizeof(p)/sizeof(p[0]);
-	for(uint16_t i =0; i<size;i++){
-		if(p[i].posx == NULL){
-		gotoxy(p[0].posx,p[0].posy);
-		printf("%c","*");
+void drawBullets(bullet_t *p){
+	for(uint16_t i =0; i<100;i++){
+		if(p[i].damagevalue != 0){
+			 // Haram removal service
+		 	 gotoxy((p[i].posx-p[i].velx*0.5)/pow(2,14),(p[i].posy-p[i].vely*0.5)/pow(2,14));
+		 	 printf("%c",32);
+
+		 	 // New draw
+			 gotoxy(p[i].posx/pow(2,14),p[i].posy/pow(2,14));
+			 printf("%c",'*');
 		}
+
 	}
 }
 
