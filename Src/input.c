@@ -13,13 +13,17 @@ void update_player_input(player_t *p,bullet_t *b)
 	uint8_t input = get_keyboard_input();
 	switch(input)
 	{
-	case 100: //a left
+	case 100: //d left
 		p->dir+=5;
+		p->dir = p->dir >= 512 ? 0 : p->dir;
+
 		p->accx = cosLUT(p->dir);
 		p->accy = sinLUT(p->dir);
 		break;
-	case 97: //d right
+	case 97: //a right
 		p->dir-=5;
+		p->dir = p->dir <= 0 ? 512 : p->dir;
+
 		p->accx = cosLUT(p->dir);
 		p->accy = sinLUT(p->dir);
 		break;
