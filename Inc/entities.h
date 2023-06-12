@@ -39,6 +39,7 @@ void initAsteroid(astroid_t *ast, uint32_t x, uint32_t y, uint32_t dx, uint32_t 
 
 void createBullet(player_t p,bullet_t *b);
 void updateBullets(bullet_t *p);
+void bulletCollisions(bullet_t *b,astroid_t *a);
 
 
 #endif /* ENTITIES_H_ */

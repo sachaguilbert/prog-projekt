@@ -21,8 +21,6 @@ void drawGameStart(player_t p){
 	uint8_t p2[2] = {156,144};
 
 	gameWindow(p1,p2,1);
-	drawPlayer(p);
-
 }
 
 void drawPlayer(player_t p){
@@ -74,4 +72,21 @@ void drawBullets(bullet_t *p){
 	}
 }
 
+void drawAstroids(astroid_t *a){
+
+	for(uint8_t i = 0; i<100;i++){
+		if(a[i].hitpoints != 0){
+			switch(a[i].style){
+				case 1:
+					gotoxy(a[i].posx>>14,a[i].posy>>14);
+					printf("%c",219);
+					gotoxy(1,i+1);
+					printf("%i",a[i].posx);
+					break;
+				case 2:
+					break;
+				}
+		}
+	}
+}
 

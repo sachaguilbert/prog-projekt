@@ -60,3 +60,38 @@ void updateBullets(bullet_t *p){
 	}
 
 }
+
+void bulletDeath();
+
+void bulletCollisions(bullet_t *b,astroid_t *a){
+	// Checks only live bullets on live astroids
+	for(uint8_t i = 0;i<100;i++){
+		if(b[i].damagevalue !=0){
+			for(uint8_t j =0;j<100;j++){
+				if(a[j].hitpoints !=0){
+					if(b[i].posx == a[j].posx && b[i].posy == a[j].posy){
+						a[j].hitpoints -= b[i].damagevalue;
+						b[i].damagevalue = 0;
+
+						// VISUAL PAIN
+					 	 gotoxy((b[i].posx-b[i].velx*0.5)/pow(2,14),(b[i].posy-b[i].vely*0.5)/pow(2,14));
+					 	 printf("%c",32);
+					 	 gotoxy(a[j].posx>>14,a[j].posy>>14);
+					 	 fgcolor(1);
+					 	 printf("%c",219);
+					 	 fgcolor(15);
+
+
+						// Kill astroid and bullet add real function later
+						if(a[j].hitpoints == 0){
+							gotoxy(a[j].posx,a[j].posy);
+							printf("%c",32);
+						}
+					}
+				}
+			}
+		}
+	}
+
+
+}
