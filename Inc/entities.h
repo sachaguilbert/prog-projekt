@@ -35,6 +35,6 @@ typedef struct{
 }bullet_t;
 
 
-void createBullet(player_t p,bullet_t *b[]);
+void createBullet(player_t p,bullet_t *b);
 
 #endif /* ENTITIES_H_ */

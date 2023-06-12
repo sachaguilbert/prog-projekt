@@ -14,7 +14,7 @@
 
 /* Exported functions ------------------------------------------------------- */
 uint8_t get_keyboard_input();
-void update_player_input(player_t *p);
+void update_player_input(player_t *p,bullet_t *b);
 void update_player_pos(player_t *p);
 
 

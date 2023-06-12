@@ -9,7 +9,7 @@ signed short sinLUT(int32_t angel){
 	return SIN[angel];
 }
 
-signed short cosLut(int32_t angel){
+signed short cosLUT(int32_t angel){
 	return sinLUT(angel+128);
 }
 void stm_sleep(uint32_t t)

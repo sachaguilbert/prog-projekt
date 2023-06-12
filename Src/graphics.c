@@ -6,11 +6,13 @@
  */
 #include "stm32f30x_conf.h" // STM32 config
 #include "30010_io.h" // Input/output library for this course
-#include "stdio.h"
+#include <stdio.h>
 #include "stdint.h"
 #include "ansi.h"
 #include "entities.h"
 #include <math.h>
+
+
 
 
 void drawGameStart(){
@@ -44,7 +46,7 @@ void drawPlayer(player_t p){
 void drawBullets(bullet_t p[]){
 	uint16_t size = sizeof(p)/sizeof(p[0]);
 	for(uint16_t i =0; i<size;i++){
-		if(p[i] != null){
+		if(p[i].posx == NULL){
 		gotoxy(p[0].posx,p[0].posy);
 		printf("%c","*");
 		}

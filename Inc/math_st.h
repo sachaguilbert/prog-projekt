@@ -10,7 +10,7 @@
 /* Exported macro ------------------------------------------------------------*/
 
 /* Exported functions ------------------------------------------------------- */
-signed short sinLUT(int x);
-signed short cosLUT(int x);
+signed short sinLUT(int32_t angel);
+signed short cosLUT(int32_t angel);
 void stm_sleep(uint32_t t);
 #endif /* _30010_IO_H_ */
