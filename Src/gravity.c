@@ -20,10 +20,11 @@ void updateShipPos(player_t *play, astroid_t *ast){
 	//int16_t G = 1;
 	//int16_t ddx = -G*ast->mass*(ast->x-ship->x)/(dsqr*dsqr*dsqr);
 	//int16_t ddy = -G*ast->mass*(ast->y-ship->y)/(dsqr*dsqr*dsqr);
+	uint8_t mass = 1;
 	float d = sqrt((play->posx-((ast->posx)>>5))*(play->posx-((ast->posx)>>5)) + (play->posy-((ast->posy)>>5))*(play->posy-((ast->posy)>>5)));
 	float G = 0.00000005;
-	float ddx = -G*ast->mass*(play->posx-(ast->posx>>5))/(d*d*d);
-	float ddy = -G*ast->mass*(play->posy-(ast->posy>>5))/(d*d*d);
+	float ddx = -G*mass*(play->posx-(ast->posx>>5))/(d*d*d);
+	float ddy = -G*mass*(play->posy-(ast->posy>>5))/(d*d*d);
 	gotoxy(1,10);
 	printf("ddx: %05d",(int)(ddx*10));
 	gotoxy(1,11);

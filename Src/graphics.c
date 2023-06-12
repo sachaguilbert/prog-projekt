@@ -13,14 +13,11 @@
 #include <math.h>
 
 
-void drawGameStart(){
+void drawGameStart(player_t p){
 	uint8_t p1[2] = {1,1};
 	uint8_t p2[2] = {156,144};
 
 	gameWindow(p1,p2,1);
-	player_t p;
-	p.posx = 10 << 14;
-	p.posy = 10 << 14;
 	drawPlayer(p);
 
 }
