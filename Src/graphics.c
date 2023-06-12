@@ -50,8 +50,6 @@ void deletePlayer(player_t p)
 }
 
 void drawPlayer(player_t p){
-
-
 	gotoxy(p.posx >> 14,p.posy >> 14);
 	printf("%c",219);
 	vector_t v1 = {1 << 14,0 << 14};
