@@ -34,12 +34,17 @@ typedef struct{
 	uint16_t damagevalue;
 }bullet_t;
 
+// PLAYER
 void initPlayer(player_t *pla, uint32_t x, uint32_t y, uint32_t dx, uint32_t dy);
+
+// ASTEROID
 void initAsteroid(astroid_t *ast, uint32_t x, uint32_t y, uint32_t dx, uint32_t dy);
 
+// Bullet
 void createBullet(player_t p,bullet_t *b);
 void updateBullets(bullet_t *p);
 void bulletCollisions(bullet_t *b,astroid_t *a);
+void bulletOUB(bullet_t *b);;
 
 
 #endif /* ENTITIES_H_ */

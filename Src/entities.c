@@ -4,6 +4,7 @@
 #include "stdint.h"
 #include "entities.h"
 #include "ansi.h"
+#include "math.h"
 #define velfactor 0.5
 
 
@@ -31,6 +32,7 @@ void initAsteroid(astroid_t *ast, uint32_t x, uint32_t y, uint32_t dx, uint32_t 
 void createBullet(player_t p,bullet_t *b){
 	uint8_t speedConst = 2; // Determines the speed, since pacc is always 1
 
+	// Create new bullet depending on player position and direction
 	bullet_t newB;
 	newB.posx = p.posx;
 	newB.posy = p.posy;
@@ -38,8 +40,11 @@ void createBullet(player_t p,bullet_t *b){
 	newB.vely = p.accy*speedConst;
 	newB.accx = 0;
 	newB.accy = 0;
-	newB.damagevalue = 1;
+
+	newB.damagevalue = 1; // Changeable if new weapons are added
 	uint16_t j =0;
+
+	// Finds next "DeadSpot" in bullets array
 	while(j<100){
 		if(b[j].damagevalue == 0){
 			b[j] = newB;
@@ -61,7 +66,14 @@ void updateBullets(bullet_t *p){
 
 }
 
-void bulletDeath();
+void bulletDeath(bullet_t *b){
+	// Sets bulle dmg to 0 allowing the program to overide this cell essentially deleting the bullet
+	 (*b).damagevalue = 0;
+ 	 gotoxy(((*b).posx-(*b).velx*velfactor)/pow(2,14),((*b).posy-(*b).vely*velfactor)/pow(2,14));
+	 printf("%c",32);
+
+
+}
 
 void bulletCollisions(bullet_t *b,astroid_t *a){
 	// Checks only live bullets on live astroids
@@ -71,20 +83,18 @@ void bulletCollisions(bullet_t *b,astroid_t *a){
 				if(a[j].hitpoints !=0){
 					if(b[i].posx == a[j].posx && b[i].posy == a[j].posy){
 						a[j].hitpoints -= b[i].damagevalue;
-						b[i].damagevalue = 0;
+						bulletDeath(&b[i]);
 
 						// VISUAL PAIN
-					 	 gotoxy((b[i].posx-b[i].velx*0.5)/pow(2,14),(b[i].posy-b[i].vely*0.5)/pow(2,14));
-					 	 printf("%c",32);
 					 	 gotoxy(a[j].posx>>14,a[j].posy>>14);
 					 	 fgcolor(1);
 					 	 printf("%c",219);
-					 	 fgcolor(15);
+					 	 fgcolor(7);
 
 
 						// Kill astroid and bullet add real function later
-						if(a[j].hitpoints == 0){
-							gotoxy(a[j].posx,a[j].posy);
+						if(a[j].hitpoints <= 0){
+							gotoxy(a[j].posx>>14,a[j].posy>>14);
 							printf("%c",32);
 						}
 					}
@@ -94,4 +104,14 @@ void bulletCollisions(bullet_t *b,astroid_t *a){
 	}
 
 
+}
+
+void bulletOUB(bullet_t *b){
+	// Checks for out of bounds for all bullets
+	for(uint8_t i =0; i<100;i++){
+		if(b[i].posx>>14 >= 156-1 || b[i].posx>>14 <= 1+1 || b[i].posy>>14 >= 144-1 || b[i].posy>>14 <= 1+1){
+			bulletDeath(&b[i]);
+		}
+
+	}
 }

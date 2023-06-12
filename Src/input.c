@@ -10,6 +10,9 @@ uint8_t get_keyboard_input()
 
 void update_player_input(player_t *p,bullet_t *b)
 {
+	// Limits inputs to 3 per tick
+	uint8_t i = 0;
+	while(uart_get_count()>0 && i<3){
 	uint8_t input = get_keyboard_input();
 	switch(input)
 	{
@@ -39,6 +42,9 @@ void update_player_input(player_t *p,bullet_t *b)
 		createBullet(*p,b);
 		break;
 	}
+	i++;
+	}
+	uart_clear();
 }
 void update_player_pos(player_t *p)
 {
