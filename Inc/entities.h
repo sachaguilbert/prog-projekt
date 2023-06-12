@@ -38,11 +38,21 @@ typedef struct{
 	int32_t posx,posy;
 	uint16_t style;
 }planet_t;
-
-void initPlayer(player_t *pla, int32_t x, int32_t y, int32_t dx, int32_t dy);
-void initAsteroid(astroid_t *ast, int32_t x, int32_t y, int32_t dx, int32_t dy);
+//PLANET
 void initPlanet(planet_t *planet, int32_t x, int32_t y, uint8_t style);
+// PLAYER
+void initPlayer(player_t *pla, int32_t x, int32_t y, int32_t dx, int32_t dy);
 
+// ASTEROID
+void initAsteroid(astroid_t *ast, int32_t x, int32_t y, int32_t dx, int32_t dy);
+void astroidRandom(astroid_t *a);
+void updateAsteroid(astroid_t *p);
+
+// Bullet
 void createBullet(player_t p,bullet_t *b);
+void updateBullets(bullet_t *p);
+void bulletCollisions(bullet_t *b,astroid_t *a);
+void bulletOUB(bullet_t *b);;
+
 
 #endif /* ENTITIES_H_ */
