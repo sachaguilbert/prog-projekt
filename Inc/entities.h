@@ -17,6 +17,7 @@ typedef struct{
 	int16_t dir;
 	uint8_t style,weapon;
 	uint16_t hitpoints;
+	uint_8 mass;
 }player_t;
 
 typedef struct{
@@ -24,6 +25,7 @@ typedef struct{
 	int32_t velx, vely, accx, accy;
 	uint8_t style;
 	uint16_t hitpoints;
+	uint_8 mass;
 }astroid_t;
 
 typedef struct{
