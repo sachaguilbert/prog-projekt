@@ -14,14 +14,14 @@ void update_player_input(player_t *p,bullet_t *b)
 	switch(input)
 	{
 	case 100: //d left
-		p->dir+=5;
+		p->dir+=15;
 		p->dir = p->dir >= 512 ? 0 : p->dir;
 
 		p->accx = cosLUT(p->dir);
 		p->accy = sinLUT(p->dir);
 		break;
 	case 97: //a right
-		p->dir-=5;
+		p->dir-=15;
 		p->dir = p->dir <= 0 ? 512 : p->dir;
 
 		p->accx = cosLUT(p->dir);
@@ -30,10 +30,18 @@ void update_player_input(player_t *p,bullet_t *b)
 	case 119: //w forward
 		p->velx+= p->accx * accfactor;
 		p->vely+= p->accy * accfactor;
+		p->velx = p->velx >= 2 << 14 ? 2 << 14 : p->velx;
+		p->vely = p->vely >= 2 << 14 ? 2 << 14 : p->vely;
+		p->velx = p->velx <= -2 << 14 ? -2 << 14 : p->velx;
+		p->vely = p->vely <= -2 << 14 ? -2 << 14 : p->vely;
 		break;
 	case 115: //s back
 		p->velx-= p->accx * accfactor;
 		p->vely-= p->accy * accfactor;
+		p->velx = p->velx >= 2 << 14 ? 2 << 14 : p->velx;
+		p->vely = p->vely >= 2 << 14 ? 2 << 14 : p->vely;
+		p->velx = p->velx <= -2 << 14 ? -2 << 14 : p->velx;
+		p->vely = p->vely <= -2 << 14 ? -2 << 14 : p->vely;
 		break;
 	case 32: //SPACE shoot
 		createBullet(*p,b);

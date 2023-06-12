@@ -27,23 +27,24 @@ void drawGameStart(player_t p){
 void deletePlayer(player_t p)
 {
 
+
 	gotoxy(p.posx >> 14,p.posy >> 14);
 	printf("%c",32);
 	vector_t v1 = {1 << 14,0 << 14};
 	rotateVector(&v1,p.dir);
-	gotoxy((p.posx+v1.x) >> 14,(p.posy+v1.y) >> 14);
+	gotoxy((p.posx >> 14)+round(v1.x/pow(2,14)),(p.posy >> 14)+round(v1.y/pow(2,14)));
 	printf("%c",32);
 	vector_t v2 = {2 << 14,0 << 14};
 	rotateVector(&v2,p.dir);
-	gotoxy((p.posx+v2.x) >> 14,(p.posy+v2.y) >> 14);
+	gotoxy((p.posx >> 14)+round(v2.x/pow(2,14)),(p.posy >> 14)+round(v2.y/pow(2,14)));
 	printf("%c",32);
 	vector_t v3 = {0 << 14,-1 << 14};
 	rotateVector(&v3,p.dir);
-	gotoxy((p.posx+v3.x) >> 14,(p.posy+v3.y) >> 14);
+	gotoxy((p.posx >> 14 ) +round(v3.x/pow(2,14)),(p.posy >> 14)+round(v3.y/pow(2,14)));
 	printf("%c",32);
 	vector_t v4 = {0 << 14,1 << 14};
 	rotateVector(&v4,p.dir);
-	gotoxy((p.posx + v4.x),(p.posy+v4.y));
+	gotoxy((p.posx >> 14) + round(v4.x/pow(2,14)),(p.posy >> 14) +round(v4.y/pow(2,14)));
 	printf("%c",32);
 }
 
@@ -54,19 +55,19 @@ void drawPlayer(player_t p){
 	printf("%c",219);
 	vector_t v1 = {1 << 14,0 << 14};
 	rotateVector(&v1,p.dir);
-	gotoxy((p.posx+v1.x) >> 14,(p.posy+v1.y) >> 14);
+	gotoxy((p.posx >> 14)+round(v1.x/pow(2,14)),(p.posy >> 14)+round(v1.y/pow(2,14)));
 	printf("%c",219);
 	vector_t v2 = {2 << 14,0 << 14};
 	rotateVector(&v2,p.dir);
-	gotoxy((p.posx+v2.x) >> 14,(p.posy+v2.y) >> 14);
+	gotoxy((p.posx >> 14)+round(v2.x/pow(2,14)),(p.posy >> 14)+round(v2.y/pow(2,14)));
 	printf("%c",219);
 	vector_t v3 = {0 << 14,-1 << 14};
 	rotateVector(&v3,p.dir);
-	gotoxy((p.posx+v3.x) >> 14,(p.posy+v3.y) >> 14);
+	gotoxy((p.posx >> 14 ) +round(v3.x/pow(2,14)),(p.posy >> 14)+round(v3.y/pow(2,14)));
 	printf("%c",220);
 	vector_t v4 = {0 << 14,1 << 14};
 	rotateVector(&v4,p.dir);
-	gotoxy((p.posx + v4.x),(p.posy+v4.y));
+	gotoxy((p.posx >> 14) + round(v4.x/pow(2,14)),(p.posy >> 14) +round(v4.y/pow(2,14)));
 	printf("%c",223);
 }
 
