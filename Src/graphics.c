@@ -11,7 +11,7 @@
 #include "ansi.h"
 #include "entities.h"
 #include <math.h>
-#include "math_st.h"
+#include "graphics.h"
 #define velfactor 0.1
 
 
@@ -27,73 +27,154 @@ void drawGameStart(player_t p){
 
 void deletePlayer(player_t p)
 {
-	drawPlayerPixel(p,0,0,32);
-	drawPlayerPixel(p,1,0,32);
-	drawPlayerPixel(p,2,0,32);
-	drawPlayerPixel(p,3,0,32);
-	drawPlayerPixel(p,-1,0,32);
-	drawPlayerPixel(p,-2,0,32);
-	drawPlayerPixel(p,-3,0,32);
+	for(int i = -4; i <= 4; i++)
+	{
+		for(int j = -4; j <= 4; j++)
+		{
+			vector_t v = {i << 14,j << 14};
+			drawPlayerPixel(p,&v,32);
+		}
+	}
 
-	drawPlayerPixel(p,0,-1,32);
-	drawPlayerPixel(p,1,-1,32);
-	drawPlayerPixel(p,2,-1,32);
-	drawPlayerPixel(p,-1,-1,32);
-	drawPlayerPixel(p,-2,-1,32);
-
-	drawPlayerPixel(p,0,1,32);
-	drawPlayerPixel(p,1,1,32);
-	drawPlayerPixel(p,2,1,32);
-	drawPlayerPixel(p,-1,1,32);
-	drawPlayerPixel(p,-2,1,32);
-
-	drawPlayerPixel(p,0,-2,32);
-	drawPlayerPixel(p,-1,-2,32);
-	drawPlayerPixel(p,1,-2,32);
-
-	drawPlayerPixel(p,0,2,32);
-	drawPlayerPixel(p,-1,2,32);
-	drawPlayerPixel(p,1,2,32);
 
 }
 
-void drawPlayer(player_t p){
-	drawPlayerPixel(p,0,0,48);
-	drawPlayerPixel(p,1,0,43);
-	drawPlayerPixel(p,2,0,124);
+
+
+
+void drawPlayer(player_t p,uint8_t init, vector_t *v){
+	if(init)
+	{
+
+		v[0].x = 0;
+		v[0].y = 0;
+
+		v[1].x = 1;
+		v[1].y = 0;
+
+		v[2].x = 2;
+		v[2].y = 0;
+
+		v[3].x = 3;
+		v[3].y = 0;
+
+		v[4].x = -1;
+		v[4].y = 0;
+
+		v[5].x = -2;
+		v[5].y = 0;
+
+		v[6].x = -3;
+		v[6].y = 0;
+
+		v[7].x = 0;
+		v[7].y = -1;
+
+		v[8].x = 1;
+		v[8].y = -1;
+
+		v[9].x = 2;
+		v[9].y = -1;
+
+		v[10].x = -1;
+		v[10].y = -1;
+
+		v[11].x = -2;
+		v[11].y = -1;
+
+		v[12].x = 0;
+		v[12].y = 1;
+
+		v[13].x = 1;
+		v[13].y = 1;
+
+		v[14].x = 2;
+		v[14].y = 1;
+
+		v[15].x = -1;
+		v[15].y = 1;
+
+		v[16].x = -2;
+		v[16].y = 1;
+
+		v[17].x = 0;
+		v[17].y = -2;
+
+		v[18].x = -1;
+		v[18].y = -2;
+
+		v[19].x = 1;
+		v[19].y = -2;
+
+		v[20].x = 0;
+		v[20].y = 2;
+
+		v[21].x = 1;
+		v[21].y = 2;
+
+		v[22].x = -1;
+		v[22].y = 2;
+		for(int i = 0; i < 23; i++)
+		{
+			bitShift(&v[i]);
+		}
+	}
+
+
+
+	drawPlayerPixel(p,&v[0],48);
+	drawPlayerPixel(p,&v[1],43);
+	drawPlayerPixel(p,&v[2],124);
 	fgcolor(1);
-	drawPlayerPixel(p,3,0,35);
+	drawPlayerPixel(p,&v[3],35);
 	fgcolor(15);
-	drawPlayerPixel(p,-1,0,43);
-	drawPlayerPixel(p,-2,0,124);
-	drawPlayerPixel(p,-3,0,35);
+	drawPlayerPixel(p,&v[4],43);
+	drawPlayerPixel(p,&v[5],124);
+	drawPlayerPixel(p,&v[6],35);
 
-	drawPlayerPixel(p,0,-1,45);
-	drawPlayerPixel(p,1,-1,45);
-	drawPlayerPixel(p,2,-1,35);
-	drawPlayerPixel(p,-1,-1,45);
-	drawPlayerPixel(p,-2,-1,35);
+	drawPlayerPixel(p,&v[7],45);
+	drawPlayerPixel(p,&v[8],45);
+	drawPlayerPixel(p,&v[9],35);
+	drawPlayerPixel(p,&v[10],45);
+	drawPlayerPixel(p,&v[11],35);
 
-	drawPlayerPixel(p,0,1,45);
-	drawPlayerPixel(p,1,1,45);
-	drawPlayerPixel(p,2,1,35);
-	drawPlayerPixel(p,-1,1,45);
-	drawPlayerPixel(p,-2,1,35);
+	drawPlayerPixel(p,&v[12],45);
+	drawPlayerPixel(p,&v[13],45);
+	drawPlayerPixel(p,&v[14],35);
+	drawPlayerPixel(p,&v[15],45);
+	drawPlayerPixel(p,&v[16],35);
 
-	drawPlayerPixel(p,0,-2,35);
-	drawPlayerPixel(p,-1,-2,35);
-	drawPlayerPixel(p,1,-2,35);
+	drawPlayerPixel(p,&v[17],35);
+	drawPlayerPixel(p,&v[18],35);
+	drawPlayerPixel(p,&v[19],35);
 
-	drawPlayerPixel(p,0,2,35);
-	drawPlayerPixel(p,-1,2,35);
-	drawPlayerPixel(p,1,2,35);
+	drawPlayerPixel(p,&v[20],35);
+	drawPlayerPixel(p,&v[21],35);
+	drawPlayerPixel(p,&v[22],35);
+}
+vector_t redPixelPos(player_t p)
+{
+	vector_t v = {3 << 14, 0 << 14};
+	rotateVector(&v,p.dir-p.oldDir);
+	vector_t pixelPos = {v.x + p.posx, v.y + p.posy};
+	return pixelPos;
+}
+void bitShift(vector_t *v)
+{
+	v->x = v->x << 14;
+	v->y = v->y << 14;
 }
 
-void drawPlayerPixel(player_t p, int8_t x, int8_t y, uint8_t ch)
+void drawPlayerPixel(player_t p, vector_t *v, uint8_t ch)
 {
-	vector_t v = {x << 14, y << 14};
-	rotateVector(&v,p.dir);
-	gotoxy((p.posx >> 14)+round(v.x/pow(2,14)),(p.posy >> 14)+round(v.y/pow(2,14)));
+	if(p.oldDir != p.dir)
+	{
+		rotateVector(v,p.dir-p.oldDir);
+	}
+
+	int8_t testx = round(v->x/pow(2,14));
+	int8_t testy = round(v->y/pow(2,14));
+	gotoxy((p.posx >> 14)+testx,(p.posy >> 14)+testy);
 	printf("%c",ch);
 }
 
