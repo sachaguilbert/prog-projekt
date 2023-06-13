@@ -30,16 +30,63 @@ void deletePlayer(player_t p)
 	drawPlayerPixel(p,0,0,32);
 	drawPlayerPixel(p,1,0,32);
 	drawPlayerPixel(p,2,0,32);
+	drawPlayerPixel(p,3,0,32);
+	drawPlayerPixel(p,-1,0,32);
+	drawPlayerPixel(p,-2,0,32);
+	drawPlayerPixel(p,-3,0,32);
+
 	drawPlayerPixel(p,0,-1,32);
+	drawPlayerPixel(p,1,-1,32);
+	drawPlayerPixel(p,2,-1,32);
+	drawPlayerPixel(p,-1,-1,32);
+	drawPlayerPixel(p,-2,-1,32);
+
 	drawPlayerPixel(p,0,1,32);
+	drawPlayerPixel(p,1,1,32);
+	drawPlayerPixel(p,2,1,32);
+	drawPlayerPixel(p,-1,1,32);
+	drawPlayerPixel(p,-2,1,32);
+
+	drawPlayerPixel(p,0,-2,32);
+	drawPlayerPixel(p,-1,-2,32);
+	drawPlayerPixel(p,1,-2,32);
+
+	drawPlayerPixel(p,0,2,32);
+	drawPlayerPixel(p,-1,2,32);
+	drawPlayerPixel(p,1,2,32);
+
 }
 
 void drawPlayer(player_t p){
-	drawPlayerPixel(p,0,0,219);
-	drawPlayerPixel(p,1,0,219);
-	drawPlayerPixel(p,2,0,219);
-	drawPlayerPixel(p,0,-1,219);
-	drawPlayerPixel(p,0,1,219);
+	drawPlayerPixel(p,0,0,48);
+	drawPlayerPixel(p,1,0,43);
+	drawPlayerPixel(p,2,0,124);
+	fgcolor(1);
+	drawPlayerPixel(p,3,0,35);
+	fgcolor(15);
+	drawPlayerPixel(p,-1,0,43);
+	drawPlayerPixel(p,-2,0,124);
+	drawPlayerPixel(p,-3,0,35);
+
+	drawPlayerPixel(p,0,-1,45);
+	drawPlayerPixel(p,1,-1,45);
+	drawPlayerPixel(p,2,-1,35);
+	drawPlayerPixel(p,-1,-1,45);
+	drawPlayerPixel(p,-2,-1,35);
+
+	drawPlayerPixel(p,0,1,45);
+	drawPlayerPixel(p,1,1,45);
+	drawPlayerPixel(p,2,1,35);
+	drawPlayerPixel(p,-1,1,45);
+	drawPlayerPixel(p,-2,1,35);
+
+	drawPlayerPixel(p,0,-2,35);
+	drawPlayerPixel(p,-1,-2,35);
+	drawPlayerPixel(p,1,-2,35);
+
+	drawPlayerPixel(p,0,2,35);
+	drawPlayerPixel(p,-1,2,35);
+	drawPlayerPixel(p,1,2,35);
 }
 
 void drawPlayerPixel(player_t p, int8_t x, int8_t y, uint8_t ch)

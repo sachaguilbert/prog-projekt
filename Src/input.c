@@ -1,6 +1,6 @@
 #include "input.h"
 #include "entities.h"
-#define accfactor 0.1
+#define accfactor 0.4
 #define velfactor 0.1
 
 uint8_t get_keyboard_input()
@@ -17,14 +17,14 @@ void update_player_input(player_t *p,bullet_t *b)
 	switch(input)
 	{
 	case 100: //d left
-		p->dir+=15;
+		p->dir+=35;
 		p->dir = p->dir >= 512 ? 0 : p->dir;
 
 		p->accx = cosLUT(p->dir);
 		p->accy = sinLUT(p->dir);
 		break;
 	case 97: //a right
-		p->dir-=15;
+		p->dir-=35;
 		p->dir = p->dir <= 0 ? 512 : p->dir;
 
 		p->accx = cosLUT(p->dir);
@@ -58,4 +58,9 @@ void update_player_pos(player_t *p)
 {
 	p->posx += p->velx * velfactor;
 	p->posy += p->vely * velfactor;
+	p->posx = p->posx >= 152 << 14 ? 5 << 14 : p->posx;
+	p->posy = p->posy >= 86 << 14 ? 5 << 14 : p->posy;
+	p->posx = p->posx <= 4 << 14 ? 151 << 14: p->posx;
+	p->posy = p->posy <= 4 << 14 ? 85 << 14 : p->posy;
+
 }
