@@ -6,7 +6,7 @@
 #include "entities.h"
 #include "ansi.h"
 #include "math.h"
-#define velfactor 0.5
+#define velfactor 2
 
 
 void initPlayer(player_t *pla, int32_t x, int32_t y, int32_t dx, int32_t dy){
@@ -71,8 +71,8 @@ void updateAsteroid(astroid_t *p){
 	for(uint8_t i = 0;i<100;i++){
 		// move bullet if its initialised, ie dmg not 0
 		if(p[i].hitpoints != 0){
-			p[i].posx += p[i].velx * velfactor;
-			p[i].posy += p[i].vely * velfactor;
+			p[i].posx += p[i].velx / velfactor;
+			p[i].posy += p[i].vely / velfactor;
 		}
 	}
 
@@ -122,8 +122,10 @@ void updateBullets(bullet_t *p){
 
 		// move bullet if its initialised, ie dmg not 0
 		if(p[i].damagevalue != 0){
-			p[i].posx += p[i].velx * velfactor;
-			p[i].posy += p[i].vely * velfactor;
+			p[i].velx += p[i].accx;
+			p[i].vely += p[i].accy;
+			p[i].posx += p[i].velx / velfactor;
+			p[i].posy += p[i].vely / velfactor;
 		}
 	}
 
@@ -132,7 +134,7 @@ void updateBullets(bullet_t *p){
 void bulletDeath(bullet_t *b){
 	// Sets bulle dmg to 0 allowing the program to overide this cell essentially deleting the bullet
 	 (*b).damagevalue = 0;
- 	 gotoxy(((*b).posx-(*b).velx*velfactor)/pow(2,14),((*b).posy-(*b).vely*velfactor)/pow(2,14));
+ 	 gotoxy(((*b).posx-(*b).velx/velfactor)/pow(2,14),((*b).posy-(*b).vely/velfactor)/pow(2,14));
 	 printf("%c",32);
 
 
