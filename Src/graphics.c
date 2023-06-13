@@ -103,13 +103,13 @@ void drawBullets(bullet_t *p){
 	for(uint16_t i =0; i<100;i++){
 		if(p[i].damagevalue > 0){
 			if((p[i].posx-p[i].velx*0.5)/pow(2,14) != p[i].posx>>14 || (p[i].posy-p[i].vely*0.5)/pow(2,14) != p[i].posy){
-			 // Haram removal service
-		 	 gotoxy((p[i].posx-p[i].velx*0.5)/pow(2,14),(p[i].posy-p[i].vely*0.5)/pow(2,14));
-		 	 printf("%c",32);
+				// Haram removal service
+				gotoxy((p[i].posx-p[i].velx/2)/pow(2,14),(p[i].posy-p[i].vely/2)/pow(2,14));
+				printf("%c",32);
 
-		 	 // New draw
-			 gotoxy(p[i].posx>>14,p[i].posy>>14);
-			 printf("*");
+				// New draw
+				gotoxy(p[i].posx>>14,p[i].posy>>14);
+				printf("*");
 			}
 		}
 	}
