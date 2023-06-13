@@ -47,6 +47,7 @@ void initPlayer(player_t *pla, int32_t x, int32_t y, int32_t dx, int32_t dy);
 void initAsteroid(astroid_t *ast, int32_t x, int32_t y, int32_t dx, int32_t dy);
 void astroidRandom(astroid_t *a);
 void updateAsteroid(astroid_t *p);
+void astroidOUB(astroid_t *a);
 
 // Bullet
 void createBullet(player_t p,bullet_t *b);

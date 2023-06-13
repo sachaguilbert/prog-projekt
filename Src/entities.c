@@ -69,11 +69,23 @@ void astroidRandom(astroid_t *a){
 
 void updateAsteroid(astroid_t *p){
 	for(uint8_t i = 0;i<100;i++){
-
 		// move bullet if its initialised, ie dmg not 0
 		if(p[i].hitpoints != 0){
 			p[i].posx += p[i].velx * velfactor;
 			p[i].posy += p[i].vely * velfactor;
+		}
+	}
+
+}
+
+void astroidOUB(astroid_t *a){
+	// Checks for out of bounds for all bullets
+	for(uint8_t i =0; i<100;i++){
+		if(a[i].hitpoints >0){
+			if(a[i].posx>>14 >= 156-1 || a[i].posx>>14 <= 1+1 || a[i].posy>>14 >= 144-1 || a[i].posy>>14 <= 1+1){
+				gotoxy(a[i].posx>>14,a[i].posy>>14);
+				printf("%c",32);
+			}
 		}
 	}
 
