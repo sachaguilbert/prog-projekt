@@ -31,16 +31,16 @@ void update_player_input(player_t *p,bullet_t *b)
 		p->accy = sinLUT(p->dir);
 		break;
 	case 119: //w forward
-		p->velx+= p->accx * accfactor;
-		p->vely+= p->accy * accfactor;
+		p->velx+= p->accx;
+		p->vely+= p->accy;
 		p->velx = p->velx >= 2 << 14 ? 2 << 14 : p->velx;
 		p->vely = p->vely >= 2 << 14 ? 2 << 14 : p->vely;
 		p->velx = p->velx <= -2 << 14 ? -2 << 14 : p->velx;
 		p->vely = p->vely <= -2 << 14 ? -2 << 14 : p->vely;
 		break;
 	case 115: //s back
-		p->velx-= p->accx * accfactor;
-		p->vely-= p->accy * accfactor;
+		p->velx-= p->accx;
+		p->vely-= p->accy;
 		p->velx = p->velx >= 2 << 14 ? 2 << 14 : p->velx;
 		p->vely = p->vely >= 2 << 14 ? 2 << 14 : p->vely;
 		p->velx = p->velx <= -2 << 14 ? -2 << 14 : p->velx;
@@ -56,8 +56,11 @@ void update_player_input(player_t *p,bullet_t *b)
 }
 void update_player_pos(player_t *p)
 {
-	p->posx += p->velx * velfactor;
-	p->posy += p->vely * velfactor;
+	p->posx += p->velx;
+	p->posy += p->vely;
+	p->velx = 0;
+	p->vely = 0;
+
 	p->posx = p->posx >= 152 << 14 ? 5 << 14 : p->posx;
 	p->posy = p->posy >= 86 << 14 ? 5 << 14 : p->posy;
 	p->posx = p->posx <= 4 << 14 ? 151 << 14: p->posx;
