@@ -1,6 +1,7 @@
 #include "menu.h"
 
 void mainMenu(){
+	initPins();
 	drawStart();
 	uint8_t breaak = 0;
 	int8_t option = 0;
@@ -63,7 +64,9 @@ void settingsMenu(){
 	uint16_t p6[2] = {125,41};
 	gameWindow(p5,p6,2);
 	gotoxy(112,40);
+	fgcolor(1);
 	printf("RETURN");
+	fgcolor(7);
 	while(1){
 		gotoxy(0,10);
 		printf("Inside settings menu");
@@ -94,7 +97,9 @@ void helpMenu(){
 	uint16_t p6[2] = {125,41};
 	gameWindow(p5,p6,2);
 	gotoxy(112,40);
+	fgcolor(1);
 	printf("RETURN");
+	fgcolor(7);
 	while(1){
 		gotoxy(0,10);
 		printf("Inside help menu");
