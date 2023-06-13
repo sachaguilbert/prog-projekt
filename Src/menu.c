@@ -3,13 +3,13 @@
 void mainMenu(){
 	initPins();
 	drawStart();
-	uint8_t breaak = 0;
 	int8_t option = 0;
 	uint8_t prevUp = returnUp();
 	uint8_t prevDown = returnDown();
 	uint8_t prevCent = returnCenter();
 	uint8_t action = 1;
-	while(!breaak){
+
+	while(1){
 		if(returnUp()==1 && prevUp == 0){
 			option -= 1;
 			action = 1;
@@ -27,7 +27,7 @@ void mainMenu(){
 		//draw option boxes
 		drawBoxes(option, action);
 		if(returnCenter() == 1 && prevCent == 0){
-			if(option == 0){breaak = 1;}
+			if(option == 0){break;}
 			if(option == 1){settingsMenu();drawStart();}
 			if(option == 2){helpMenu();drawStart();}
 		}

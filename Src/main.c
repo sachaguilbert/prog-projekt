@@ -9,19 +9,21 @@
 #include "input.h"
 #include "math_st.h"
 #include "globalTimer.h"
+#include "LCD.h"
 
 
 int main(void)
 {
+	lcd_init();
+	uint32_t score =0;
 	srand(time(NULL));
 	bullet_t bullets[100];
-	astroid_t astriods[100];
+	astroid_t astroids[100];
 
 	uart_init(921600);
 	clrscr();
 
 	// Bullet Init
-	bullet_t bullets[100];
 	bullet_t b;
 	b.accx =0;
 	b.accy =0;
@@ -73,13 +75,11 @@ int main(void)
 	p.accy = 0;
 
 	drawGameStart(p);
-
-
 	tim15Setup();
 	i = 0;
 	while(1){
 		if(globalTick){
-
+			lcd_scoreboard(p,score);
 			if(uart_get_count() > 0)
 			{
 				update_player_input(&p,bullets);
@@ -92,10 +92,11 @@ int main(void)
 				i=0;
 			}
 			//Update
+			deletePlayer(p);
 			update_player_pos(&p);
 			updateBullets(bullets);
 			updateAsteroid(astroids);
-			bulletCollisions(bullets,astroids);
+			bulletCollisions(bullets,astroids,&score);
 			astroidOUB(astroids);
 			bulletOUB(bullets);
 			// DRAW
