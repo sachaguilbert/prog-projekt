@@ -10,9 +10,13 @@
 #include "math_st.h"
 #include "globalTimer.h"
 
+
 int main(void)
 {
 	srand(time(NULL));
+	bullet_t bullets[100];
+	astroid_t astriods[100];
+
 	uart_init(921600);
 	clrscr();
 
@@ -101,7 +105,9 @@ int main(void)
 
 			i++;
 			globalTick = 0;
+			deletePlayer(p);
 		}
+
 	}
 
 }
