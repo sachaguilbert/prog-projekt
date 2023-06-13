@@ -20,13 +20,12 @@ void initAsteroid(astroid_t *ast, int32_t x, int32_t y, int32_t dx, int32_t dy){
 	ast->posy = y;
 	ast->velx = dx;
 	ast->vely = dy;
-	ast->style = 1;
 	if(ast->style == 1){
-		ast->hitpoints = 10;
+		ast->hitpoints = 1;
 	}else if(ast->style == 2){
-		ast->hitpoints = 20;
+		ast->hitpoints = 5;
 	}else{
-		ast->hitpoints = 30;
+		ast->hitpoints = 1;
 	}
 }
 void initPlanet(planet_t *planet, int32_t x, int32_t y, uint8_t style){
@@ -37,7 +36,7 @@ void initPlanet(planet_t *planet, int32_t x, int32_t y, uint8_t style){
 
 void astroidRandom(astroid_t *a){
 	astroid_t ast;
-	ast.style =1;
+	ast.style =2;
 	uint8_t sel = rand() % 4;
 	ast.velx = ((rand() % 3)<<14)*0.1;
 	ast.vely = ((rand() % 3)<<14)*0.1;

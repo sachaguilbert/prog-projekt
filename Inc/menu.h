@@ -16,5 +16,6 @@ void helpMenu();
 void settingsMenu();
 void drawBoxes(uint8_t option, uint8_t action);
 void drawStart();
+extern volatile uint32_t score;
 
 #endif /* MENU_H_ */
