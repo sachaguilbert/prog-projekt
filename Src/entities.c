@@ -83,6 +83,7 @@ void astroidOUB(astroid_t *a){
 	for(uint8_t i =0; i<100;i++){
 		if(a[i].hitpoints >0){
 			if(a[i].posx>>14 >= 156-1 || a[i].posx>>14 <= 1+1 || a[i].posy>>14 >= 144-1 || a[i].posy>>14 <= 1+1){
+				a[i].hitpoints =0;
 				gotoxy(a[i].posx>>14,a[i].posy>>14);
 				printf("%c",32);
 			}

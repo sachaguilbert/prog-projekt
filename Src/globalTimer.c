@@ -10,8 +10,8 @@ volatile uint8_t globalTick;
 void tim15Setup(){
 	RCC->APB2ENR |= RCC_APB2Periph_TIM15; // Enable clock line to timer 15;
 	TIM15->CR1 = 0x0000000000000000; // Configure timer 15
-	TIM15->ARR = 0x3E8; // Set reload value
-	TIM15->PSC = 0xA67; // Set prescale value
+	TIM15->ARR = 0x791; // Set reload value
+	TIM15->PSC = 0x44C; // Set prescale value
 
 	TIM15->DIER |= 0x0001; // Enable timer 15 interrupts
 	NVIC_SetPriority(TIM1_BRK_TIM15_IRQn, 2); // Set interrupt priority
