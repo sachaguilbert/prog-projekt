@@ -13,6 +13,7 @@
 void drawGameStart();
 
 void drawPlayer(player_t p);
+void drawPlayerPixel(player_t p, int8_t x, int8_t y,uint8_t ch);
 void drawPlanet(planet_t p);
 void deletePlayer(player_t p);
 

@@ -27,47 +27,27 @@ void drawGameStart(player_t p){
 
 void deletePlayer(player_t p)
 {
-
-
-	gotoxy(p.posx >> 14,p.posy >> 14);
-	printf("%c",32);
-	vector_t v1 = {1 << 14,0 << 14};
-	rotateVector(&v1,p.dir);
-	gotoxy((p.posx >> 14)+round(v1.x/pow(2,14)),(p.posy >> 14)+round(v1.y/pow(2,14)));
-	printf("%c",32);
-	vector_t v2 = {2 << 14,0 << 14};
-	rotateVector(&v2,p.dir);
-	gotoxy((p.posx >> 14)+round(v2.x/pow(2,14)),(p.posy >> 14)+round(v2.y/pow(2,14)));
-	printf("%c",32);
-	vector_t v3 = {0 << 14,-1 << 14};
-	rotateVector(&v3,p.dir);
-	gotoxy((p.posx >> 14 ) +round(v3.x/pow(2,14)),(p.posy >> 14)+round(v3.y/pow(2,14)));
-	printf("%c",32);
-	vector_t v4 = {0 << 14,1 << 14};
-	rotateVector(&v4,p.dir);
-	gotoxy((p.posx >> 14) + round(v4.x/pow(2,14)),(p.posy >> 14) +round(v4.y/pow(2,14)));
-	printf("%c",32);
+	drawPlayerPixel(p,0,0,32);
+	drawPlayerPixel(p,1,0,32);
+	drawPlayerPixel(p,2,0,32);
+	drawPlayerPixel(p,0,-1,32);
+	drawPlayerPixel(p,0,1,32);
 }
 
 void drawPlayer(player_t p){
-	gotoxy(p.posx >> 14,p.posy >> 14);
-	printf("%c",219);
-	vector_t v1 = {1 << 14,0 << 14};
-	rotateVector(&v1,p.dir);
-	gotoxy((p.posx >> 14)+round(v1.x/pow(2,14)),(p.posy >> 14)+round(v1.y/pow(2,14)));
-	printf("%c",219);
-	vector_t v2 = {2 << 14,0 << 14};
-	rotateVector(&v2,p.dir);
-	gotoxy((p.posx >> 14)+round(v2.x/pow(2,14)),(p.posy >> 14)+round(v2.y/pow(2,14)));
-	printf("%c",219);
-	vector_t v3 = {0 << 14,-1 << 14};
-	rotateVector(&v3,p.dir);
-	gotoxy((p.posx >> 14 ) +round(v3.x/pow(2,14)),(p.posy >> 14)+round(v3.y/pow(2,14)));
-	printf("%c",220);
-	vector_t v4 = {0 << 14,1 << 14};
-	rotateVector(&v4,p.dir);
-	gotoxy((p.posx >> 14) + round(v4.x/pow(2,14)),(p.posy >> 14) +round(v4.y/pow(2,14)));
-	printf("%c",223);
+	drawPlayerPixel(p,0,0,219);
+	drawPlayerPixel(p,1,0,219);
+	drawPlayerPixel(p,2,0,219);
+	drawPlayerPixel(p,0,-1,219);
+	drawPlayerPixel(p,0,1,219);
+}
+
+void drawPlayerPixel(player_t p, int8_t x, int8_t y, uint8_t ch)
+{
+	vector_t v = {x << 14, y << 14};
+	rotateVector(&v,p.dir);
+	gotoxy((p.posx >> 14)+round(v.x/pow(2,14)),(p.posy >> 14)+round(v.y/pow(2,14)));
+	printf("%c",ch);
 }
 
 
