@@ -53,7 +53,7 @@ void astroidOUB(astroid_t *a);
 // Bullet
 void createBullet(player_t p,bullet_t *b);
 void updateBullets(bullet_t *p);
-void bulletCollisions(bullet_t *b,astroid_t *a);
+void bulletCollisions(bullet_t *b,astroid_t *a,uint32_t *score);
 void bulletOUB(bullet_t *b);;
 
 

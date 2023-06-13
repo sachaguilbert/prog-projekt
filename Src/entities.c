@@ -6,7 +6,7 @@
 #include "entities.h"
 #include "ansi.h"
 #include "math.h"
-#define velfactor 0.5
+#define velfactor 2
 
 
 void initPlayer(player_t *pla, int32_t x, int32_t y, int32_t dx, int32_t dy){
@@ -20,13 +20,12 @@ void initAsteroid(astroid_t *ast, int32_t x, int32_t y, int32_t dx, int32_t dy){
 	ast->posy = y;
 	ast->velx = dx;
 	ast->vely = dy;
-	ast->style = 1;
 	if(ast->style == 1){
-		ast->hitpoints = 10;
+		ast->hitpoints = 1;
 	}else if(ast->style == 2){
-		ast->hitpoints = 20;
+		ast->hitpoints = 5;
 	}else{
-		ast->hitpoints = 30;
+		ast->hitpoints = 1;
 	}
 }
 void initPlanet(planet_t *planet, int32_t x, int32_t y, uint8_t style){
@@ -37,7 +36,7 @@ void initPlanet(planet_t *planet, int32_t x, int32_t y, uint8_t style){
 
 void astroidRandom(astroid_t *a){
 	astroid_t ast;
-	ast.style =1;
+	ast.style =2;
 	uint8_t sel = rand() % 4;
 	ast.velx = ((rand() % 3)<<14)*0.1;
 	ast.vely = ((rand() % 3)<<14)*0.1;
@@ -71,8 +70,8 @@ void updateAsteroid(astroid_t *p){
 	for(uint8_t i = 0;i<100;i++){
 		// move bullet if its initialised, ie dmg not 0
 		if(p[i].hitpoints != 0){
-			p[i].posx += p[i].velx * velfactor;
-			p[i].posy += p[i].vely * velfactor;
+			p[i].posx += p[i].velx / velfactor;
+			p[i].posy += p[i].vely / velfactor;
 		}
 	}
 
@@ -122,8 +121,10 @@ void updateBullets(bullet_t *p){
 
 		// move bullet if its initialised, ie dmg not 0
 		if(p[i].damagevalue != 0){
-			p[i].posx += p[i].velx * velfactor;
-			p[i].posy += p[i].vely * velfactor;
+			p[i].velx += p[i].accx;
+			p[i].vely += p[i].accy;
+			p[i].posx += p[i].velx / velfactor;
+			p[i].posy += p[i].vely / velfactor;
 		}
 	}
 
@@ -132,13 +133,13 @@ void updateBullets(bullet_t *p){
 void bulletDeath(bullet_t *b){
 	// Sets bulle dmg to 0 allowing the program to overide this cell essentially deleting the bullet
 	 (*b).damagevalue = 0;
- 	 gotoxy(((*b).posx-(*b).velx*velfactor)/pow(2,14),((*b).posy-(*b).vely*velfactor)/pow(2,14));
+ 	 gotoxy(((*b).posx-(*b).velx/velfactor)/pow(2,14),((*b).posy-(*b).vely/velfactor)/pow(2,14));
 	 printf("%c",32);
 
 
 }
 
-void bulletCollisions(bullet_t *b,astroid_t *a){
+void bulletCollisions(bullet_t *b,astroid_t *a,uint32_t *score){
 	// Checks only live bullets on live astroids
 	for(uint8_t i = 0;i<100;i++){
 		if(b[i].damagevalue !=0){
@@ -155,9 +156,11 @@ void bulletCollisions(bullet_t *b,astroid_t *a){
 					 	 fgcolor(7);
 
 
+
 						// Kill astroid and bullet add real function later
 						if(a[j].hitpoints <= 0){
 							gotoxy(a[j].posx>>14,a[j].posy>>14);
+						 	*score += 10;
 							printf("%c",32);
 						}
 					}
@@ -172,9 +175,10 @@ void bulletCollisions(bullet_t *b,astroid_t *a){
 void bulletOUB(bullet_t *b){
 	// Checks for out of bounds for all bullets
 	for(uint8_t i =0; i<100;i++){
-		if(b[i].posx>>14 >= 156-1 || b[i].posx>>14 <= 1+1 || b[i].posy>>14 >= 144-1 || b[i].posy>>14 <= 1+1){
-			bulletDeath(&b[i]);
+		if(b[i].damagevalue != 0){
+			if(b[i].posx>>14 >= 156-1 || b[i].posx>>14 <= 1+1 || b[i].posy>>14 >= 144-1 || b[i].posy>>14 <= 1+1){
+				bulletDeath(&b[i]);
+			}
 		}
-
 	}
 }

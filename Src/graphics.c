@@ -184,13 +184,13 @@ void drawBullets(bullet_t *p){
 	for(uint16_t i =0; i<100;i++){
 		if(p[i].damagevalue > 0){
 			if((p[i].posx-p[i].velx*0.5)/pow(2,14) != p[i].posx>>14 || (p[i].posy-p[i].vely*0.5)/pow(2,14) != p[i].posy){
-			 // Haram removal service
-		 	 gotoxy((p[i].posx-p[i].velx*0.5)/pow(2,14),(p[i].posy-p[i].vely*0.5)/pow(2,14));
-		 	 printf("%c",32);
+				// Haram removal service
+				gotoxy((p[i].posx-p[i].velx/2)/pow(2,14),(p[i].posy-p[i].vely/2)/pow(2,14));
+				printf("%c",32);
 
-		 	 // New draw
-			 gotoxy(p[i].posx>>14,p[i].posy>>14);
-			 printf("*");
+				// New draw
+				gotoxy(p[i].posx>>14,p[i].posy>>14);
+				printf("%c",62);
 			}
 		}
 	}
@@ -203,6 +203,14 @@ void drawAstroids(astroid_t *a){
 			if((a[i].posx-a[i].velx*0.5)/pow(2,14) != a[i].posx>>14 || (a[i].posy-a[i].vely*0.5)/pow(2,14) != a[i].posy){
 				 gotoxy((a[i].posx-a[i].velx*0.5)/pow(2,14),(a[i].posy-a[i].vely*0.5)/pow(2,14));
 				 printf("%c",32);
+				 gotoxy((a[i].posx-a[i].velx*0.5)/pow(2,14)+1,(a[i].posy-a[i].vely*0.5)/pow(2,14));
+				 printf("%c",32);
+				 gotoxy((a[i].posx-a[i].velx*0.5)/pow(2,14)-1,(a[i].posy-a[i].vely*0.5)/pow(2,14));
+				 printf("%c",32);
+				 gotoxy((a[i].posx-a[i].velx*0.5)/pow(2,14),(a[i].posy-a[i].vely*0.5)/pow(2,14)-1);
+				 printf("%c",32);
+				 gotoxy((a[i].posx-a[i].velx*0.5)/pow(2,14),(a[i].posy-a[i].vely*0.5)/pow(2,14)+1);
+				 printf("%c",32);
 				// Allows for different styles with different HP values, see astroid init
 				switch(a[i].style){
 					case 1:
@@ -212,13 +220,13 @@ void drawAstroids(astroid_t *a){
 					case 2:
 						gotoxy(a[i].posx>>14,a[i].posy>>14);
 						printf("%c",219);
-						gotoxy(a[i].posx>>14+1,a[i].posy>>14);
+						gotoxy((a[i].posx>>14)+1,a[i].posy>>14);
 						printf("%c",219);
-						gotoxy(a[i].posx>>14-1,a[i].posy>>14);
+						gotoxy((a[i].posx>>14)-1,a[i].posy>>14);
 						printf("%c",219);
-						gotoxy(a[i].posx>>14,a[i].posy>>14+1);
+						gotoxy(a[i].posx>>14,(a[i].posy>>14)+1);
 						printf("%c",219);
-						gotoxy(a[i].posx>>14,a[i].posy>>14-1);
+						gotoxy(a[i].posx>>14,(a[i].posy>>14)-1);
 						printf("%c",219);
 						break;
 					}
