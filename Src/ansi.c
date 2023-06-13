@@ -179,7 +179,7 @@ void gameWindow(uint16_t p1[2],uint16_t p2[2], uint8_t style){
 		ver = 179; hor = 196;TL = 218; TR = 191;BL=192;BR=217;
 		break;
 	case 2:
-		ver = 186; hor = 205; TL = 201; TR = 187;BL=192;BR=188;
+		ver = 186; hor = 205; TL = 201; TR = 187;BL=200;BR=188;
 		break;
 	}
 
