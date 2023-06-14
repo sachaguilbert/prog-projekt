@@ -32,6 +32,13 @@ void rotateVector(vector_t *v, int16_t a)
 	v->x = (xcos - ysin) >> 14;
 	v->y = (xsin + ycos) >> 14;
 }
+uint32_t len(vector_t v1, vector_t v2)
+{
+	vector_t tempVec = {v2.x-v1.x,v2.y-v1.y};
+	uint64_t temp = round(sqrt((((uint64_t)tempVec.x*(uint64_t)tempVec.x) >> 14) + (((uint64_t)tempVec.y*(uint64_t)tempVec.y) >> 14)));
+	return (uint32_t)temp >> 7;
+}
+
 
 
 

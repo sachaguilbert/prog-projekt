@@ -19,9 +19,11 @@ player_t initPlayer(int32_t x, int32_t y){
 	player.vely = 0;
 	player.accx = 1 << 14;
 	player.accy = 0;
+	player.radius = 4;
 	player.oldDir = player.dir;
 	player.oldPos.x = redPixelPos(player).x;
 	player.oldPos.y = redPixelPos(player).y;
+	player.hitpoints = 10;
 	return player;
 }
 void initAsteroid(astroid_t *ast, int32_t x, int32_t y, int32_t dx, int32_t dy){
@@ -240,4 +242,22 @@ void bulletOUB(bullet_t *b){
 			}
 		}
 	}
+}
+void playerCollision(player_t *p, astroid_t *a)
+{
+	vector_t playerVec = {p->posx,p->posy};
+
+	vector_t astroVec[100];
+	for(int i = 0; i < 100; i++)
+	{
+		astroVec[i].x=a[i].posx;
+		astroVec[i].y=a[i].posy;
+		uint32_t length = len(playerVec,astroVec[i]);
+		if(length < p->radius && a[i].hitpoints != 0)
+		{
+			p->hitpoints -= 1;
+			astroidDeath(&a[i]);
+		}
+	}
+
 }

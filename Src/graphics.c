@@ -49,7 +49,6 @@ void drawPlayer(player_t p,uint8_t init,vector_t *v){
 
 	if(init)
 	{
-
 		v[0].x = 0;
 		v[0].y = 0;
 
