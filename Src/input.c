@@ -63,18 +63,19 @@ void update_player_pos(player_t *p)
 	p->posy += p->vely;
 	if((p->velx >> 12) > 0)
 	{
-		p->velx-= (1 << 12);
+		p->velx-= (1 << 13);
 	} else if((p->velx >> 12) < 0)
 	{
-		p->velx+= (1 << 12);
+		p->velx+= (1 << 13);
 	}
 	if((p->vely >> 12) > 0)
 	{
-			p->vely-= (1 << 12);
+			p->vely-= (1 << 13);
 	} else if((p->vely >> 12) < 0)
 	{
-		p->vely+= (1 << 12);
+		p->vely+= (1 << 13);
 	}
+	//p->velx = abs(p->velx) <
 
 
 	p->posx = p->posx >= 152 << 14 ? 5 << 14 : p->posx;

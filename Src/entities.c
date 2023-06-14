@@ -165,6 +165,20 @@ void createBullet(player_t p,bullet_t *b){
 	}
 }
 
+bullet_t initBullet()
+{
+	bullet_t bullet;
+	bullet.accx =0;
+	bullet.accy =0;
+	bullet.damagevalue =0;
+	bullet.posx =0;
+	bullet.posy =0;
+	bullet.velx =0;
+	bullet.vely =0;
+	return bullet;
+}
+
+
 void updateBullets(bullet_t *p){
 	for(uint8_t i = 0;i<100;i++){
 

@@ -52,6 +52,7 @@ void updateAsteroid(astroid_t *p);
 void astroidOUB(astroid_t *a);
 
 // Bullet
+bullet_t initBullet();
 void createBullet(player_t p,bullet_t *b);
 void updateBullets(bullet_t *p);
 void bulletCollisions(bullet_t *b,astroid_t *a,uint32_t *score);
