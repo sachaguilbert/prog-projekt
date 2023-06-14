@@ -45,7 +45,7 @@ void initPlanet(planet_t *planet, int32_t x, int32_t y, uint8_t style){
 
 void astroidRandom(astroid_t *a){
 	astroid_t ast;
-	ast.style =1;
+	ast.style =(rand() % 2)+ 1;
 	uint8_t sel = rand() % 4;
 	ast.velx = ((rand() % 3)<<14)*0.1;
 	ast.vely = ((rand() % 3)<<14)*0.1;
@@ -91,7 +91,6 @@ void astroidOUB(astroid_t *a){
 		for(uint8_t i =0; i<100;i++){
 			if(a[i].hitpoints >0){
 				if(a[i].posx>>14 >= 156-1 || a[i].posx>>14 <= 1+1 || a[i].posy>>14 >= 144-1 || a[i].posy>>14 <= 1+1){
-					a[i].hitpoints =0;
 					astroidDeath(&a[i]);
 			}
 		}
@@ -219,8 +218,8 @@ void bulletCollisions(bullet_t *b,astroid_t *a,uint32_t *score){
 
 						// Kill astroid and bullet add real function later
 						if(a[j].hitpoints <= 0){
+							*score += 10*a[j].style;
 							astroidDeath(&a[j]);
-							score +=10;
 						}
 					}
 				}
