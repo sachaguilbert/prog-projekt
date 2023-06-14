@@ -8,6 +8,7 @@
 #include "math_st.h"
 #include <math.h>
 #include "graphics.h"
+#include <stdlib.h>
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/

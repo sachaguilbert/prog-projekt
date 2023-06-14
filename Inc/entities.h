@@ -43,7 +43,7 @@ typedef struct{
 //PLANET
 void initPlanet(planet_t *planet, int32_t x, int32_t y, uint8_t style);
 // PLAYER
-void initPlayer(player_t *pla, int32_t x, int32_t y, int32_t dx, int32_t dy);
+player_t initPlayer(int32_t x, int32_t y);
 
 // ASTEROID
 void initAsteroid(astroid_t *ast, int32_t x, int32_t y, int32_t dx, int32_t dy);
@@ -52,6 +52,7 @@ void updateAsteroid(astroid_t *p);
 void astroidOUB(astroid_t *a);
 
 // Bullet
+bullet_t initBullet();
 void createBullet(player_t p,bullet_t *b);
 void updateBullets(bullet_t *p);
 void bulletCollisions(bullet_t *b,astroid_t *a,uint32_t *score);
