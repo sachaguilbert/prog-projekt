@@ -109,24 +109,24 @@ void astroidOUB(astroid_t *a){
 
 void astroidDeath(astroid_t *a){
 	(*a).hitpoints =0;
-	switch((*a).style){
-						case 1:
-							gotoxy(((*a).posx-(*a).velx*0.5)/pow(2,14),((*a).posy-(*a).vely*0.5)/pow(2,14));
-							printf("%c",32);
-							break;
-						case 2:
-							gotoxy(((*a).posx-(*a).velx*0.5)/pow(2,14),((*a).posy-(*a).vely*0.5)/pow(2,14));
-							printf("%c",32);
-							gotoxy(((*a).posx-(*a).velx*0.5)/pow(2,14)+1,((*a).posy-(*a).vely*0.5)/pow(2,14));
-							printf("%c",32);
-							gotoxy(((*a).posx-(*a).velx*0.5)/pow(2,14)-1,((*a).posy-(*a).vely*0.5)/pow(2,14));
-							printf("%c",32);
-							gotoxy(((*a).posx-(*a).velx*0.5)/pow(2,14),((*a).posy-(*a).vely*0.5)/pow(2,14)-1);
-							printf("%c",32);
-							gotoxy(((*a).posx-(*a).velx*0.5)/pow(2,14),((*a).posy-(*a).vely*0.5)/pow(2,14)+1);
-							printf("%c",32);
-							break;
-						}
+	 switch((*a).style){
+		case 1:
+			gotoxy(((*a).posx-(*a).velx*0.5)/pow(2,14),((*a).posy-(*a).vely*0.5)/pow(2,14));
+			printf("%c",32);
+			break;
+		case 2:
+			gotoxy(((*a).posx-(*a).velx*0.5)/pow(2,14),((*a).posy-(*a).vely*0.5)/pow(2,14));
+			printf("%c",32);
+			gotoxy(((*a).posx-(*a).velx*0.5)/pow(2,14)+1,((*a).posy-(*a).vely*0.5)/pow(2,14));
+			printf("%c",32);
+			gotoxy(((*a).posx-(*a).velx*0.5)/pow(2,14)-1,((*a).posy-(*a).vely*0.5)/pow(2,14));
+			printf("%c",32);
+			gotoxy(((*a).posx-(*a).velx*0.5)/pow(2,14),((*a).posy-(*a).vely*0.5)/pow(2,14)-1);
+			printf("%c",32);
+			gotoxy(((*a).posx-(*a).velx*0.5)/pow(2,14),((*a).posy-(*a).vely*0.5)/pow(2,14)+1);
+			printf("%c",32);
+			break;
+		}
 
 }
 
