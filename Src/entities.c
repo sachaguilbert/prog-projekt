@@ -6,14 +6,23 @@
 #include "entities.h"
 #include "ansi.h"
 #include "math.h"
+#include "graphics.h"
 #define velfactor 2
 
 
-void initPlayer(player_t *pla, int32_t x, int32_t y, int32_t dx, int32_t dy){
-	pla->posx = x;
-	pla->posy = y;
-	pla->velx = dx;
-	pla->vely = dy;
+player_t initPlayer(int32_t x, int32_t y){
+	player_t player;
+	player.posx = x;
+	player.posy = y;
+	player.dir = 0;
+	player.velx = 0;
+	player.vely = 0;
+	player.accx = 1 << 14;
+	player.accy = 0;
+	player.oldDir = player.dir;
+	player.oldPos.x = redPixelPos(player).x;
+	player.oldPos.y = redPixelPos(player).y;
+	return player;
 }
 void initAsteroid(astroid_t *ast, int32_t x, int32_t y, int32_t dx, int32_t dy){
 	ast->posx = x;

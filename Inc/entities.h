@@ -43,7 +43,7 @@ typedef struct{
 //PLANET
 void initPlanet(planet_t *planet, int32_t x, int32_t y, uint8_t style);
 // PLAYER
-void initPlayer(player_t *pla, int32_t x, int32_t y, int32_t dx, int32_t dy);
+player_t initPlayer(int32_t x, int32_t y);
 
 // ASTEROID
 void initAsteroid(astroid_t *ast, int32_t x, int32_t y, int32_t dx, int32_t dy);
