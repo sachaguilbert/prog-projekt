@@ -12,6 +12,7 @@
 #include "entities.h"
 #include <math.h>
 #include "graphics.h"
+#include "math_st.h"
 #define velfactor 0.1
 
 
@@ -27,22 +28,25 @@ void drawGameStart(player_t p){
 
 void deletePlayer(player_t p)
 {
-	for(int i = -4; i <= 4; i++)
+	if((p.oldPos.x >> 12) != (redPixelPos(p).x >> 12) || (p.oldPos.y >> 12) != (redPixelPos(p).y >> 12))
 	{
-		for(int j = -4; j <= 4; j++)
+		for(int i = -4; i <= 4; i++)
 		{
-			vector_t v = {i << 14,j << 14};
-			drawPlayerPixel(p,&v,32);
+			for(int j = -4; j <= 4; j++)
+			{
+				vector_t v = {i << 14,j << 14};
+				drawPlayerPixel(p,&v,32);
+			}
 		}
 	}
-
 
 }
 
 
 
 
-void drawPlayer(player_t p,uint8_t init, vector_t *v){
+void drawPlayer(player_t p,uint8_t init,vector_t *v){
+
 	if(init)
 	{
 

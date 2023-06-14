@@ -9,13 +9,14 @@
 #define ENTITIES_H_
 
 
-
+#include "math_st.h"
 
 typedef struct{
 	int32_t posx,posy;
 	int32_t velx,vely,accx,accy;
 	int16_t dir;
 	int16_t oldDir;
+	vector_t oldPos;
 	uint8_t style,weapon;
 	uint16_t hitpoints;
 	uint8_t mass;

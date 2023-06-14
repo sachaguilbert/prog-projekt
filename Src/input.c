@@ -17,14 +17,14 @@ void update_player_input(player_t *p,bullet_t *b)
 	switch(input)
 	{
 	case 100: //d left
-		p->dir+=35;
+		p->dir+=15;
 		p->dir = p->dir >= 512 ? 0 : p->dir;
 
 		p->accx = cosLUT(p->dir);
 		p->accy = sinLUT(p->dir);
 		break;
 	case 97: //a right
-		p->dir-=35;
+		p->dir-=15;
 		p->dir = p->dir <= 0 ? 512 : p->dir;
 
 		p->accx = cosLUT(p->dir);
@@ -56,10 +56,26 @@ void update_player_input(player_t *p,bullet_t *b)
 }
 void update_player_pos(player_t *p)
 {
+	p->oldPos.x = redPixelPos(*p).x;
+	p->oldPos.y = redPixelPos(*p).y;
+
 	p->posx += p->velx;
 	p->posy += p->vely;
-	p->velx = 0;
-	p->vely = 0;
+	if((p->velx >> 12) > 0)
+	{
+		p->velx-= (1 << 12);
+	} else if((p->velx >> 12) < 0)
+	{
+		p->velx+= (1 << 12);
+	}
+	if((p->vely >> 12) > 0)
+	{
+			p->vely-= (1 << 12);
+	} else if((p->vely >> 12) < 0)
+	{
+		p->vely+= (1 << 12);
+	}
+
 
 	p->posx = p->posx >= 152 << 14 ? 5 << 14 : p->posx;
 	p->posy = p->posy >= 86 << 14 ? 5 << 14 : p->posy;

@@ -7,6 +7,7 @@
 #include "entities.h"
 #include "math_st.h"
 #include <math.h>
+#include "graphics.h"
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
