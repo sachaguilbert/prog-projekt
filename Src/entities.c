@@ -36,7 +36,7 @@ void initPlanet(planet_t *planet, int32_t x, int32_t y, uint8_t style){
 
 void astroidRandom(astroid_t *a){
 	astroid_t ast;
-	ast.style =2;
+	ast.style =1;
 	uint8_t sel = rand() % 4;
 	ast.velx = ((rand() % 3)<<14)*0.1;
 	ast.vely = ((rand() % 3)<<14)*0.1;
@@ -79,51 +79,33 @@ void updateAsteroid(astroid_t *p){
 
 void astroidOUB(astroid_t *a){
 	// Checks for out of bounds for all bullets
-	for(uint8_t i =0; i<100;i++){
-		if(a[i].hitpoints >0){
-			if(a[i].posx>>14 >= 156-1 || a[i].posx>>14 <= 1+1 || a[i].posy>>14 >= 144-1 || a[i].posy>>14 <= 1+1){
-				a[i].hitpoints =0;
-				switch(a[i].style){
-					case 1:
-						gotoxy(a[i].posx>>14,a[i].posy>>14);
-						printf("%c",219);
-						break;
-					case 2:
-							gotoxy(a[i].posx>>14,a[i].posy>>14);
-							printf("%c",219);
-							gotoxy((a[i].posx>>14)+1,a[i].posy>>14);
-							printf("%c",219);
-							gotoxy((a[i].posx>>14)-1,a[i].posy>>14);
-							printf("%c",219);
-							gotoxy(a[i].posx>>14,(a[i].posy>>14)+1);
-							printf("%c",223);
-							gotoxy(a[i].posx>>14,(a[i].posy>>14)-1);
-							printf("%c",220);
-							break;
-						}
-
+		for(uint8_t i =0; i<100;i++){
+			if(a[i].hitpoints >0){
+				if(a[i].posx>>14 >= 156-1 || a[i].posx>>14 <= 1+1 || a[i].posy>>14 >= 144-1 || a[i].posy>>14 <= 1+1){
+					a[i].hitpoints =0;
+					astroidDeath(&a[i]);
 			}
 		}
 	}
 }
 
 void astroidDeath(astroid_t *a){
-	(*a).hitpoints =0;
+	(*a).hitpoints = 0;
 	 switch((*a).style){
 		case 1:
-			gotoxy(((*a).posx-(*a).velx*0.5)/pow(2,14),((*a).posy-(*a).vely*0.5)/pow(2,14));
+			gotoxy(((*a).posx)/pow(2,14),((*a).posy)/pow(2,14));
 			printf("%c",32);
 			break;
 		case 2:
-			gotoxy(((*a).posx-(*a).velx*0.5)/pow(2,14),((*a).posy-(*a).vely*0.5)/pow(2,14));
+			gotoxy(((*a).posx)/pow(2,14),((*a).posy)/pow(2,14));
 			printf("%c",32);
-			gotoxy(((*a).posx-(*a).velx*0.5)/pow(2,14)+1,((*a).posy-(*a).vely*0.5)/pow(2,14));
+			gotoxy(((*a).posx)/pow(2,14)+1,((*a).posy)/pow(2,14));
 			printf("%c",32);
-			gotoxy(((*a).posx-(*a).velx*0.5)/pow(2,14)-1,((*a).posy-(*a).vely*0.5)/pow(2,14));
+			gotoxy(((*a).posx)/pow(2,14)-1,((*a).posy)/pow(2,14));
 			printf("%c",32);
-			gotoxy(((*a).posx-(*a).velx*0.5)/pow(2,14),((*a).posy-(*a).vely*0.5)/pow(2,14)-1);
+			gotoxy(((*a).posx)/pow(2,14),((*a).posy)/pow(2,14)-1);
 			printf("%c",32);
-			gotoxy(((*a).posx-(*a).velx*0.5)/pow(2,14),((*a).posy-(*a).vely*0.5)/pow(2,14)+1);
+			gotoxy(((*a).posx)/pow(2,14),((*a).posy)/pow(2,14)+1);
 			printf("%c",32);
 			break;
 		}
@@ -194,19 +176,19 @@ void bulletCollisions(bullet_t *b,astroid_t *a,uint32_t *score){
 					 	 fgcolor(1);
 						switch(a[i].style){
 							case 1:
-								gotoxy(a[i].posx>>14,a[i].posy>>14);
+								gotoxy(a[j].posx>>14,a[j].posy>>14);
 								printf("%c",219);
 								break;
 							case 2:
-									gotoxy(a[i].posx>>14,a[i].posy>>14);
+									gotoxy(a[j].posx>>14,a[j].posy>>14);
 									printf("%c",219);
-									gotoxy((a[i].posx>>14)+1,a[i].posy>>14);
+									gotoxy((a[j].posx>>14)+1,a[j].posy>>14);
 									printf("%c",219);
-									gotoxy((a[i].posx>>14)-1,a[i].posy>>14);
+									gotoxy((a[j].posx>>14)-1,a[j].posy>>14);
 									printf("%c",219);
-									gotoxy(a[i].posx>>14,(a[i].posy>>14)+1);
+									gotoxy(a[j].posx>>14,(a[j].posy>>14)+1);
 									printf("%c",223);
-									gotoxy(a[i].posx>>14,(a[i].posy>>14)-1);
+									gotoxy(a[j].posx>>14,(a[j].posy>>14)-1);
 									printf("%c",220);
 									break;
 								}
@@ -214,7 +196,7 @@ void bulletCollisions(bullet_t *b,astroid_t *a,uint32_t *score){
 
 						// Kill astroid and bullet add real function later
 						if(a[j].hitpoints <= 0){
-							astroidDeath(&a[i]);
+							astroidDeath(&a[j]);
 							score +=10;
 						}
 					}
