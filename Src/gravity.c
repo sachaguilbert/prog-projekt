@@ -4,7 +4,7 @@
 void updateBulletAcc(bullet_t *b, planet_t p){
 	//Original formula: xpp += -G*b1.m*(b0.x-b1.x)/Math.pow(d1, 3);
 	uint8_t mass = 1;
-	uint16_t G = 2;
+	uint16_t G = 3;
 	for(int i=0;i<100;i++){
 		//if statement to filter all dead bullets
 		if(b[i].damagevalue !=0){

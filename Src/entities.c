@@ -7,6 +7,7 @@
 #include "ansi.h"
 #include "math.h"
 #include "graphics.h"
+#include "time.h"
 #define velfactor 2
 
 
@@ -41,6 +42,12 @@ void initPlanet(planet_t *planet, int32_t x, int32_t y, uint8_t style){
 	planet->posx = x;
 	planet->posy = y;
 	planet->style = style;
+}
+void planetRandom(planet_t *pla){
+    uint32_t planetx = (10+(rand() % 150))<<14;
+	uint32_t planety = (10+(rand() % 40))<<14;
+	int32_t style = rand() % 3;
+	initPlanet(pla, planetx, planety,style);
 }
 
 void astroidRandom(astroid_t *a){
@@ -90,6 +97,13 @@ void astroidOUB(astroid_t *a){
 	// Checks for out of bounds for all bullets
 	for(uint8_t i =0; i<100;i++){
 		if(a[i].hitpoints >0){
+			//detect venstre edge
+			/*if(a[i].posx>>14 >= 156-1){
+
+			}
+			//detect top edge
+			//detect højre edge
+			//detect bottom edge*/
 			if(a[i].posx>>14 >= 156-1 || a[i].posx>>14 <= 1+1 || a[i].posy>>14 >= 144-1 || a[i].posy>>14 <= 1+1){
 				a[i].hitpoints =0;
 				switch(a[i].style){

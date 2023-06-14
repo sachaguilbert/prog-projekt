@@ -244,13 +244,15 @@ void drawAstroids(astroid_t *a){
 	}
 }
 
-void drawPlanet(planet_t p){
-	gotoxy(p.posx>>14,p.posy>>14);
-	printf(" ####O# ");
-	gotoxy(p.posx>>14,(p.posy>>14)+1);
-	printf("#O######");
-	gotoxy(p.posx>>14,(p.posy>>14)+2);
-	printf("###O####");
-	gotoxy(p.posx>>14,(p.posy>>14)+3);
-	printf(" ###### ");
+void drawPlanets(planet_t *p){
+	for(int i=0;i<3;i++){
+		gotoxy(p[i].posx>>14,p[i].posy>>14);
+		printf(" ####O# ");
+		gotoxy(p[i].posx>>14,(p[i].posy>>14)+1);
+		printf("#O######");
+		gotoxy(p[i].posx>>14,(p[i].posy>>14)+2);
+		printf("###O####");
+		gotoxy(p[i].posx>>14,(p[i].posy>>14)+3);
+		printf(" ###### ");
+	}
 }
