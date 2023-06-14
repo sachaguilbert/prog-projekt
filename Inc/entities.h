@@ -61,6 +61,7 @@ void bulletCollisions(bullet_t *b,astroid_t *a,uint32_t *score);
 void bulletOUB(bullet_t *b);
 void playerCollision(player_t *p, astroid_t *a);
 
+void bulletDeath(bullet_t *b);
 
 
 #endif /* ENTITIES_H_ */
