@@ -20,6 +20,7 @@ typedef struct{
 	uint8_t style,weapon;
 	uint16_t hitpoints;
 	uint8_t mass;
+	uint8_t radius;
 }player_t;
 
 typedef struct{
