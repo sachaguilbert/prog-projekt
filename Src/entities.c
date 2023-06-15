@@ -45,6 +45,13 @@ void initPlanet(planet_t *planet, int32_t x, int32_t y, uint8_t style){
 	planet->style = style;
 }
 
+void planetRandom(planet_t *pla){
+    uint32_t planetx = (rand() % 150)<<14;
+	uint32_t planety = (rand() % 40)<<14;
+	int32_t style = rand() % 3;
+	initPlanet(pla, planetx, planety,style);
+}
+
 void astroidRandom(astroid_t *a){
 	astroid_t ast;
 	ast.style =(rand() % 2)+ 1;
