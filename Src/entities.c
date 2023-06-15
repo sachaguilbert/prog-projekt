@@ -49,8 +49,8 @@ void astroidRandom(astroid_t *a){
 	astroid_t ast;
 	ast.style =(rand() % 2)+ 1;
 	uint8_t sel = rand() % 4;
-	ast.velx = ((rand() % 3)<<14)*0.1;
-	ast.vely = ((rand() % 3)<<14)*0.1;
+	ast.velx = ((rand() % 3 + 1)<<14)*0.1;
+	ast.vely = ((rand() % 3 + 1)<<14)*0.1;
 	switch(sel){
 	case 0:
 		initAsteroid(&ast,(rand() % 150)<<14,2<<14,rand() %2 ? ast.velx : -ast.velx,ast.vely);
@@ -81,8 +81,8 @@ void updateAsteroid(astroid_t *p){
 	for(uint8_t i = 0;i<100;i++){
 		// move bullet if its initialised, ie dmg not 0
 		if(p[i].hitpoints != 0){
-			p[i].posx += p[i].velx / velfactor;
-			p[i].posy += p[i].vely / velfactor;
+			p[i].posx += p[i].velx * velfactor;
+			p[i].posy += p[i].vely * velfactor;
 		}
 	}
 
