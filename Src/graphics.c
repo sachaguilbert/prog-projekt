@@ -193,7 +193,7 @@ void drawBullets(bullet_t *p){
 
 				// New draw
 				gotoxy(p[i].posx>>14,p[i].posy>>14);
-				printf("%c",62);
+				printf("*");
 			}
 		}
 	}
