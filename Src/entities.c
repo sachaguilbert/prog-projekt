@@ -107,12 +107,9 @@ void astroidDeath(astroid_t *a){
 			printf("%c",32);
 			break;
 		case 2:
-			gotoxy(((*a).posx)/pow(2,14),((*a).posy)/pow(2,14));
-			printf("%c",32);
-			gotoxy(((*a).posx)/pow(2,14)+1,((*a).posy)/pow(2,14));
-			printf("%c",32);
 			gotoxy(((*a).posx)/pow(2,14)-1,((*a).posy)/pow(2,14));
-			printf("%c",32);
+			printf("%c%c%c",32,32,32);
+			printf("%c%c%c",32,32,32);
 			gotoxy(((*a).posx)/pow(2,14),((*a).posy)/pow(2,14)-1);
 			printf("%c",32);
 			gotoxy(((*a).posx)/pow(2,14),((*a).posy)/pow(2,14)+1);

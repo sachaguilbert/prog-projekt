@@ -214,24 +214,15 @@ void drawAstroids(astroid_t *a){
 						printf("%c",219);
 						break;
 					case 2:
-						gotoxy((a[i].posx-a[i].velx*0.5)/pow(2,14),(a[i].posy-a[i].vely*0.5)/pow(2,14));
-						printf("%c",32);
-						gotoxy((a[i].posx-a[i].velx*0.5)/pow(2,14)+1,(a[i].posy-a[i].vely*0.5)/pow(2,14));
-						printf("%c",32);
 						gotoxy((a[i].posx-a[i].velx*0.5)/pow(2,14)-1,(a[i].posy-a[i].vely*0.5)/pow(2,14));
-						printf("%c",32);
+						printf("%c%c%c",32,32,32);
 						gotoxy((a[i].posx-a[i].velx*0.5)/pow(2,14),(a[i].posy-a[i].vely*0.5)/pow(2,14)-1);
 						printf("%c",32);
 						gotoxy((a[i].posx-a[i].velx*0.5)/pow(2,14),(a[i].posy-a[i].vely*0.5)/pow(2,14)+1);
 						printf("%c",32);
 
-
-						gotoxy(a[i].posx>>14,a[i].posy>>14);
-						printf("%c",219);
-						gotoxy((a[i].posx>>14)+1,a[i].posy>>14);
-						printf("%c",219);
 						gotoxy((a[i].posx>>14)-1,a[i].posy>>14);
-						printf("%c",219);
+						printf("%c%c%c",219,219,219);
 						gotoxy(a[i].posx>>14,(a[i].posy>>14)+1);
 						printf("%c",223);
 						gotoxy(a[i].posx>>14,(a[i].posy>>14)-1);
