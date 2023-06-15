@@ -41,10 +41,10 @@ void update_player_input(player_t *p,bullet_t *b)
 	case 115: //s back
 		p->velx-= p->accx;
 		p->vely-= p->accy;
-		p->velx = p->velx >= 1 << 14 ? 1 << 14 : p->velx;
-		p->vely = p->vely >= 1 << 14 ? 1 << 14 : p->vely;
-		p->velx = p->velx <= -1 << 14 ? -1 << 14 : p->velx;
-		p->vely = p->vely <= -1 << 14 ? -1 << 14 : p->vely;
+		p->velx = p->velx >= 2 << 14 ? 2 << 14 : p->velx;
+		p->vely = p->vely >= 2 << 14 ? 2 << 14 : p->vely;
+		p->velx = p->velx <= -2 << 14 ? -2 << 14 : p->velx;
+		p->vely = p->vely <= -2 << 14 ? -2 << 14 : p->vely;
 		break;
 	case 32: //SPACE shoot
 		createBullet(*p,b);
@@ -78,9 +78,9 @@ void update_player_pos(player_t *p)
 	p->velx = abs(p->velx) < (1 << 12) ? 0 : p->velx;
 	p->vely = abs(p->vely) < (1 << 12) ? 0 : p->vely;
 
-	p->posx = p->posx >= 150 << 14 ? 7 << 14 : p->posx;
-	p->posy = p->posy >= 84 << 14 ? 7 << 14 : p->posy;
-	p->posx = p->posx <= 6 << 14 ? 149 << 14: p->posx;
-	p->posy = p->posy <= 6 << 14 ? 83 << 14 : p->posy;
+	p->posx = p->posx >= 152 << 14 ? 5 << 14 : p->posx;
+	p->posy = p->posy >= 86 << 14 ? 5 << 14 : p->posy;
+	p->posx = p->posx <= 4 << 14 ? 151 << 14: p->posx;
+	p->posy = p->posy <= 4 << 14 ? 85 << 14 : p->posy;
 
 }
