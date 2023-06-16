@@ -225,8 +225,16 @@ void bulletCollisions(bullet_t *b,astroid_t *a,uint32_t *score){
 
 						// Kill astroid and bullet add real function later
 						if(a[j].hitpoints <= 0){
+						    srand(time(NULL));
 							*score += 10*a[j].style;
 							astroidDeath(&a[j]);
+						    int random = rand();
+						    if (random % 5 == 1)
+						    {
+						    	gotoxy(50,10);
+						    	printf("+1HP!");
+
+						    }
 						}
 					}
 				}
