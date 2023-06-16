@@ -2,7 +2,7 @@
 
 void mainMenu(){
 	initPins();
-	//page();
+	page();
 	drawStart();
 	int8_t option = 0;
 	uint8_t prevUp = returnUp();
