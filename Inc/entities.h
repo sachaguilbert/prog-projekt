@@ -44,6 +44,7 @@ typedef struct{
 //PLANET
 void initPlanet(planet_t *planet, int32_t x, int32_t y, uint8_t style);
 void planetRandom(planet_t *pla);
+void playerCollision(player_t *p, astroid_t *a);
 // PLAYER
 player_t initPlayer(int32_t x, int32_t y);
 
@@ -59,6 +60,6 @@ void createBullet(player_t p,bullet_t *b);
 void updateBullets(bullet_t *p);
 void bulletCollisions(bullet_t *b,astroid_t *a,uint32_t *score);
 void bulletOUB(bullet_t *b);;
-
+void playerCollision(player_t *p, astroid_t *a);
 
 #endif /* ENTITIES_H_ */

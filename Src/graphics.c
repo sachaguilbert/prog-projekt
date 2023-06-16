@@ -28,132 +28,28 @@ void drawGameStart(player_t p){
 
 void deletePlayer(player_t p)
 {
-	if((p.oldPos.x >> 12) != (redPixelPos(p).x >> 12) || (p.oldPos.y >> 12) != (redPixelPos(p).y >> 12))
-	{
-		for(int i = -4; i <= 4; i++)
-		{
-			for(int j = -4; j <= 4; j++)
-			{
-				vector_t v = {i << 14,j << 14};
-				drawPlayerPixel(p,&v,32);
-			}
-		}
-	}
-
+	gotoxy((p.posx >> 14)-3, (p.posy >> 14)-2);
+	printf("      \n");
+	printf("      \n");
+	printf("       \n");
+	printf("      \n");
+	printf("      ");
 }
 
 
 
 
 void drawPlayer(player_t p,uint8_t init,vector_t *v){
-
-	if(init)
-	{
-		v[0].x = 0;
-		v[0].y = 0;
-
-		v[1].x = 1;
-		v[1].y = 0;
-
-		v[2].x = 2;
-		v[2].y = 0;
-
-		v[3].x = 3;
-		v[3].y = 0;
-
-		v[4].x = -1;
-		v[4].y = 0;
-
-		v[5].x = -2;
-		v[5].y = 0;
-
-		v[6].x = -3;
-		v[6].y = 0;
-
-		v[7].x = 0;
-		v[7].y = -1;
-
-		v[8].x = 1;
-		v[8].y = -1;
-
-		v[9].x = 2;
-		v[9].y = -1;
-
-		v[10].x = -1;
-		v[10].y = -1;
-
-		v[11].x = -2;
-		v[11].y = -1;
-
-		v[12].x = 0;
-		v[12].y = 1;
-
-		v[13].x = 1;
-		v[13].y = 1;
-
-		v[14].x = 2;
-		v[14].y = 1;
-
-		v[15].x = -1;
-		v[15].y = 1;
-
-		v[16].x = -2;
-		v[16].y = 1;
-
-		v[17].x = 0;
-		v[17].y = -2;
-
-		v[18].x = -1;
-		v[18].y = -2;
-
-		v[19].x = 1;
-		v[19].y = -2;
-
-		v[20].x = 0;
-		v[20].y = 2;
-
-		v[21].x = 1;
-		v[21].y = 2;
-
-		v[22].x = -1;
-		v[22].y = 2;
-		for(int i = 0; i < 23; i++)
-		{
-			bitShift(&v[i]);
-		}
-	}
-
-
-
-	drawPlayerPixel(p,&v[0],48);
-	drawPlayerPixel(p,&v[1],43);
-	drawPlayerPixel(p,&v[2],124);
+	gotoxy((p.posx >> 14)-3, (p.posy >> 14)-2);
+	printf("  ###  \n");
+	printf(" #---# \n");
+	printf("#|+0+|#\n");
+	printf(" #---# \n");
+	printf("  ###  ");
+	gotoxy(redPixelPos(p).x >> 14, redPixelPos(p).y >> 14);
 	fgcolor(1);
-	drawPlayerPixel(p,&v[3],35);
+	printf("#");
 	fgcolor(15);
-	drawPlayerPixel(p,&v[4],43);
-	drawPlayerPixel(p,&v[5],124);
-	drawPlayerPixel(p,&v[6],35);
-
-	drawPlayerPixel(p,&v[7],45);
-	drawPlayerPixel(p,&v[8],45);
-	drawPlayerPixel(p,&v[9],35);
-	drawPlayerPixel(p,&v[10],45);
-	drawPlayerPixel(p,&v[11],35);
-
-	drawPlayerPixel(p,&v[12],45);
-	drawPlayerPixel(p,&v[13],45);
-	drawPlayerPixel(p,&v[14],35);
-	drawPlayerPixel(p,&v[15],45);
-	drawPlayerPixel(p,&v[16],35);
-
-	drawPlayerPixel(p,&v[17],35);
-	drawPlayerPixel(p,&v[18],35);
-	drawPlayerPixel(p,&v[19],35);
-
-	drawPlayerPixel(p,&v[20],35);
-	drawPlayerPixel(p,&v[21],35);
-	drawPlayerPixel(p,&v[22],35);
 }
 vector_t redPixelPos(player_t p)
 {
@@ -168,19 +64,15 @@ void bitShift(vector_t *v)
 	v->y = v->y << 14;
 }
 
-void drawPlayerPixel(player_t p, vector_t *v, uint8_t ch)
+
+/*void drawRedPixel(player_t p)
 {
-	if(p.oldDir != p.dir)
-	{
-		rotateVector(v,p.dir-p.oldDir);
-	}
-
-	int8_t testx = round(v->x/pow(2,14));
-	int8_t testy = round(v->y/pow(2,14));
-	gotoxy((p.posx >> 14)+testx,(p.posy >> 14)+testy);
-	printf("%c",ch);
+	gotoxy(redPixelPos(p).x >> 14, redPixelPos(p).y >> 14);
+	fgcolor(1);
+	drawPlayerPixel(p,&v[3],35);
+	fgcolor(15);
 }
-
+*/
 
 void drawBullets(bullet_t *p){
 	// Draws all live bullets, ie dmg >0
@@ -193,7 +85,7 @@ void drawBullets(bullet_t *p){
 
 				// New draw
 				gotoxy(p[i].posx>>14,p[i].posy>>14);
-				printf("%c",62);
+				printf("*");
 			}
 		}
 	}
