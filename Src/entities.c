@@ -268,6 +268,6 @@ void playerCollision(player_t *p, astroid_t *a)
 
 void updateLevel(player_t *p, uint32_t score)
 {
-	p->level = score/100;
+	p->level = (score/100) + 1;
 }
 
