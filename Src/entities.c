@@ -271,3 +271,34 @@ void updateLevel(player_t *p, uint32_t score)
 	p->level = (score/100) + 1;
 }
 
+int gameOver(player_t p){
+	if(p.hitpoints < 10){
+		uint8_t stop = 1;
+		clrscr();
+		uint8_t k = 80;
+		uint8_t kk = 20;
+		uint8_t prevCenter = returnCenter();
+		while(1){
+			if(stop){
+				gotoxy(k,kk);
+				printf("   _____          __  __ ______    ______      ________ _____  \n");
+				gotoxy(k,kk+1);
+				printf("  / ____|   /\\   |  \\/  |  ____|  / __ \\ \\    / /  ____|  __ \\ \n");
+				gotoxy(k,kk+2);
+				printf(" | |  __   /  \\  | \\  / | |__    | |  | \\ \\  / /| |__  | |__) |\n");
+				gotoxy(k,kk+3);
+				printf(" | | |_ | / /\\ \\ | |\\/| |  __|   | |  | |\\ \\/ / |  __| |  _  / \n");
+				gotoxy(k,kk+4);
+				printf(" | |__| |/ ____ \\| |  | | |____  | |__| | \\  /  | |____| | \\ \\ \n");
+				gotoxy(k,kk+5);
+				printf("  \\_____/_/    \\_\\_|  |_|______|  \\____/   \\/   |______|_|  \\_\\\n");
+				stop = 0;
+			}
+			if(returnCenter()==1 && prevCenter == 0){
+				return 0;
+			}
+			prevCenter = returnCenter();
+		}
+	}
+	return 1;
+}
