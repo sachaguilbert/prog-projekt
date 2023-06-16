@@ -24,6 +24,7 @@ player_t initPlayer(int32_t x, int32_t y){
 	player.oldPos.x = redPixelPos(player).x;
 	player.oldPos.y = redPixelPos(player).y;
 	player.hitpoints = 10;
+	player.level = 1;
 	return player;
 }
 void initAsteroid(astroid_t *ast, int32_t x, int32_t y, int32_t dx, int32_t dy){
@@ -52,12 +53,12 @@ void planetRandom(planet_t *pla){
 	initPlanet(pla, planetx, planety,style);
 }
 
-void astroidRandom(astroid_t *a){
+void astroidRandom(astroid_t *a, player_t p){
 	astroid_t ast;
 	ast.style =(rand() % 2)+ 1;
 	uint8_t sel = rand() % 4;
-	ast.velx = ((rand() % 3)<<14)*0.1;
-	ast.vely = ((rand() % 3)<<14)*0.1;
+	ast.velx = ((rand() % 3)<<14)*0.1 * p.level;
+	ast.vely = ((rand() % 3)<<14)*0.1 * p.level;
 	switch(sel){
 	case 0:
 		initAsteroid(&ast,(rand() % 150)<<14,2<<14,rand() %2 ? ast.velx : -ast.velx,ast.vely);
@@ -84,12 +85,12 @@ void astroidRandom(astroid_t *a){
 	}
 }
 
-void updateAsteroid(astroid_t *p){
+void updateAsteroid(astroid_t *a){
 	for(uint8_t i = 0;i<100;i++){
 		// move bullet if its initialised, ie dmg not 0
-		if(p[i].hitpoints != 0){
-			p[i].posx += p[i].velx / velfactor;
-			p[i].posy += p[i].vely / velfactor;
+		if(a[i].hitpoints != 0){
+			a[i].posx += (a[i].velx) / velfactor;
+			a[i].posy += (a[i].vely)/ velfactor;
 		}
 	}
 
@@ -166,15 +167,15 @@ bullet_t initBullet()
 }
 
 
-void updateBullets(bullet_t *p){
+void updateBullets(bullet_t *b){
 	for(uint8_t i = 0;i<100;i++){
 
 		// move bullet if its initialised, ie dmg not 0
-		if(p[i].damagevalue != 0){
-			p[i].velx += p[i].accx;
-			p[i].vely += p[i].accy;
-			p[i].posx += p[i].velx / velfactor;
-			p[i].posy += p[i].vely / velfactor;
+		if(b[i].damagevalue != 0){
+			b[i].velx += b[i].accx;
+			b[i].vely += b[i].accy;
+			b[i].posx += b[i].velx / velfactor;
+			b[i].posy += b[i].vely / velfactor;
 		}
 	}
 
@@ -264,3 +265,9 @@ void playerCollision(player_t *p, astroid_t *a)
 	}
 
 }
+
+void updateLevel(player_t *p, uint32_t score)
+{
+	p->level = score/100;
+}
+

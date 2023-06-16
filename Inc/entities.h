@@ -21,6 +21,7 @@ typedef struct{
 	uint16_t hitpoints;
 	uint8_t mass;
 	uint8_t radius;
+	uint8_t level;
 }player_t;
 
 typedef struct{
@@ -50,16 +51,19 @@ player_t initPlayer(int32_t x, int32_t y);
 
 // ASTEROID
 void initAsteroid(astroid_t *ast, int32_t x, int32_t y, int32_t dx, int32_t dy);
-void astroidRandom(astroid_t *a);
-void updateAsteroid(astroid_t *p);
+void astroidRandom(astroid_t *a,player_t p);
+void updateAsteroid(astroid_t *a);
 void astroidOUB(astroid_t *a);
 
 // Bullet
 bullet_t initBullet();
 void createBullet(player_t p,bullet_t *b);
-void updateBullets(bullet_t *p);
+void updateBullets(bullet_t *b);
 void bulletCollisions(bullet_t *b,astroid_t *a,uint32_t *score);
 void bulletOUB(bullet_t *b);;
 void playerCollision(player_t *p, astroid_t *a);
+
+void updateLevels(player_t *p, uint32_t score);
+
 
 #endif /* ENTITIES_H_ */
