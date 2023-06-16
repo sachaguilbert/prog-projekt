@@ -2,7 +2,6 @@
 
 void mainMenu(){
 	initPins();
-	page();
 	drawStart();
 	int8_t option = 0;
 	uint8_t prevUp = returnUp();
@@ -169,6 +168,7 @@ void drawStart(){
 }
 
 void page(){
+	initPins();
 	uint8_t pagenr = 0;
 	uint8_t centerx = 75;
 	uint8_t centery = 10;
@@ -219,8 +219,8 @@ void page(){
 			next = 0;
 		}
 		if(pagenr == 3	 && next == 1){
-				clrscr();
-				break;
-			}
+			clrscr();
+			break;
+		}
 	}
 }
