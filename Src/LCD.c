@@ -39,6 +39,7 @@ void lcd_scoreboard(player_t p){
 
 }
 
+
 void lcd_update(){
 	if(flag){
 		thing++;
