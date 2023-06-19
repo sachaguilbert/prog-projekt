@@ -61,11 +61,11 @@ void astroidOUB(astroid_t *a);
 bullet_t initBullet();
 void createBullet(player_t p,bullet_t *b);
 void updateBullets(bullet_t *b);
-void bulletCollisions(bullet_t *b,astroid_t *a,uint32_t *score, player_t *p);
-void bulletOUB(bullet_t *b);;
+void bulletCollisions(bullet_t *b,astroid_t *a, player_t *p);
+void bulletOUB(bullet_t *b);
 void playerCollision(player_t *p, astroid_t *a);
 
-void updateLevels(player_t *p, uint32_t score);
+void updateLevels(player_t *p);
 
 
 #endif /* ENTITIES_H_ */

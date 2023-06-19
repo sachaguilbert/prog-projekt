@@ -125,12 +125,8 @@ void movement(player_t *p,bullet_t *b){
 
 	if(j1 >= JoystickHigh && j2 >= JoystickHigh){p->dir = 1;}
 	if(j1 >= JoystickHigh && j2 <= JoystickHigh){p->dir = 7;}
-	if(j1 <= JoystickHigh && j2 >= JoystickHigh){p->dir = 3;}
 	if(j1 <= JoystickHigh && j2 <= JoystickHigh){p->dir = 5;}
-
-
-
-
+	if(j1 <= JoystickHigh && j2 >= JoystickHigh){p->dir = 3;}
 
 	uint16_t b1 = ADCRead(3);
 	if(b1 >= 4000){
