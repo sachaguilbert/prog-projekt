@@ -21,7 +21,7 @@ player_t initPlayer(int32_t x, int32_t y){
 	player.accx = 1 << 14;
 	player.accy = 0;
 	player.radius = 4;
-	player.hitpoints = 10;
+	player.hitpoints = 3;
 	player.level = 1;
 	player.dmg = 1;
 	return player;
