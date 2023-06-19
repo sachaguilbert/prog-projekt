@@ -157,8 +157,44 @@ void createBullet(player_t p,bullet_t *b){
 	bullet_t newB;
 	newB.posx = p.posx;
 	newB.posy = p.posy;
-	newB.velx = p.velx+p.accx*speedConst;
-	newB.vely = p.vely+p.accy*speedConst;
+
+	switch(p.dir)
+	{
+	case 0:
+		newB.velx = p.velx+p.accx*speedConst;
+		newB.vely = p.vely+p.accy*speedConst;
+		break;
+	case 1:
+		newB.velx = p.velx+p.accx*speedConst;
+		newB.vely = p.vely-p.accx*speedConst;
+		break;
+	case 2:
+		newB.velx = p.velx+p.accy*speedConst;
+		newB.vely = p.vely-p.accx*speedConst;
+		break;
+	case 3:
+		newB.velx = p.velx-p.accx*speedConst;
+		newB.vely = p.vely-p.accx*speedConst;
+		break;
+	case 4:
+		newB.velx = p.velx-p.accx*speedConst;
+		newB.vely = p.vely+p.accy*speedConst;
+		break;
+	case 5:
+		newB.velx = p.velx-p.accx*speedConst;
+		newB.vely = p.vely+p.accx*speedConst;
+		break;
+	case 6:
+		newB.velx = p.velx+p.accy*speedConst;
+		newB.vely = p.vely+p.accx*speedConst;
+		break;
+	case 7:
+		newB.velx = p.velx+p.accx*speedConst;
+		newB.vely = p.vely+p.accx*speedConst;
+		break;
+	}
+
+
 	newB.accx = 0;
 	newB.accy = 0;
 
