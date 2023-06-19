@@ -30,10 +30,9 @@ typedef struct{
 typedef struct{
 	int32_t posx[5];
 	int32_t posy[5];
-	int32_t velx, vely, accx, accy;
+	int32_t velx, vely;
 	uint8_t style;
 	int16_t hitpoints;
-	uint8_t mass;
 }astroid_t;
 
 typedef struct{

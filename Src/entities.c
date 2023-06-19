@@ -72,15 +72,23 @@ void astroidRandom(astroid_t *a, player_t p){
 		break;
 
 	}
+	for(int i = 0; i < 100; i++)
+	{
+		if(a[i].hitpoints <= 0)
+		{
+			a[i] = ast;
+			break;
+		}
+	}
 
-	uint16_t j =0;
+	/*uint16_t j =0;
 	while(j<100){
 		if(a[j].hitpoints == 0){
 			a[j] = ast;
 			return;
 		}
 		j++;
-	}
+	}*/
 }
 
 void updateAsteroid(astroid_t *a){
