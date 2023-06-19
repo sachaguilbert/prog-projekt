@@ -33,9 +33,10 @@ void lcd_write_string(char str[],uint32_t loc){
 }
 
 void lcd_scoreboard(player_t p){
-	char hjælp[520];
-	sprintf(hjælp,"LEVEL: %02u HIGHSCORE: %04u HP: %02u        SCORE: %04u",p.level,memRead(0),p.hitpoints,p.score);
-	lcd_write_string(hjælp,0);
+	char scoreBoard[520];
+	uint16_t hs = memRead(0);
+	sprintf(scoreBoard,"LEVEL: %02u HIGHSCORE: %04u HP: %02u        SCORE: %04u",p.level,hs,p.hitpoints,p.score);
+	lcd_write_string(scoreBoard,0);
 
 }
 

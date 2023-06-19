@@ -1,16 +1,17 @@
-/*
- * entities.h
- *
- *  Created on: 9. jun. 2023
- *      Author: alber
- */
-
 #ifndef ENTITIES_H_
 #define ENTITIES_H_
 
-
+/* Includes ------------------------------------------------------------------*/
 #include "math_st.h"
-//#include "graphics.h"
+#include "stm32f30x_conf.h" // STM32 config
+#include "30010_io.h" // Input/output library for this course
+#include "stdio.h"
+#include "stdlib.h"
+#include "stdint.h"
+#include "ansi.h"
+#include "math.h"
+
+/* Exported types ------------------------------------------------------------*/
 
 typedef struct{
 	int32_t posx,posy;
@@ -46,28 +47,33 @@ typedef struct{
 	int32_t posx,posy;
 	uint16_t style;
 }planet_t;
-//PLANET
+
+/* Exported functions ------------------------------------------------------- */
+
+//Player
+player_t initPlayer(int32_t x, int32_t y);
+
+//Planets
 void initPlanet(planet_t *planet, int32_t x, int32_t y, uint8_t style);
 void planetRandom(planet_t *pla, uint8_t nrOfPla);
 void playerCollision(player_t *p, astroid_t *a);
-// PLAYER
-player_t initPlayer(int32_t x, int32_t y);
 
-// ASTEROID
+//Asteroids
 void initAsteroid(astroid_t *ast, int32_t x, int32_t y, int32_t dx, int32_t dy,player_t p);
-void astroidRandom(astroid_t *a,player_t p);
+void astroidRandom(astroid_t *a, player_t p);
 void updateAsteroid(astroid_t *a);
 void astroidOUB(astroid_t *a);
+void astroidDeath(astroid_t *a);
 
-// Bullet
-bullet_t initBullet();
+//Bullets
 void createBullet(player_t p,bullet_t *b);
+bullet_t initBullet();
 void updateBullets(bullet_t *b);
-void bulletCollisions(bullet_t *b,astroid_t *a, player_t *p);
+void bulletDeath(bullet_t *b);
+void bulletCollisions(bullet_t *b,astroid_t *a,player_t *p);
 void bulletOUB(bullet_t *b);
-void playerCollision(player_t *p, astroid_t *a);
 
-void updateLevels(player_t *p);
-
+//Level
+void updateLevel(player_t *p);
 
 #endif /* ENTITIES_H_ */
