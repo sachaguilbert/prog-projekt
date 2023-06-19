@@ -81,33 +81,21 @@ void drawRedPixel(player_t p)
 		gotoxy((p.posx >> 14)+2, (p.posy >> 14)-1);
 		break;
 	case 2:
-		gotoxy((p.posx >> 14)+1, (p.posy >> 14)-2);
-		break;
-	case 3:
 		gotoxy((p.posx >> 14), (p.posy >> 14)-2);
 		break;
-	case 4:
-		gotoxy((p.posx >> 14)-1, (p.posy >> 14)-2);
-		break;
-	case 5:
+	case 3:
 		gotoxy((p.posx >> 14)-2, (p.posy >> 14)-1);
 		break;
-	case 6:
+	case 4:
 		gotoxy((p.posx >> 14)-3, (p.posy >> 14));
 		break;
-	case 7:
+	case 5:
 		gotoxy((p.posx >> 14)-2, (p.posy >> 14)+1);
 		break;
-	case 8:
-		gotoxy((p.posx >> 14)-1, (p.posy >> 14)+2);
-		break;
-	case 9:
+	case 6:
 		gotoxy((p.posx >> 14), (p.posy >> 14)+2);
 		break;
-	case 10:
-		gotoxy((p.posx >> 14)+1, (p.posy >> 14)+2);
-		break;
-	case 11:
+	case 7:
 		gotoxy((p.posx >> 14)+2, (p.posy >> 14)+1);
 		break;
 	}
@@ -180,3 +168,28 @@ void drawPlanets(planet_t *p){
 		printf(" ###### ");
 	}
 }
+
+void createAnnouncement(char *str)
+{
+	uint16_t pos0[2] = {60,5};
+	uint16_t pos1[2] = {75,7};
+	gameWindow(pos0,pos1,2);
+	gotoxy(65,6);
+	printf("%s",str);
+	announcTick = 0;
+
+}
+void clearAnnouncement()
+{
+	uint8_t pos0[2] = {60,5};
+	uint8_t pos1[2] = {75,8};
+	for(int i = 0; i < (pos1[1]-pos0[1]);i++)
+	{
+		gotoxy(pos0[0],pos0[1]+i);
+		for(int j = 0; j < (pos1[0]-pos1[1]); j++)
+		{
+			printf(" ");
+		}
+	}
+}
+
