@@ -17,7 +17,6 @@
 #include "window.h"
 
 /* Exported constants --------------------------------------------------------*/
-#define velfactor 0.1
 
 /* Exported functions ------------------------------------------------------- */
 //FUNCTIONS
@@ -27,7 +26,6 @@ void drawPlayer(player_t p,uint8_t init);
 void drawPlanets(planet_t *p,uint8_t arrsize);
 void deletePlayer(player_t p);
 void bitShift(vector_t *v);
-vector_t redPixelPos(player_t p);
 void drawRedPixel(player_t p);
 
 void drawBullets(bullet_t *p);

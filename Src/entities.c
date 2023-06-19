@@ -341,5 +341,11 @@ void playerCollision(player_t *p, astroid_t *a)
 
 void updateLevel(player_t *p)
 {
+	p->oldLevel = p->level;
 	p->level = (p->score/100) + 1;
+	if(p->oldLevel != p->level)
+	{
+		clearAnnouncement();
+		createAnnouncement("LEVEL UP!");
+	}
 }
