@@ -81,33 +81,21 @@ void drawRedPixel(player_t p)
 		gotoxy((p.posx >> 14)+2, (p.posy >> 14)-1);
 		break;
 	case 2:
-		gotoxy((p.posx >> 14)+1, (p.posy >> 14)-2);
-		break;
-	case 3:
 		gotoxy((p.posx >> 14), (p.posy >> 14)-2);
 		break;
-	case 4:
-		gotoxy((p.posx >> 14)-1, (p.posy >> 14)-2);
-		break;
-	case 5:
+	case 3:
 		gotoxy((p.posx >> 14)-2, (p.posy >> 14)-1);
 		break;
-	case 6:
+	case 4:
 		gotoxy((p.posx >> 14)-3, (p.posy >> 14));
 		break;
-	case 7:
+	case 5:
 		gotoxy((p.posx >> 14)-2, (p.posy >> 14)+1);
 		break;
-	case 8:
-		gotoxy((p.posx >> 14)-1, (p.posy >> 14)+2);
-		break;
-	case 9:
+	case 6:
 		gotoxy((p.posx >> 14), (p.posy >> 14)+2);
 		break;
-	case 10:
-		gotoxy((p.posx >> 14)+1, (p.posy >> 14)+2);
-		break;
-	case 11:
+	case 7:
 		gotoxy((p.posx >> 14)+2, (p.posy >> 14)+1);
 		break;
 	}
