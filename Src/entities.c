@@ -212,7 +212,7 @@ void bulletDeath(bullet_t *b){
 
 }
 
-void bulletCollisions(bullet_t *b,astroid_t *a,uint32_t *score){
+void bulletCollisions(bullet_t *b,astroid_t *a,uint32_t *score,player_t *p){
 	// Checks only live bullets on live astroids
 	for(uint8_t i = 0;i<100;i++){
 		if(b[i].damagevalue !=0){
@@ -263,9 +263,8 @@ void bulletCollisions(bullet_t *b,astroid_t *a,uint32_t *score){
 						    int random = rand();
 						    if (random % 5 == 1)
 						    {
-						    	gotoxy(50,10);
-						    	printf("+1HP!");
-
+								createAnnouncement("+1HP!");
+						    	p->hitpoints++;
 						    }
 						}
 					}
@@ -309,36 +308,4 @@ void playerCollision(player_t *p, astroid_t *a)
 void updateLevel(player_t *p, uint32_t score)
 {
 	p->level = (score/100) + 1;
-}
-
-int gameOver(player_t p){
-	if(p.hitpoints < 10){
-		uint8_t stop = 1;
-		clrscr();
-		uint8_t k = 80;
-		uint8_t kk = 20;
-		uint8_t prevCenter = returnCenter();
-		while(1){
-			if(stop){
-				gotoxy(k,kk);
-				printf("   _____          __  __ ______    ______      ________ _____  \n");
-				gotoxy(k,kk+1);
-				printf("  / ____|   /\\   |  \\/  |  ____|  / __ \\ \\    / /  ____|  __ \\ \n");
-				gotoxy(k,kk+2);
-				printf(" | |  __   /  \\  | \\  / | |__    | |  | \\ \\  / /| |__  | |__) |\n");
-				gotoxy(k,kk+3);
-				printf(" | | |_ | / /\\ \\ | |\\/| |  __|   | |  | |\\ \\/ / |  __| |  _  / \n");
-				gotoxy(k,kk+4);
-				printf(" | |__| |/ ____ \\| |  | | |____  | |__| | \\  /  | |____| | \\ \\ \n");
-				gotoxy(k,kk+5);
-				printf("  \\_____/_/    \\_\\_|  |_|______|  \\____/   \\/   |______|_|  \\_\\\n");
-				stop = 0;
-			}
-			if(returnCenter()==1 && prevCenter == 0){
-				return 0;
-			}
-			prevCenter = returnCenter();
-		}
-	}
-	return 1;
 }
