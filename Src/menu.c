@@ -226,8 +226,8 @@ void page(){
 }
 
 
-int gameOver(player_t p){
-	if(p.hitpoints < 10){
+int gameOver(player_t *p){
+	if(p->hitpoints < 10){
 		uint8_t stop = 1;
 		clrscr();
 		uint8_t k = 80;

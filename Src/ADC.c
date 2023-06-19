@@ -129,9 +129,6 @@ void movement(player_t *p,bullet_t *b){
 	if((j1 <= JoystickLow) && (j2 <= JoystickLow)){p->dir = 5;}
 
 
-
-
-
 	uint16_t b1 = ADCRead(3);
 	if(b1 >= 4000){
 		createBullet(*p,b);

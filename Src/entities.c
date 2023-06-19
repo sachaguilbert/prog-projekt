@@ -14,6 +14,7 @@ player_t initPlayer(int32_t x, int32_t y){
 	player_t player;
 	player.posx = x;
 	player.posy = y;
+	player.score = 0;
 	player.dir = 0;
 	player.velx = 0;
 	player.vely = 0;
@@ -248,7 +249,7 @@ void bulletDeath(bullet_t *b){
 
 }
 
-void bulletCollisions(bullet_t *b,astroid_t *a,uint32_t *score,player_t *p){
+void bulletCollisions(bullet_t *b,astroid_t *a,player_t *p){
 	// Checks only live bullets on live astroids
 	for(uint8_t i = 0;i<100;i++){
 		if(b[i].damagevalue !=0){
@@ -294,7 +295,7 @@ void bulletCollisions(bullet_t *b,astroid_t *a,uint32_t *score,player_t *p){
 						}
 						if(a[j].hitpoints <= 0){
 						    srand(time(NULL));
-							*score += 10*a[j].style;
+							p->score += 10*a[j].style;
 							astroidDeath(&a[j]);
 						    int random = rand();
 						    if (random % 5 == 1)
@@ -341,7 +342,7 @@ void playerCollision(player_t *p, astroid_t *a)
 
 }
 
-void updateLevel(player_t *p, uint32_t score)
+void updateLevel(player_t *p)
 {
-	p->level = (score/100) + 1;
+	p->level = (p->score/100) + 1;
 }

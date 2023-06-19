@@ -18,7 +18,7 @@ void settingsMenu();
 void drawBoxes(uint8_t option, uint8_t action);
 void drawStart();
 void page();
-int gameOver(player_t p);
+int gameOver(player_t* p);
 extern volatile uint32_t score;
 
 #endif /* MENU_H_ */
