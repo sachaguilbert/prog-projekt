@@ -1,13 +1,4 @@
-#include <io.h>
-#include "entities.h"
-#include "ansi.h"
-#include "stm32f30x_rcc.h"
-
-
-
-#define accfactor 0.4
-#define velfactor 0.1
-#define MAXHP 3
+#include "io.h"
 
 uint8_t get_keyboard_input()
 {

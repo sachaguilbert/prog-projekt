@@ -14,10 +14,10 @@
 #include "ansi.h"
 #include "math.h"
 #include "graphics.h"
+#include "window.h"
 
 /* Exported constants --------------------------------------------------------*/
-#define WIN_WIDTH 250
-#define WIN_HEIGHT 90
+#define velfactor 0.1
 
 /* Exported functions ------------------------------------------------------- */
 //FUNCTIONS

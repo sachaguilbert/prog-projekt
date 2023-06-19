@@ -10,9 +10,9 @@
 #include "stdint.h"
 #include "ansi.h"
 #include "math.h"
+#include "window.h"
 
 /* Exported types ------------------------------------------------------------*/
-
 typedef struct{
 	int32_t posx,posy;
 	int32_t velx,vely,accx,accy;
@@ -47,6 +47,9 @@ typedef struct{
 	int32_t posx,posy;
 	uint16_t style;
 }planet_t;
+
+/* Exported constants ---------------------------------------------------*/
+#define velfactor 2
 
 /* Exported functions ------------------------------------------------------- */
 

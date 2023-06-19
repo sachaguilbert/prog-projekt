@@ -1,8 +1,5 @@
-#include "stm32f30x_conf.h" // STM32 config
-#include "30010_io.h" // Input/output library for this course
-#include "stdio.h"
-#include "stdint.h"
-#include "ansi.h"
+#include "globalTimer.h"
+
 
 volatile uint8_t globalTick;
 volatile uint16_t announcTick;

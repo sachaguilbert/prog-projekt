@@ -1,17 +1,4 @@
-/*
- * ADC.c
- *
- *  Created on: 8. jun. 2023
- *      Author: alber
- */
-#include "stm32f30x_conf.h" // STM32 config
-#include "30010_io.h" // Input/output library for this course
-#include "stdio.h"
-#include "stdint.h"
-#include "entities.h"
-
-#define JoystickHigh 2000
-#define JoystickLow 500
+#include "ADC.h"
 
 
 uint16_t ADCRead(uint8_t sel){
