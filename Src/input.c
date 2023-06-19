@@ -104,9 +104,9 @@ void update_player_pos(player_t *p)
 	p->velx = abs(p->velx) < (1 << 12) ? 0 : p->velx;
 	p->vely = abs(p->vely) < (1 << 12) ? 0 : p->vely;
 
-	p->posx = p->posx >= 152 << 14 ? 5 << 14 : p->posx;
+	p->posx = p->posx >= 245 << 14 ? 5 << 14 : p->posx;
 	p->posy = p->posy >= 86 << 14 ? 5 << 14 : p->posy;
-	p->posx = p->posx <= 4 << 14 ? 151 << 14: p->posx;
+	p->posx = p->posx <= 4 << 14 ? 244 << 14: p->posx;
 	p->posy = p->posy <= 4 << 14 ? 85 << 14 : p->posy;
 
 }

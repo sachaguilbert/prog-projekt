@@ -21,7 +21,7 @@
 void drawGameStart(player_t p){
 	// Draws the gamewindow to exactly fit Alberts screen, maybe change
 	uint16_t p1[2] = {1,1};
-	uint16_t p2[2] = {156,144};
+	uint16_t p2[2] = {250,90};
 
 	gameWindow(p1,p2,1);
 }
@@ -171,8 +171,8 @@ void drawPlanets(planet_t *p,uint8_t arrsize){
 
 void createAnnouncement(char *str)
 {
-	uint16_t pos0[2] = {60,5};
-	uint16_t pos1[2] = {75,7};
+	uint16_t pos0[2] = {120,5};
+	uint16_t pos1[2] = {135,7};
 	gameWindow(pos0,pos1,2);
 	gotoxy(65,6);
 	printf("%s",str);
@@ -181,8 +181,8 @@ void createAnnouncement(char *str)
 }
 void clearAnnouncement()
 {
-	uint8_t pos0[2] = {60,5};
-	uint8_t pos1[2] = {75,8};
+	uint8_t pos0[2] = {120,5};
+	uint8_t pos1[2] = {135,8};
 	for(int i = 0; i < (pos1[1]-pos0[1]);i++)
 	{
 		gotoxy(pos0[0],pos0[1]+i);
