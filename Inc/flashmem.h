@@ -15,5 +15,6 @@
 #include "ansi.h"
 uint16_t memRead(uint16_t offset);
 void memWrite(uint16_t *in,uint8_t sizeofarr);
+void clearFlashMem();
 
 #endif /* FLASHMEM_H_ */

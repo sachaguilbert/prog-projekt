@@ -63,17 +63,17 @@ void setLED(uint8_t r,uint8_t g,uint8_t b){
 	uint8_t red = 4;
 	uint8_t green = 7;
 	if(r){
-		GPIOB->ODR &= (0x0000 << red);
+		GPIOB->ODR &= ~(0x0001 << red);
 	}else{
 		GPIOB->ODR |= (0x0001 << red);
 	}
 	if(g){
-		GPIOC->ODR &= (0x0000 << green);
+		GPIOC->ODR &= ~(0x0001 << green);
 	}else{
 		GPIOC->ODR |= (0x0001 << green);
 	}
 	if(b){
-		GPIOA->ODR &= (0x0000 << blue);
+		GPIOA->ODR &= ~(0x0001 << blue);
 	}else{
 		GPIOA->ODR |= (0x0001 << blue);
 	}
