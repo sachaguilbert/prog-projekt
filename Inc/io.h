@@ -18,7 +18,8 @@
 uint8_t get_keyboard_input();
 void update_player_input();
 void update_player_pos(player_t *p);
-
+void LEDSetup();
+void LEDHP(player_t* p);
 
 
 

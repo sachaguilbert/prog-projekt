@@ -3,10 +3,10 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "stdint.h"
-#include "entities.h"
 #include "ansi.h"
 #include "math.h"
 #include "graphics.h"
+#include "entities.h"
 #define velfactor 2
 
 

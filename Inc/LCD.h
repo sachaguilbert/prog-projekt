@@ -1,12 +1,7 @@
-/*
- * LCD.h
- *
- *  Created on: 13. jun. 2023
- *      Author: alber
- */
-
 #ifndef LCD_H_
 #define LCD_H_
+
+#include "flashmem.h"
 
 void lcd_scoreboard(player_t p);
 
