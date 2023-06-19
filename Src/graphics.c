@@ -29,11 +29,15 @@ void drawGameStart(player_t p){
 void deletePlayer(player_t p)
 {
 	gotoxy((p.posx >> 14)-3, (p.posy >> 14)-2);
-	printf("      \n");
-	printf("      \n");
-	printf("       \n");
-	printf("      \n");
-	printf("      ");
+	printf("       ");
+	gotoxy((p.posx >> 14)-3, (p.posy >> 14)-1);
+	printf("       ");
+	gotoxy((p.posx >> 14)-3, (p.posy >> 14));
+	printf("       ");
+	gotoxy((p.posx >> 14)-3, (p.posy >> 14)+1);
+	printf("       ");
+	gotoxy((p.posx >> 14)-3, (p.posy >> 14)+2);
+	printf("       ");
 }
 
 
@@ -41,15 +45,16 @@ void deletePlayer(player_t p)
 
 void drawPlayer(player_t p,uint8_t init,vector_t *v){
 	gotoxy((p.posx >> 14)-3, (p.posy >> 14)-2);
-	printf("  ###  \n");
-	printf(" #---# \n");
-	printf("#|+0+|#\n");
-	printf(" #---# \n");
 	printf("  ###  ");
-	gotoxy(redPixelPos(p).x >> 14, redPixelPos(p).y >> 14);
-	fgcolor(1);
-	printf("#");
-	fgcolor(15);
+	gotoxy((p.posx >> 14)-3, (p.posy >> 14)-1);
+	printf(" #---# ");
+	gotoxy((p.posx >> 14)-3, (p.posy >> 14));
+	printf("#|+0+|#");
+	gotoxy((p.posx >> 14)-3, (p.posy >> 14)+1);
+	printf(" #---# ");
+	gotoxy((p.posx >> 14)-3, (p.posy >> 14)+2);
+	printf("  ###  ");
+	drawRedPixel(p);
 }
 vector_t redPixelPos(player_t p)
 {
@@ -65,14 +70,52 @@ void bitShift(vector_t *v)
 }
 
 
-/*void drawRedPixel(player_t p)
+void drawRedPixel(player_t p)
 {
-	gotoxy(redPixelPos(p).x >> 14, redPixelPos(p).y >> 14);
+	switch(p.dir)
+	{
+	case 0:
+		gotoxy((p.posx >> 14)+3, (p.posy >> 14));
+		break;
+	case 1:
+		gotoxy((p.posx >> 14)+2, (p.posy >> 14)-1);
+		break;
+	case 2:
+		gotoxy((p.posx >> 14)+1, (p.posy >> 14)-2);
+		break;
+	case 3:
+		gotoxy((p.posx >> 14), (p.posy >> 14)-2);
+		break;
+	case 4:
+		gotoxy((p.posx >> 14)-1, (p.posy >> 14)-2);
+		break;
+	case 5:
+		gotoxy((p.posx >> 14)-2, (p.posy >> 14)-1);
+		break;
+	case 6:
+		gotoxy((p.posx >> 14)-3, (p.posy >> 14));
+		break;
+	case 7:
+		gotoxy((p.posx >> 14)-2, (p.posy >> 14)+1);
+		break;
+	case 8:
+		gotoxy((p.posx >> 14)-1, (p.posy >> 14)+2);
+		break;
+	case 9:
+		gotoxy((p.posx >> 14), (p.posy >> 14)+2);
+		break;
+	case 10:
+		gotoxy((p.posx >> 14)+1, (p.posy >> 14)+2);
+		break;
+	case 11:
+		gotoxy((p.posx >> 14)+2, (p.posy >> 14)+1);
+		break;
+	}
 	fgcolor(1);
-	drawPlayerPixel(p,&v[3],35);
+	printf("#");
 	fgcolor(15);
 }
-*/
+
 
 void drawBullets(bullet_t *p){
 	// Draws all live bullets, ie dmg >0
