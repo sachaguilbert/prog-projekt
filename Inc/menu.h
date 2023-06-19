@@ -10,6 +10,7 @@
 #include "stdio.h"
 #include "stdint.h"
 #include "joystick.h"
+#include "entities.h"
 #include "stm32f30x_conf.h" // STM32 config
 void mainMenu();
 void helpMenu();

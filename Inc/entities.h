@@ -22,6 +22,7 @@ typedef struct{
 	uint8_t mass;
 	uint8_t radius;
 	uint8_t level;
+	uint16_t score;
 }player_t;
 
 typedef struct{
