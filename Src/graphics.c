@@ -25,7 +25,7 @@ void deletePlayer(player_t p)
 
 
 
-void drawPlayer(player_t p,uint8_t init){
+void drawPlayer(player_t p){
 	gotoxy((p.posx >> 14)-3, (p.posy >> 14)-2);
 	printf("  ###  ");
 	gotoxy((p.posx >> 14)-3, (p.posy >> 14)-1);

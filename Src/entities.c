@@ -107,6 +107,7 @@ void updateAsteroid(astroid_t *a){
 
 		}
 	}
+	astroidOUB(a);
 
 }
 
@@ -217,7 +218,7 @@ bullet_t initBullet()
 }
 
 
-void updateBullets(bullet_t *b){
+void updateBullets(bullet_t *b, planet_t *pla){
 	for(uint8_t i = 0;i<100;i++){
 
 		// move bullet if its initialised, ie dmg not 0
@@ -228,7 +229,8 @@ void updateBullets(bullet_t *b){
 			b[i].posy += b[i].vely / velfactor;
 		}
 	}
-
+	bulletOUB(b);
+	updateBulletAcc(b,pla);
 }
 
 void bulletDeath(bullet_t *b){

@@ -69,7 +69,7 @@ void astroidDeath(astroid_t *a);
 //Bullets
 void createBullet(player_t p,bullet_t *b);
 bullet_t initBullet();
-void updateBullets(bullet_t *b);
+void updateBullets(bullet_t *b, planet_t *pla);
 void bulletDeath(bullet_t *b);
 void bulletCollisions(bullet_t *b,astroid_t *a,player_t *p);
 void bulletOUB(bullet_t *b);

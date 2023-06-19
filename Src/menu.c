@@ -1,6 +1,7 @@
 #include "menu.h"
 
 void mainMenu(){
+	clrscr();
 	initPins();
 	drawStart();
 	int8_t option = 0;

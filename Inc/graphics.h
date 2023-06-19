@@ -22,7 +22,7 @@
 //FUNCTIONS
 void drawGameStart();
 
-void drawPlayer(player_t p,uint8_t init);
+void drawPlayer(player_t p);
 void drawPlanets(planet_t *p,uint8_t arrsize);
 void deletePlayer(player_t p);
 void bitShift(vector_t *v);
