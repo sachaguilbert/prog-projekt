@@ -26,9 +26,10 @@ player_t initPlayer(int32_t x, int32_t y){
 	player.oldPos.y = redPixelPos(player).y;
 	player.hitpoints = 10;
 	player.level = 1;
+	player.dmg = 1;
 	return player;
 }
-void initAsteroid(astroid_t *ast, int32_t x, int32_t y, int32_t dx, int32_t dy){
+void initAsteroid(astroid_t *ast, int32_t x, int32_t y, int32_t dx, int32_t dy,player_t p){
 	ast->posx[0] = x;
 	ast->posy[0] = y;
 	ast->posx[1] = x+1;
@@ -42,11 +43,11 @@ void initAsteroid(astroid_t *ast, int32_t x, int32_t y, int32_t dx, int32_t dy){
 	ast->velx = dx;
 	ast->vely = dy;
 	if(ast->style == 1){
-		ast->hitpoints = 1;
+		ast->hitpoints = 1+(p.level);
 	}else if(ast->style == 2){
-		ast->hitpoints = 5;
+		ast->hitpoints = 5+(p.level*5);
 	}else{
-		ast->hitpoints = 1;
+		ast->hitpoints = 1+(p.level);
 	}
 }
 void initPlanet(planet_t *planet, int32_t x, int32_t y, uint8_t style){
@@ -70,16 +71,16 @@ void astroidRandom(astroid_t *a, player_t p){
 	ast.vely = ((rand() % 3)<<14)*0.1 * p.level;
 	switch(sel){
 	case 0:
-		initAsteroid(&ast,(rand() % 150)<<14,2<<14,rand() %2 ? ast.velx : -ast.velx,ast.vely);
+		initAsteroid(&ast,(rand() % 150)<<14,2<<14,rand() %2 ? ast.velx : -ast.velx,ast.vely,p);
 		break;
 	case 1:
-		initAsteroid(&ast,(rand() % 150)<<14,50<<14,rand() %2 ? ast.velx : -ast.velx,-ast.vely);
+		initAsteroid(&ast,(rand() % 150)<<14,50<<14,rand() %2 ? ast.velx : -ast.velx,-ast.vely,p);
 		break;
 	case 2:
-		initAsteroid(&ast,2<<14,(rand() % 50)<<14,ast.velx,rand() %2 ? ast.vely : -ast.vely);
+		initAsteroid(&ast,2<<14,(rand() % 50)<<14,ast.velx,rand() %2 ? ast.vely : -ast.vely,p);
 		break;
 	case 3:
-		initAsteroid(&ast,150<<14,(rand() % 50)<<14,-ast.velx,rand() %2 ? ast.vely : -ast.vely);
+		initAsteroid(&ast,150<<14,(rand() % 50)<<14,-ast.velx,rand() %2 ? ast.vely : -ast.vely,p);
 		break;
 
 	}
@@ -199,7 +200,7 @@ void createBullet(player_t p,bullet_t *b){
 	newB.accx = 0;
 	newB.accy = 0;
 
-	newB.damagevalue = 1; // Changeable if new weapons are added
+	newB.damagevalue = p.dmg; // Changeable if new weapons are added
 	uint16_t j =0;
 
 	// Finds next "DeadSpot" in bullets array
@@ -294,14 +295,20 @@ void bulletCollisions(bullet_t *b,astroid_t *a,player_t *p){
 							break;
 						}
 						if(a[j].hitpoints <= 0){
-						    srand(time(NULL));
 							p->score += 10*a[j].style;
 							astroidDeath(&a[j]);
 						    int random = rand();
 						    if (random % 5 == 1)
 						    {
+						    	clearAnnouncement();
 								createAnnouncement("+1HP!");
 						    	p->hitpoints++;
+						    }
+						    if (random % 10 == 1)
+						    {
+						    	clearAnnouncement();
+						    	createAnnouncement("+5 dmg!");
+						    	p->dmg += 5;
 						    }
 						}
 					}

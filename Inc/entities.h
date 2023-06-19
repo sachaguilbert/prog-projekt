@@ -23,6 +23,7 @@ typedef struct{
 	uint8_t radius;
 	uint8_t level;
 	uint16_t score;
+	uint16_t dmg;
 }player_t;
 
 typedef struct{
@@ -52,7 +53,7 @@ void playerCollision(player_t *p, astroid_t *a);
 player_t initPlayer(int32_t x, int32_t y);
 
 // ASTEROID
-void initAsteroid(astroid_t *ast, int32_t x, int32_t y, int32_t dx, int32_t dy);
+void initAsteroid(astroid_t *ast, int32_t x, int32_t y, int32_t dx, int32_t dy,player_t p);
 void astroidRandom(astroid_t *a,player_t p);
 void updateAsteroid(astroid_t *a);
 void astroidOUB(astroid_t *a);
