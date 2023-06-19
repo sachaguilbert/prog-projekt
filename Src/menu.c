@@ -28,50 +28,12 @@ void mainMenu(){
 		drawBoxes(option, action);
 		if(returnCenter() == 1 && prevCent == 0){
 			if(option == 0){break;}
-			//if(option == 1){settingsMenu();drawStart();}
 			if(option == 1){helpMenu();drawStart();}
 		}
 		prevCent = returnCenter();
 	}
 	clrscr();
 }
-
-/*void settingsMenu(){
-	clrscr();
-	uint16_t p1[2] = {75,20};
-	uint16_t p2[2] = {155,50};
-	gameWindow(p1,p2,2);
-	gotoxy(111,20);
-	printf("SETTINGS");
-		uint8_t prevCent = returnCenter();
-	for(int i=105;i<125+1;i++){
-		for(int j=19;j<41+1;j++){
-			gotoxy(i,j);
-			printf(" ");
-		}
-	}
-	gotoxy(108,25);
-	printf("This is the menu\n");
-	gotoxy(108,26);
-	printf("that shows all info\n");
-	gotoxy(108,27);
-	printf("concerning settings\n");
-	uint16_t p5[2] = {105,39};
-	uint16_t p6[2] = {125,41};
-	gameWindow(p5,p6,2);
-	gotoxy(112,40);
-	fgcolor(1);
-	printf("RETURN");
-	fgcolor(7);
-	while(1){
-		gotoxy(0,10);
-		printf("Inside settings menu");
-		if(returnCenter() == 1 && prevCent == 0){
-			break;
-		}
-		prevCent = returnCenter();
-	}
-}*/
 
 void helpMenu(){
 	clrscr();
@@ -110,29 +72,13 @@ void drawBoxes(uint8_t option, uint8_t action){
 		uint16_t p1[2] = {105,29};
 		uint16_t p2[2] = {125,31};
 		gameWindow(p1,p2,2);
-		/*uint16_t p3[2] = {105,34};
-		uint16_t p4[2] = {125,36};
-		gameWindow(p3,p4,1);*/
 		uint16_t p5[2] = {105,39};
 		uint16_t p6[2] = {125,41};
 		gameWindow(p5,p6,1);
-	}/*else if(option == 1 && action == 1){
-		uint16_t p1[2] = {105,24};
-		uint16_t p2[2] = {125,26};
-		gameWindow(p1,p2,1);
-		uint16_t p3[2] = {105,34};
-		uint16_t p4[2] = {125,36};
-		gameWindow(p3,p4,2);
-		uint16_t p5[2] = {105,44};
-		uint16_t p6[2] = {125,46};
-		gameWindow(p5,p6,1);
-	}*/else if(option == 1 && action == 1){
+	}else if(option == 1 && action == 1){
 		uint16_t p1[2] = {105,29};
 		uint16_t p2[2] = {125,31};
 		gameWindow(p1,p2,1);
-		/*uint16_t p3[2] = {105,34};
-		uint16_t p4[2] = {125,36};
-		gameWindow(p3,p4,1);*/
 		uint16_t p5[2] = {105,39};
 		uint16_t p6[2] = {125,41};
 		gameWindow(p5,p6,2);
