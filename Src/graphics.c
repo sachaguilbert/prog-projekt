@@ -138,29 +138,28 @@ void drawAstroids(astroid_t *a){
 	// Draws all astoroids which are alive ie. HP >0
 	for(uint8_t i = 0; i<100;i++){
 		if(a[i].hitpoints > 0){
-			if((a[i].posx-a[i].velx*0.5)/pow(2,14) != a[i].posx>>14 || (a[i].posy-a[i].vely*0.5)/pow(2,14) != a[i].posy){
-
+			if((a[i].posx[0]-a[i].velx*0.5)/pow(2,14) != a[i].posx[0]>>14 || (a[i].posy[0]-a[i].vely*0.5)/pow(2,14) != a[i].posy[0]){
 				// Allows for different styles with different HP values, see astroid init
 				switch(a[i].style){
 					case 1:
-						gotoxy((a[i].posx-a[i].velx*0.5)/pow(2,14),(a[i].posy-a[i].vely*0.5)/pow(2,14));
+						gotoxy((a[i].posx[0]-a[i].velx*0.5)/pow(2,14),(a[i].posy[0]-a[i].vely*0.5)/pow(2,14));
 						printf("%c",32);
-						gotoxy(a[i].posx>>14,a[i].posy>>14);
+						gotoxy(a[i].posx[0]>>14,a[i].posy[0]>>14);
 						printf("%c",219);
 						break;
 					case 2:
-						gotoxy((a[i].posx-a[i].velx*0.5)/pow(2,14)-1,(a[i].posy-a[i].vely*0.5)/pow(2,14));
+						gotoxy((a[i].posx[0]-a[i].velx*0.5)/pow(2,14)-1,(a[i].posy[0]-a[i].vely*0.5)/pow(2,14));
 						printf("%c%c%c",32,32,32);
-						gotoxy((a[i].posx-a[i].velx*0.5)/pow(2,14),(a[i].posy-a[i].vely*0.5)/pow(2,14)-1);
+						gotoxy((a[i].posx[0]-a[i].velx*0.5)/pow(2,14),(a[i].posy[0]-a[i].vely*0.5)/pow(2,14)-1);
 						printf("%c",32);
-						gotoxy((a[i].posx-a[i].velx*0.5)/pow(2,14),(a[i].posy-a[i].vely*0.5)/pow(2,14)+1);
+						gotoxy((a[i].posx[0]-a[i].velx*0.5)/pow(2,14),(a[i].posy[0]-a[i].vely*0.5)/pow(2,14)+1);
 						printf("%c",32);
 
-						gotoxy((a[i].posx>>14)-1,a[i].posy>>14);
+						gotoxy((a[i].posx[0]>>14)-1,a[i].posy[0]>>14);
 						printf("%c%c%c",219,219,219);
-						gotoxy(a[i].posx>>14,(a[i].posy>>14)+1);
+						gotoxy(a[i].posx[0]>>14,(a[i].posy[0]>>14)+1);
 						printf("%c",223);
-						gotoxy(a[i].posx>>14,(a[i].posy>>14)-1);
+						gotoxy(a[i].posx[0]>>14,(a[i].posy[0]>>14)-1);
 						printf("%c",220);
 						break;
 					}
