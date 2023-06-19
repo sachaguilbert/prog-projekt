@@ -56,8 +56,8 @@ void initPlanet(planet_t *planet, int32_t x, int32_t y, uint8_t style){
 	planet->style = style;
 }
 
-void planetRandom(planet_t *pla,uint8_t arrsize){
-	for(int i=0;i<arrsize;i++){
+void planetRandom(planet_t *pla, uint8_t nrOfPla){
+	for(int i=0;i<nrOfPla;i++){
 		uint32_t planetx = (rand() % 150)<<14;
 		uint32_t planety = (rand() % 40)<<14;
 		int32_t style = rand() % 3;

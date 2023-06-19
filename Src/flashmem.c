@@ -20,3 +20,10 @@ void memWrite(uint16_t *in,uint8_t sizeofarr){
 	}
 	FLASH_Lock();
 }
+
+void clearFlashMem(){
+	uint32_t baseAddress = 0x0800F800;
+	FLASH_Unlock();
+	FLASH_ClearFlag( FLASH_FLAG_EOP | FLASH_FLAG_PGERR | FLASH_FLAG_WRPERR );
+	FLASH_ErasePage(baseAddress);
+}
