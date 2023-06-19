@@ -17,7 +17,7 @@ typedef struct{
 	int32_t posx,posy;
 	int32_t velx,vely,accx,accy;
 	int16_t dir;
-	uint16_t hitpoints;
+	int16_t hitpoints;
 	uint8_t mass;
 	uint8_t radius;
 	uint8_t level;
