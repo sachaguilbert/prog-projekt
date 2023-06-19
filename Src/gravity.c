@@ -1,5 +1,4 @@
 #include "gravity.h"
-#include "math.h"
 
 void updateBulletAcc(bullet_t *b, planet_t *p){
 	//Original formula: xpp += -G*b1.m*(b0.x-b1.x)/Math.pow(d1, 3);

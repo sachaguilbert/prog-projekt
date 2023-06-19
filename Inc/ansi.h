@@ -1,17 +1,14 @@
-/*
- * ansi.h
- *
- *  Created on: 1. jun. 2023
- *      Author: alber
- */
-
 #ifndef _ANSI_H_
 #define _ANSI_H_
+
 /* Includes -------------------------------------------------------------*/
 #include "stdint.h"
 #include "stdio.h"
+#include "stdio.h"
+#include "stdint.h"
 /* Exported types -------------------------------------------------------*/
 /* Exported constants ---------------------------------------------------*/
+#define ESC 0x1B
 /* Exported macro -------------------------------------------------------*/
 /* Exported functions -------------------------------------------------- */
 void fgcolor(uint8_t foreground);

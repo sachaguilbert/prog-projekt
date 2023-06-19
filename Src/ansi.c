@@ -1,6 +1,4 @@
-#define ESC 0x1B
-#include "stdio.h"
-#include "stdint.h"
+#include "ansi.h"
 
 void fgcolor(uint8_t foreground) {
 /*  Value      foreground     Value     foreground

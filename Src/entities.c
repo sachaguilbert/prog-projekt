@@ -1,13 +1,4 @@
-#include "stm32f30x_conf.h" // STM32 config
-#include "30010_io.h" // Input/output library for this course
-#include "stdio.h"
-#include "stdlib.h"
-#include "stdint.h"
-#include "ansi.h"
-#include "math.h"
-#include "graphics.h"
 #include "entities.h"
-#define velfactor 2
 
 
 player_t initPlayer(int32_t x, int32_t y){

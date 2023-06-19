@@ -1,8 +1,4 @@
 #include "graphics.h"
-#define velfactor 0.1
-
-
-
 
 void drawGameStart(player_t p){
 	// Draws the gamewindow to exactly fit Alberts screen, maybe change
