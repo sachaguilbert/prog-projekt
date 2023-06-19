@@ -257,7 +257,7 @@ void bulletCollisions(bullet_t *b,astroid_t *a,player_t *p){
 	for(uint8_t i = 0;i<100;i++){
 		if(b[i].damagevalue !=0){
 			for(uint8_t j =0;j<100;j++){
-				if(a[j].hitpoints !=0){
+				if(a[j].hitpoints > 0){
 
 
 					switch(a[j].style){
@@ -309,8 +309,8 @@ void bulletCollisions(bullet_t *b,astroid_t *a,player_t *p){
 						    if (random % 10 == 1)
 						    {
 						    	clearAnnouncement();
-						    	createAnnouncement("+5 dmg!");
-						    	p->dmg += 5;
+						    	createAnnouncement("+1 dmg!");
+						    	p->dmg ++;
 						    }
 						}
 					}
@@ -342,7 +342,7 @@ void playerCollision(player_t *p, astroid_t *a)
 		astroVec[i].x=a[i].posx[0];
 		astroVec[i].y=a[i].posy[0];
 		uint32_t length = len(playerVec,astroVec[i]);
-		if(length < p->radius && a[i].hitpoints != 0)
+		if(length < p->radius && a[i].hitpoints > 0)
 		{
 			p->hitpoints -= 1;
 			astroidDeath(&a[i]);

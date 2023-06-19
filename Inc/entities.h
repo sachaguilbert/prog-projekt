@@ -31,7 +31,7 @@ typedef struct{
 	int32_t posy[5];
 	int32_t velx, vely, accx, accy;
 	uint8_t style;
-	uint16_t hitpoints;
+	int16_t hitpoints;
 	uint8_t mass;
 }astroid_t;
 
