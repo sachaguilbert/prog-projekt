@@ -25,7 +25,8 @@ typedef struct{
 }player_t;
 
 typedef struct{
-	int32_t posx,posy;
+	int32_t posx[5];
+	int32_t posy[5];
 	int32_t velx, vely, accx, accy;
 	uint8_t style;
 	uint16_t hitpoints;
