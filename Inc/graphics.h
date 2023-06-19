@@ -9,6 +9,7 @@
 #define GRAPHICS_H_
 
 #include "math_st.h"
+#include "globalTimer.h"
 
 
 //FUNCTIONS
@@ -25,5 +26,10 @@ void drawRedPixel(player_t p);
 
 void drawBullets(bullet_t *p);
 void drawAstroids(astroid_t *a);
+
+
+void createAnnouncement(char *str);
+void clearAnnouncement();
+
 
 #endif /* GRAPHICS_H_ */

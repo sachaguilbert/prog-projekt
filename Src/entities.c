@@ -190,7 +190,7 @@ void bulletDeath(bullet_t *b){
 
 }
 
-void bulletCollisions(bullet_t *b,astroid_t *a,uint32_t *score){
+void bulletCollisions(bullet_t *b,astroid_t *a,uint32_t *score,player_t *p){
 	// Checks only live bullets on live astroids
 	for(uint8_t i = 0;i<100;i++){
 		if(b[i].damagevalue !=0){
@@ -231,9 +231,8 @@ void bulletCollisions(bullet_t *b,astroid_t *a,uint32_t *score){
 						    int random = rand();
 						    if (random % 5 == 1)
 						    {
-						    	gotoxy(50,10);
-						    	printf("+1HP!");
-
+								createAnnouncement("+1HP!");
+						    	p->hitpoints++;
 						    }
 						}
 					}

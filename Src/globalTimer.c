@@ -5,6 +5,7 @@
 #include "ansi.h"
 
 volatile uint8_t globalTick;
+volatile uint16_t announcTick;
 
 
 void tim15Setup(){
@@ -21,6 +22,8 @@ void tim15Setup(){
 
 void TIM1_BRK_TIM15_IRQHandler(void) {
 	globalTick++;
+	announcTick++;
+
 	//Do whatever you want here, but make sure it doesn’t take too much Time.
 	TIM15->SR &= ~0x0001; // Clear interrupt bit
 }

@@ -181,3 +181,28 @@ void drawPlanets(planet_t *p){
 		printf(" ###### ");
 	}
 }
+
+void createAnnouncement(char *str)
+{
+	uint16_t pos0[2] = {60,5};
+	uint16_t pos1[2] = {75,7};
+	gameWindow(pos0,pos1,2);
+	gotoxy(65,6);
+	printf("%s",str);
+	announcTick = 0;
+
+}
+void clearAnnouncement()
+{
+	uint8_t pos0[2] = {60,5};
+	uint8_t pos1[2] = {75,8};
+	for(int i = 0; i < (pos1[1]-pos0[1]);i++)
+	{
+		gotoxy(pos0[0],pos0[1]+i);
+		for(int j = 0; j < (pos1[0]-pos1[1]); j++)
+		{
+			printf(" ");
+		}
+	}
+}
+
