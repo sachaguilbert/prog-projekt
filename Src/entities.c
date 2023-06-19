@@ -1,21 +1,19 @@
 #include "entities.h"
 
 
-player_t initPlayer(int32_t x, int32_t y){
-	player_t player;
-	player.posx = x;
-	player.posy = y;
-	player.score = 0;
-	player.dir = 0;
-	player.velx = 0;
-	player.vely = 0;
-	player.accx = 1 << 14;
-	player.accy = 0;
-	player.radius = 4;
-	player.hitpoints = 3;
-	player.level = 1;
-	player.dmg = 1;
-	return player;
+void initPlayer(player_t *p){
+	p->posx = 10 << 14;
+	p->posy = 10 << 14;
+	p->score = 0;
+	p->dir = 0;
+	p->velx = 0;
+	p->vely = 0;
+	p->accx = 1 << 14;
+	p->accy = 0;
+	p->radius = 4;
+	p->hitpoints = 3;
+	p->level = 1;
+	p->dmg = 1;
 }
 void initAsteroid(astroid_t *ast, int32_t x, int32_t y, int32_t dx, int32_t dy,player_t p){
 	ast->posx[0] = x;
@@ -88,7 +86,7 @@ void astroidRandom(astroid_t *a, player_t p){
 void updateAsteroid(astroid_t *a){
 	for(uint8_t i = 0;i<100;i++){
 		// move bullet if its initialised, ie dmg not 0
-		if(a[i].hitpoints != 0){
+		if(a[i].hitpoints >= 0){
 			if(a[i].style == 2){
 				a[i].posx[0] += (a[i].velx) / velfactor;
 				a[i].posy[0] += (a[i].vely)/ velfactor;
@@ -204,7 +202,7 @@ void createBullet(player_t p,bullet_t *b){
 	}
 }
 
-bullet_t initBullet()
+void initBullets(bullet_t *b,uint8_t size)
 {
 	bullet_t bullet;
 	bullet.accx =0;
@@ -214,7 +212,10 @@ bullet_t initBullet()
 	bullet.posy =0;
 	bullet.velx =0;
 	bullet.vely =0;
-	return bullet;
+	for(int i = 0; i < size; i++)
+	{
+				b[i]=bullet;
+	}
 }
 
 
@@ -222,7 +223,7 @@ void updateBullets(bullet_t *b, planet_t *pla){
 	for(uint8_t i = 0;i<100;i++){
 
 		// move bullet if its initialised, ie dmg not 0
-		if(b[i].damagevalue != 0){
+		if(b[i].damagevalue >= 0){
 			b[i].velx += b[i].accx;
 			b[i].vely += b[i].accy;
 			b[i].posx += b[i].velx / velfactor;
@@ -245,7 +246,7 @@ void bulletDeath(bullet_t *b){
 void bulletCollisions(bullet_t *b,astroid_t *a,player_t *p){
 	// Checks only live bullets on live astroids
 	for(uint8_t i = 0;i<100;i++){
-		if(b[i].damagevalue !=0){
+		if(b[i].damagevalue >=0){
 			for(uint8_t j =0;j<100;j++){
 				if(a[j].hitpoints > 0){
 

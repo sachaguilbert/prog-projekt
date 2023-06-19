@@ -11,6 +11,7 @@
 #include "ansi.h"
 #include "math.h"
 #include "window.h"
+#include "math_st.h"
 
 /* Exported types ------------------------------------------------------------*/
 typedef struct{
@@ -52,7 +53,7 @@ typedef struct{
 /* Exported functions ------------------------------------------------------- */
 
 //Player
-player_t initPlayer(int32_t x, int32_t y);
+void initPlayer(player_t *p);
 
 //Planets
 void initPlanet(planet_t *planet, int32_t x, int32_t y, uint8_t style);
@@ -68,7 +69,7 @@ void astroidDeath(astroid_t *a);
 
 //Bullets
 void createBullet(player_t p,bullet_t *b);
-bullet_t initBullet();
+void initBullets(bullet_t *b,uint8_t size);
 void updateBullets(bullet_t *b, planet_t *pla);
 void bulletDeath(bullet_t *b);
 void bulletCollisions(bullet_t *b,astroid_t *a,player_t *p);
