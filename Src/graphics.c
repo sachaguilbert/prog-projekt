@@ -156,8 +156,8 @@ void drawAstroids(astroid_t *a){
 	}
 }
 
-void drawPlanets(planet_t *p){
-	for(int i=0;i<3;i++){
+void drawPlanets(planet_t *p,uint8_t arrsize){
+	for(int i=0;i<arrsize;i++){
 		gotoxy(p[i].posx>>14,p[i].posy>>14);
 		printf(" ####O# ");
 		gotoxy(p[i].posx>>14,(p[i].posy>>14)+1);

@@ -16,7 +16,7 @@
 void drawGameStart();
 
 void drawPlayer(player_t p,uint8_t init,vector_t *v);
-void drawPlanet(planet_t p);
+void drawPlanets(planet_t *p,uint8_t arrsize);
 void deletePlayer(player_t p);
 void bitShift(vector_t *v);
 vector_t redPixelPos(player_t p);

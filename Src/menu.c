@@ -250,6 +250,12 @@ int gameOver(player_t *p){
 				stop = 0;
 			}
 			if(returnCenter()==1 && prevCenter == 0){
+				uint16_t hs = memRead(0); //Highscore stored in flash memory
+				if(p->score > hs){
+					uint16_t data[1] = {p->score};
+					uint8_t sizeofarr = sizeof(data)/sizeof(data[0]);
+					memWrite(data,sizeofarr); //Update flash memory with new score
+				}
 				return 0;
 			}
 			prevCenter = returnCenter();
