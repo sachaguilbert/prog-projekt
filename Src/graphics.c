@@ -38,13 +38,7 @@ void drawPlayer(player_t p,uint8_t init){
 	printf("  ###  ");
 	drawRedPixel(p);
 }
-vector_t redPixelPos(player_t p)
-{
-	vector_t v = {3 << 14, 0 << 14};
-	rotateVector(&v,p.dir-p.oldDir);
-	vector_t pixelPos = {v.x + p.posx, v.y + p.posy};
-	return pixelPos;
-}
+
 void bitShift(vector_t *v)
 {
 	v->x = v->x << 14;
