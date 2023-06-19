@@ -46,7 +46,7 @@ typedef struct{
 }planet_t;
 //PLANET
 void initPlanet(planet_t *planet, int32_t x, int32_t y, uint8_t style);
-void planetRandom(planet_t *pla);
+void planetRandom(planet_t *pla,uint8_t arrsize);
 void playerCollision(player_t *p, astroid_t *a);
 // PLAYER
 player_t initPlayer(int32_t x, int32_t y);
