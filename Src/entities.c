@@ -316,7 +316,7 @@ void bulletOUB(bullet_t *b){
 	// Checks for out of bounds for all bullets
 	for(uint8_t i =0; i<100;i++){
 		if(b[i].damagevalue != 0){
-			if(b[i].posx>>14 >= 250-1 || b[i].posx>>14 <= 1+1 || b[i].posy>>14 >= 90-1 || b[i].posy>>14 <= 1+1){
+			if(b[i].posx>>14 >= WIN_WIDTH-1 || b[i].posx>>14 <= 1+1 || b[i].posy>>14 >= WIN_HEIGHT-1 || b[i].posy>>14 <= 1+1){
 				bulletDeath(&b[i]);
 			}
 		}

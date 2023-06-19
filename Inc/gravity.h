@@ -8,5 +8,5 @@
 #include "math.h"
 
 /* Exported functions ------------------------------------------------------- */
-void updateBulletAcc(bullet_t *b, planet_t *p);
+void updateBulletAcc(bullet_t *b, planet_t *p,uint8_t arrsize);
 #endif /* GRAVITY_H_ */
