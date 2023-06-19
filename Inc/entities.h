@@ -10,6 +10,7 @@
 
 
 #include "math_st.h"
+//#include "graphics.h"
 
 typedef struct{
 	int32_t posx,posy;

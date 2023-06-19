@@ -10,7 +10,11 @@
 
 #include "math_st.h"
 #include "globalTimer.h"
+#include "entities.h"
 
+
+#define WIN_WIDTH 250
+#define WIN_HEIGHT 90
 
 //FUNCTIONS
 void drawGameStart();

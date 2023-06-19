@@ -21,9 +21,6 @@ player_t initPlayer(int32_t x, int32_t y){
 	player.accx = 1 << 14;
 	player.accy = 0;
 	player.radius = 4;
-	player.oldDir = player.dir;
-	player.oldPos.x = redPixelPos(player).x;
-	player.oldPos.y = redPixelPos(player).y;
 	player.hitpoints = 10;
 	player.level = 1;
 	player.dmg = 1;
@@ -58,8 +55,8 @@ void initPlanet(planet_t *planet, int32_t x, int32_t y, uint8_t style){
 
 void planetRandom(planet_t *pla, uint8_t nrOfPla){
 	for(int i=0;i<nrOfPla;i++){
-		uint32_t planetx = (rand() % 150)<<14;
-		uint32_t planety = (rand() % 40)<<14;
+		uint32_t planetx = (rand() % (WIN_WIDTH-20))<<14;
+		uint32_t planety = (rand() % (WIN_HEIGHT-10))<<14;
 		int32_t style = rand() % 3;
 		initPlanet(&pla[i], planetx, planety,style);
 	}
@@ -73,16 +70,16 @@ void astroidRandom(astroid_t *a, player_t p){
 	ast.vely = ((rand() % 3)<<14)*0.1 * p.level;
 	switch(sel){
 	case 0:
-		initAsteroid(&ast,(rand() % 150)<<14,2<<14,rand() %2 ? ast.velx : -ast.velx,ast.vely,p);
+		initAsteroid(&ast,(rand() % WIN_WIDTH - 1)<<14,2<<14,rand() %2 ? ast.velx : -ast.velx,ast.vely,p);
 		break;
 	case 1:
-		initAsteroid(&ast,(rand() % 150)<<14,50<<14,rand() %2 ? ast.velx : -ast.velx,-ast.vely,p);
+		initAsteroid(&ast,(rand() % WIN_WIDTH - 1)<<14,50<<14,rand() %2 ? ast.velx : -ast.velx,-ast.vely,p);
 		break;
 	case 2:
-		initAsteroid(&ast,2<<14,(rand() % 50)<<14,ast.velx,rand() %2 ? ast.vely : -ast.vely,p);
+		initAsteroid(&ast,2<<14,(rand() % WIN_HEIGHT - 1)<<14,ast.velx,rand() %2 ? ast.vely : -ast.vely,p);
 		break;
 	case 3:
-		initAsteroid(&ast,150<<14,(rand() % 50)<<14,-ast.velx,rand() %2 ? ast.vely : -ast.vely,p);
+		initAsteroid(&ast,(WIN_WIDTH - 2)<<14,(rand() % WIN_HEIGHT - 1)<<14,-ast.velx,rand() %2 ? ast.vely : -ast.vely,p);
 		break;
 
 	}
@@ -126,7 +123,7 @@ void astroidOUB(astroid_t *a){
 	// Checks for out of bounds for all bullets
 		for(uint8_t i =0; i<100;i++){
 			if(a[i].hitpoints >0){
-				if(a[i].posx[0]>>14 >= 156-1 || a[i].posx[0]>>14 <= 1+1 || a[i].posy[0]>>14 >= 144-1 || a[i].posy[0]>>14 <= 1+1){
+				if(a[i].posx[0]>>14 >= WIN_WIDTH-1 || a[i].posx[0]>>14 <= 1+1 || a[i].posy[0]>>14 >= WIN_HEIGHT-1 || a[i].posy[0]>>14 <= 1+1){
 					astroidDeath(&a[i]);
 			}
 		}
@@ -326,7 +323,7 @@ void bulletOUB(bullet_t *b){
 	// Checks for out of bounds for all bullets
 	for(uint8_t i =0; i<100;i++){
 		if(b[i].damagevalue != 0){
-			if(b[i].posx>>14 >= 156-1 || b[i].posx>>14 <= 1+1 || b[i].posy>>14 >= 144-1 || b[i].posy>>14 <= 1+1){
+			if(b[i].posx>>14 >= 250-1 || b[i].posx>>14 <= 1+1 || b[i].posy>>14 >= 90-1 || b[i].posy>>14 <= 1+1){
 				bulletDeath(&b[i]);
 			}
 		}
