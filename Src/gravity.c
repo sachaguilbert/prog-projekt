@@ -1,10 +1,10 @@
 #include "gravity.h"
 
-void updateBulletAcc(bullet_t *b, planet_t *p){
+void updateBulletAcc(bullet_t *b, planet_t *p,uint8_t arrsize){
 	//Original formula: xpp += -G*b1.m*(b0.x-b1.x)/Math.pow(d1, 3);
 	uint8_t mass = 1;
-	uint16_t G = 10;
-	for(int j=0;j<3;j++){
+	uint16_t G = 1;
+	for(int j=0;j<arrsize;j++){
 		for(int i=0;i<100;i++){
 			//if statement to filter all dead bullets
 			if(b[i].damagevalue !=0){
@@ -18,8 +18,8 @@ void updateBulletAcc(bullet_t *b, planet_t *p){
 					int32_t ddy = -G*mass*((b[i].posy-p[j].posy)>>14)* finalCalc;
 					//if statement to avoid dividing by d=0
 					if((d>>4) > 5){
-						b[i].accx = ddx>>14;
-						b[i].accy = ddy>>14;
+						b[i].accx += ddx>>15;
+						b[i].accy += ddy>>15;
 					}
 				}
 			}
