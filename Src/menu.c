@@ -184,7 +184,7 @@ int gameOver(player_t *p){
 	if(p->hitpoints < 1){
 		uint8_t stop = 1;
 		clrscr();
-		uint8_t k = WIN_WIDTH/2 - 20;
+		uint8_t k = WIN_WIDTH/2;
 		uint8_t kk = 20;
 		uint8_t prevCenter = returnCenter();
 		while(1){
