@@ -37,32 +37,32 @@ void mainMenu(){
 
 void helpMenu(){
 	clrscr();
-	uint16_t p1[2] = {75,20};
-	uint16_t p2[2] = {155,50};
+	uint16_t p1[2] = {WIN_WIDTH/2 - 10,20};
+	uint16_t p2[2] = {WIN_WIDTH/2 + 70,50};
 	gameWindow(p1,p2,2);
-	gotoxy(113,20);
+	gotoxy(WIN_WIDTH/2+27,20);
 	printf("HELP");
 	uint8_t prevCent = returnCenter();
-	gotoxy(108,25);
+	gotoxy(WIN_WIDTH/2 - 7,25);
 	printf("Controls:\n");
-	gotoxy(78,27);
+	gotoxy(WIN_WIDTH/2 - 7,27);
 	printf("Use the joystick to control the spaceship movement and the buttons to shoot\n");
-	gotoxy(78,28);
+	gotoxy(WIN_WIDTH/2 - 7,28);
 	printf("bullets at the asteroids. When hitting and destroying asteroid you will get\n");
-	gotoxy(78,29);
+	gotoxy(WIN_WIDTH/2 - 7,29);
 	printf("a random power-up, either +1 HP or +1 DAMAGE.\n");
-	gotoxy(108,33);
+	gotoxy(WIN_WIDTH/2 - 7,33);
 	printf("Goal of the game:\n");
-	gotoxy(78,35);
+	gotoxy(WIN_WIDTH/2 - 7,35);
 	printf("Shoot asteroids to increase your score. If you beat your high-score it will\n");
-	gotoxy(78,36);
+	gotoxy(WIN_WIDTH/2 - 7,36);
 	printf("be updated. Getting hit by the asteroids will cost you 1 HP and when you\n");
-	gotoxy(78,37);
+	gotoxy(WIN_WIDTH/2 - 7,37);
 	printf("run out, it's GAME OVER.\n");
-	uint16_t p5[2] = {105,39};
-	uint16_t p6[2] = {125,41};
+	uint16_t p5[2] = {WIN_WIDTH/2 + 17,39};
+	uint16_t p6[2] = {WIN_WIDTH/2 + 42,41};
 	gameWindow(p5,p6,2);
-	gotoxy(112,40);
+	gotoxy(WIN_WIDTH/2 + 27,40);
 	fgcolor(1);
 	printf("RETURN");
 	fgcolor(7);
@@ -77,24 +77,24 @@ void helpMenu(){
 void drawBoxes(uint8_t option, uint8_t action){
 	//This bit of code is long as fuck so i removed it from the main menu function:
 	if(option == 0 && action == 1){
-		uint16_t p1[2] = {105,29};
-		uint16_t p2[2] = {125,31};
+		uint16_t p1[2] = {WIN_WIDTH/2 + 17,29};
+		uint16_t p2[2] = {WIN_WIDTH/2 + 42,31};
 		gameWindow(p1,p2,2);
-		uint16_t p5[2] = {105,39};
-		uint16_t p6[2] = {125,41};
+		uint16_t p5[2] = {WIN_WIDTH/2 + 17,39};
+		uint16_t p6[2] = {WIN_WIDTH/2 + 42,41};
 		gameWindow(p5,p6,1);
 	}else if(option == 1 && action == 1){
-		uint16_t p1[2] = {105,29};
-		uint16_t p2[2] = {125,31};
+		uint16_t p1[2] = {WIN_WIDTH/2 + 17,29};
+		uint16_t p2[2] = {WIN_WIDTH/2 + 42,31};
 		gameWindow(p1,p2,1);
-		uint16_t p5[2] = {105,39};
-		uint16_t p6[2] = {125,41};
+		uint16_t p5[2] = {WIN_WIDTH/2 + 17,39};
+		uint16_t p6[2] = {WIN_WIDTH/2 + 42,41};
 		gameWindow(p5,p6,2);
 	}
 }
 void drawStart(){
 	clrscr();
-	uint8_t k = 60;
+	uint8_t k = WIN_WIDTH/2 - 25;
 	uint8_t kk = 5;
 	gotoxy(k,kk);
 	printf("            _____ _______ _____            _         _____ _    _         _____  _____ _____          _   _ \n");
@@ -108,23 +108,23 @@ void drawStart(){
 	printf("  / ____ \\ ____) |  | |  | | \\ \\  / ____ \\| |____  | |__| | |__| / ____ \\| | \\ \\| |__| || |_ / ____ \\| |\\  |\n");
 	gotoxy(k,kk+5);
 	printf(" /_/    \\_\\_____/   |_|  |_|  \\_\\/_/    \\_\\______|  \\_____|\\____/_/    \\_\\_|  \\_\\_____/_____/_/    \\_\\_| \\_|\n");
-	uint16_t p1[2] = {75,20};
-	uint16_t p2[2] = {155,50};
+	uint16_t p1[2] = {WIN_WIDTH/2 - 10,20};
+	uint16_t p2[2] = {WIN_WIDTH/2 + 70,50};
 	gameWindow(p1,p2,2);
-	gotoxy(113,20);
+	gotoxy(WIN_WIDTH/2 + 27,20);
 	printf("MENU");
-	gotoxy(113,30);
+	gotoxy(WIN_WIDTH/2 + 27,30);
 	printf("PLAY");
 	//gotoxy(111,35);
 	//printf("SETTINGS");
-	gotoxy(107,40);
+	gotoxy(WIN_WIDTH/2 + 22,40);
 	printf("HELP AND CONTROLS");
 }
 
 void page(){
 	initPins();
 	uint8_t pagenr = 0;
-	uint8_t centerx = 75;
+	uint8_t centerx = WIN_WIDTH / 2 - 20;
 	uint8_t centery = 10;
 	uint8_t next = 1;
 	uint8_t prevCenter = returnCenter();
@@ -184,7 +184,7 @@ int gameOver(player_t *p){
 	if(p->hitpoints < 1){
 		uint8_t stop = 1;
 		clrscr();
-		uint8_t k = 80;
+		uint8_t k = WIN_WIDTH/2 - 20;
 		uint8_t kk = 20;
 		uint8_t prevCenter = returnCenter();
 		while(1){
