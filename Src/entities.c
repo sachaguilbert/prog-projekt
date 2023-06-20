@@ -123,7 +123,7 @@ void asteroidHeatSeeking(asteroid_t *a, player_t p)
 	{
 		if (a[i].hitpoints >= 0)
 		{
-			if((p.posx +(1 << 14)) > a[i].posx[0])
+			if((p.posx + (1 << 14)) > a[i].posx[0])
 			{
 				a[i].velx = (p.level+1) << 13;
 			}
