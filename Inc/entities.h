@@ -65,6 +65,7 @@ void asteroidRandom(asteroid_t *a, player_t p);
 void updateAsteroid(asteroid_t *a);
 void asteroidOB(asteroid_t *a);
 void asteroidDeath(asteroid_t *a);
+void asteroidHeatSeeking(asteroid_t *a, player_t p);
 
 //Bullets
 void createBullet(player_t p,bullet_t *b);
