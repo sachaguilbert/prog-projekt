@@ -62,13 +62,13 @@ void asteroidRandom(asteroid_t *a, player_t p){
 		initAsteroid(&ast,((rand() % (WIN_WIDTH+5)) - 3)<<14,3<<14,rand() %2 ? ast.velx : -ast.velx,ast.vely,p);
 		break;
 	case 1:
-		initAsteroid(&ast,((rand() % (WIN_WIDTH+5)) - 3)<<14,WIN_HEIGHT<<14,rand() %2 ? ast.velx : -ast.velx,-ast.vely,p);
+		initAsteroid(&ast,((rand() % (WIN_WIDTH+5)) - 3)<<14,(WIN_HEIGHT-3)<<14,rand() %2 ? ast.velx : -ast.velx,-ast.vely,p);
 		break;
 	case 2:
 		initAsteroid(&ast,3<<14,((rand() % (WIN_HEIGHT+5)) - 3)<<14,ast.velx,rand() %2 ? ast.vely : -ast.vely,p);
 		break;
 	case 3:
-		initAsteroid(&ast,(WIN_WIDTH - 2)<<14,((rand() % (WIN_HEIGHT+5)) - 3)<<14,-ast.velx,rand() %2 ? ast.vely : -ast.vely,p);
+		initAsteroid(&ast,(WIN_WIDTH - 3)<<14,((rand() % (WIN_HEIGHT+5)) - 3)<<14,-ast.velx,rand() %2 ? ast.vely : -ast.vely,p);
 		break;
 
 	}
@@ -95,6 +95,7 @@ void updateAsteroid(asteroid_t *a){
 	for(uint8_t i = 0;i<100;i++){
 		// move bullet if its initialised, ie dmg not 0
 		if(a[i].hitpoints >= 0){
+			asteroidOB(a);
 			if(a[i].style == 2){
 				a[i].posx[0] += (a[i].velx) / velfactor;
 				a[i].posy[0] += (a[i].vely)/ velfactor;
@@ -110,10 +111,8 @@ void updateAsteroid(asteroid_t *a){
 				a[i].posx[0] += (a[i].velx) / velfactor;
 				a[i].posy[0] += (a[i].vely)/ velfactor;
 			}
-
 		}
 	}
-	asteroidOB(a);
 
 }
 
@@ -121,7 +120,7 @@ void asteroidOB(asteroid_t *a){
 	// Checks for out of bounds for all bullets
 		for(uint8_t i =0; i<100;i++){
 			if(a[i].hitpoints >0){
-				if(a[i].posx[0]>>14 >= WIN_WIDTH-1 || a[i].posx[0]>>14 <= 1+1 || a[i].posy[0]>>14 >= WIN_HEIGHT-1 || a[i].posy[0]>>14 <= 1+1){
+				if(a[i].posx[0]>>14 >= WIN_WIDTH-1 || a[i].posx[0]>>14 <= 2 || a[i].posy[0]>>14 >= WIN_HEIGHT-1 || a[i].posy[0]>>14 <= 2){
 					asteroidDeath(&a[i]);
 			}
 		}
@@ -132,16 +131,16 @@ void asteroidDeath(asteroid_t *a){
 	(*a).hitpoints = 0;
 	 switch((*a).style){
 		case 1:
-			gotoxy(((*a).posx[0])/pow(2,14),((*a).posy[0])/pow(2,14));
+			gotoxy(((*a).posx[0]-(*a).velx)/pow(2,14),((*a).posy[0]-(*a).vely)/pow(2,14));
 			printf("%c",32);
 			break;
 		case 2:
-			gotoxy(((*a).posx[0])/pow(2,14)-1,((*a).posy[0])/pow(2,14));
+			gotoxy(((*a).posx[0]-(*a).velx)/pow(2,14)-1,((*a).posy[0]-(*a).vely)/pow(2,14));
 			printf("%c%c%c",32,32,32);
 			printf("%c%c%c",32,32,32);
-			gotoxy(((*a).posx[0])/pow(2,14),((*a).posy[0])/pow(2,14)-1);
+			gotoxy(((*a).posx[0]-(*a).velx)/pow(2,14),((*a).posy[0]-(*a).vely)/pow(2,14)-1);
 			printf("%c",32);
-			gotoxy(((*a).posx[0])/pow(2,14),((*a).posy[0])/pow(2,14)+1);
+			gotoxy(((*a).posx[0]-(*a).velx)/pow(2,14),((*a).posy[0]-(*a).vely)/pow(2,14)+1);
 			printf("%c",32);
 			break;
 		}
