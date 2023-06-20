@@ -79,7 +79,7 @@ void asteroidRandom(asteroid_t *a, player_t p){
 
 void updateAsteroid(asteroid_t *a){
 	for(uint8_t i = 0;i<100;i++){
-		// move bullet if its initialised, ie dmg not 0
+		// move asteroid if its initialised, ie dmg not 0
 		if(a[i].hitpoints >= 0){
 			if(a[i].style == 2){
 				a[i].posx[0] += (a[i].velx) / velfactor;
