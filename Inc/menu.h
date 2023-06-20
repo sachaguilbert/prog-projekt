@@ -1,10 +1,3 @@
-/*
- * menu.h
- *
- *  Created on: Jun 13, 2023
- *      Author: sacha
- */
-
 #ifndef MENU_H_
 #define MENU_H_
 #include "stdio.h"
@@ -12,6 +5,7 @@
 #include "joystick.h"
 #include "entities.h"
 #include "graphics.h"
+#include "flashmem.h"
 #include "stm32f30x_conf.h"// STM32 config
 void mainMenu();
 void helpMenu();

@@ -7,7 +7,9 @@
 #include "stdio.h"
 #include "stdint.h"
 #include "entities.h"
-#include "charset.h"#include "flashmem.h"
+#include "charset.h"
+#include "flashmem.h"
+#include "string.h"
 
 /* Exported functions ------------------------------------------------------- */
 void lcd_scoreboard(player_t p);

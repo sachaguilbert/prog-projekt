@@ -1,17 +1,12 @@
-/*
- * joystick.h
- *
- *  Created on: Jun 13, 2023
- *      Author: sacha
- */
-
 #ifndef JOYSTICK_H_
 #define JOYSTICK_H_
+/* Includes ------------------------------------------------------------------*/
 #include "stm32f30x_conf.h" // STM32 config
 #include "ansi.h"
 #include "stdio.h"
 #include "stdint.h"
 
+/* Exported functions ------------------------------------------------------- */
 void initPinPC0();
 void initPinPA4();
 void initPinPB5();

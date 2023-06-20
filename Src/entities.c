@@ -15,7 +15,7 @@ void initPlayer(player_t *p){
 	p->level = 1;
 	p->dmg = 1;
 }
-void initAsteroid(astroid_t *ast, int32_t x, int32_t y, int32_t dx, int32_t dy,player_t p){
+void initAsteroid(asteroid_t *ast, int32_t x, int32_t y, int32_t dx, int32_t dy,player_t p){
 	ast->posx[0] = x;
 	ast->posy[0] = y;
 	ast->posx[1] = x+1;
@@ -51,8 +51,8 @@ void planetRandom(planet_t *pla, uint8_t nrOfPla){
 	}
 }
 
-void astroidRandom(astroid_t *a, player_t p){
-	astroid_t ast;
+void asteroidRandom(asteroid_t *a, player_t p){
+	asteroid_t ast;
 	ast.style =(rand() % 2)+ 1;
 	uint8_t sel = rand() % 4;
 	ast.velx = ((rand() % 3)<<14)*0.1 * p.level;
@@ -91,7 +91,7 @@ void astroidRandom(astroid_t *a, player_t p){
 	}*/
 }
 
-void updateAsteroid(astroid_t *a){
+void updateAsteroid(asteroid_t *a){
 	for(uint8_t i = 0;i<100;i++){
 		// move bullet if its initialised, ie dmg not 0
 		if(a[i].hitpoints >= 0){
@@ -113,22 +113,22 @@ void updateAsteroid(astroid_t *a){
 
 		}
 	}
-	astroidOUB(a);
+	asteroidOB(a);
 
 }
 
-void astroidOUB(astroid_t *a){
+void asteroidOB(asteroid_t *a){
 	// Checks for out of bounds for all bullets
 		for(uint8_t i =0; i<100;i++){
 			if(a[i].hitpoints >0){
 				if(a[i].posx[0]>>14 >= WIN_WIDTH-1 || a[i].posx[0]>>14 <= 1+1 || a[i].posy[0]>>14 >= WIN_HEIGHT-1 || a[i].posy[0]>>14 <= 1+1){
-					astroidDeath(&a[i]);
+					asteroidDeath(&a[i]);
 			}
 		}
 	}
 }
 
-void astroidDeath(astroid_t *a){
+void asteroidDeath(asteroid_t *a){
 	(*a).hitpoints = 0;
 	 switch((*a).style){
 		case 1:
@@ -238,7 +238,7 @@ void updateBullets(bullet_t *b, planet_t *pla){
 			b[i].posy += b[i].vely / velfactor;
 		}
 	}
-	bulletOUB(b);
+	bulletOB(b);
 	updateBulletAcc(b,pla);
 }
 
@@ -251,8 +251,8 @@ void bulletDeath(bullet_t *b){
 
 }
 
-void bulletCollisions(bullet_t *b,astroid_t *a,player_t *p){
-	// Checks only live bullets on live astroids
+void bulletCollisions(bullet_t *b,asteroid_t *a,player_t *p){
+	// Checks only live bullets on live asteroids
 	for(uint8_t i = 0;i<100;i++){
 		if(b[i].damagevalue >=0){
 			for(uint8_t j =0;j<100;j++){
@@ -297,7 +297,7 @@ void bulletCollisions(bullet_t *b,astroid_t *a,player_t *p){
 						}
 						if(a[j].hitpoints <= 0){
 							p->score += 10*a[j].style;
-							astroidDeath(&a[j]);
+							asteroidDeath(&a[j]);
 						    int random = rand();
 						    if (random % 5 == 1)
 						    {
@@ -321,7 +321,7 @@ void bulletCollisions(bullet_t *b,astroid_t *a,player_t *p){
 
 
 
-void bulletOUB(bullet_t *b){
+void bulletOB(bullet_t *b){
 	// Checks for out of bounds for all bullets
 	for(uint8_t i =0; i<100;i++){
 		if(b[i].damagevalue != 0){
@@ -331,7 +331,7 @@ void bulletOUB(bullet_t *b){
 		}
 	}
 }
-void playerCollision(player_t *p, astroid_t *a)
+void playerCollision(player_t *p, asteroid_t *a)
 {
 	vector_t playerVec = {p->posx,p->posy};
 
@@ -344,7 +344,7 @@ void playerCollision(player_t *p, astroid_t *a)
 		if(length < p->radius && a[i].hitpoints > 0)
 		{
 			p->hitpoints -= 1;
-			astroidDeath(&a[i]);
+			asteroidDeath(&a[i]);
 		}
 	}
 

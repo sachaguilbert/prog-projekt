@@ -98,12 +98,12 @@ void drawBullets(bullet_t *p){
 	}
 }
 
-void drawAstroids(astroid_t *a){
+void drawAsteroids(asteroid_t *a){
 	// Draws all astoroids which are alive ie. HP >0
 	for(uint8_t i = 0; i<100;i++){
 		if(a[i].hitpoints > 0){
 			if((a[i].posx[0]-a[i].velx*0.5)/pow(2,14) != a[i].posx[0]>>14 || (a[i].posy[0]-a[i].vely*0.5)/pow(2,14) != a[i].posy[0]){
-				// Allows for different styles with different HP values, see astroid init
+				// Allows for different styles with different HP values, see asteroid init
 				switch(a[i].style){
 					case 1:
 						gotoxy((a[i].posx[0]-a[i].velx*0.5)/pow(2,14),(a[i].posy[0]-a[i].vely*0.5)/pow(2,14));

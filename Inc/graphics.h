@@ -29,7 +29,7 @@ void bitShift(vector_t *v);
 void drawRedPixel(player_t p);
 
 void drawBullets(bullet_t *p);
-void drawAstroids(astroid_t *a);
+void drawAsteroids(asteroid_t *a);
 
 void createAnnouncement(char *str);
 void clearAnnouncement();

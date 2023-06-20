@@ -33,7 +33,7 @@ typedef struct{
 	int32_t velx, vely;
 	uint8_t style;
 	int16_t hitpoints;
-}astroid_t;
+}asteroid_t;
 
 typedef struct{
 	int32_t posx,posy;
@@ -57,22 +57,22 @@ void initPlayer(player_t *p);
 //Planets
 void initPlanet(planet_t *planet, int32_t x, int32_t y, uint8_t style);
 void planetRandom(planet_t *pla, uint8_t nrOfPla);
-void playerCollision(player_t *p, astroid_t *a);
+void playerCollision(player_t *p, asteroid_t *a);
 
 //Asteroids
-void initAsteroid(astroid_t *ast, int32_t x, int32_t y, int32_t dx, int32_t dy,player_t p);
-void astroidRandom(astroid_t *a, player_t p);
-void updateAsteroid(astroid_t *a);
-void astroidOUB(astroid_t *a);
-void astroidDeath(astroid_t *a);
+void initAsteroid(asteroid_t *ast, int32_t x, int32_t y, int32_t dx, int32_t dy,player_t p);
+void asteroidRandom(asteroid_t *a, player_t p);
+void updateAsteroid(asteroid_t *a);
+void asteroidOB(asteroid_t *a);
+void asteroidDeath(asteroid_t *a);
 
 //Bullets
 void createBullet(player_t p,bullet_t *b);
 void initBullets(bullet_t *b,uint8_t size);
 void updateBullets(bullet_t *b, planet_t *pla);
 void bulletDeath(bullet_t *b);
-void bulletCollisions(bullet_t *b,astroid_t *a,player_t *p);
-void bulletOUB(bullet_t *b);
+void bulletCollisions(bullet_t *b,asteroid_t *a,player_t *p);
+void bulletOB(bullet_t *b);
 
 //Level
 void updateLevel(player_t *p);
