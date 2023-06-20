@@ -32,7 +32,7 @@ void initAsteroid(asteroid_t *ast, int32_t x, int32_t y, int32_t dx, int32_t dy,
 	if(ast->style == 1){
 		ast->hitpoints = 1+(p.level);
 	}else if(ast->style == 2){
-		ast->hitpoints = 5+(p.level*5);
+		ast->hitpoints = (p.level*3);
 	}else{
 		ast->hitpoints = 1+(p.level);
 	}
@@ -96,7 +96,6 @@ void updateAsteroid(asteroid_t *a){
 	for(uint8_t i = 0;i<100;i++){
 		// move bullet if its initialised, ie dmg not 0
 		if(a[i].hitpoints >= 0){
-			asteroidOB(a);
 			if(a[i].style == 2){
 				a[i].posx[0] += (a[i].velx) / velfactor;
 				a[i].posy[0] += (a[i].vely)/ velfactor;
@@ -112,6 +111,7 @@ void updateAsteroid(asteroid_t *a){
 				a[i].posx[0] += (a[i].velx) / velfactor;
 				a[i].posy[0] += (a[i].vely)/ velfactor;
 			}
+			asteroidOB(a);
 		}
 	}
 
@@ -280,11 +280,9 @@ void bulletDeath(bullet_t *b){
 void bulletCollisions(bullet_t *b,asteroid_t *a,player_t *p){
 	// Checks only live bullets on live asteroids
 	for(uint8_t i = 0;i<100;i++){
-		if(b[i].damagevalue >=0){
+		if(b[i].damagevalue >0){
 			for(uint8_t j =0;j<100;j++){
 				if(a[j].hitpoints > 0){
-
-
 					switch(a[j].style){
 					case 1:
 						if(b[i].posx>>14 == a[j].posx[0]>>14 && b[i].posy>>14 == a[j].posy[0]>>14){
@@ -305,14 +303,14 @@ void bulletCollisions(bullet_t *b,asteroid_t *a,player_t *p){
 									bulletDeath(&b[i]);
 
 									// VISUAL PAIN
-										 fgcolor(1);
-										 gotoxy((a[j].posx[0]>>14)-1,(a[j].posy[0]>>14));
-										 printf("%c%c%c",219,219,219);
-										 gotoxy(a[j].posx[0]>>14,(a[j].posy[0]>>14)+1);
-										 printf("%c",223);
-										 gotoxy(a[j].posx[0]>>14,(a[j].posy[0]>>14)-1);
-										 printf("%c",220);
-										 fgcolor(7);
+									 fgcolor(1);
+									 gotoxy((a[j].posx[0]>>14)-1,(a[j].posy[0]>>14));
+									 printf("%c%c%c",219,219,219);
+									 gotoxy(a[j].posx[0]>>14,(a[j].posy[0]>>14)+1);
+									 printf("%c",223);
+									 gotoxy(a[j].posx[0]>>14,(a[j].posy[0]>>14)-1);
+									 printf("%c",220);
+									 fgcolor(7);
 
 
 									break;
@@ -323,20 +321,21 @@ void bulletCollisions(bullet_t *b,asteroid_t *a,player_t *p){
 						}
 						if(a[j].hitpoints <= 0){
 							p->score += 10*a[j].style;
-							switch((*a).style){
-									case 1:
-										gotoxy(((*a).posx[0])/pow(2,14),((*a).posy[0])/pow(2,14));
-										printf("%c",32);
-										break;
-									case 2:
-										gotoxy(((*a).posx[0])/pow(2,14)-1,((*a).posy[0])/pow(2,14));
-										printf("%c%c%c",32,32,32);
-										printf("%c%c%c",32,32,32);
-										gotoxy(((*a).posx[0])/pow(2,14),((*a).posy[0])/pow(2,14)-1);
-										printf("%c",32);
-										gotoxy(((*a).posx[0])/pow(2,14),((*a).posy[0])/pow(2,14)+1);
-										printf("%c",32);
-										break;
+							switch(a[j].style){
+							case 1:
+									// VISUAL PAIN
+									 gotoxy(a[j].posx[0]>>14,a[j].posy[0]>>14);
+									 printf("%c",32);
+									break;
+								case 2:
+											// VISUAL PAIN
+									 gotoxy((a[j].posx[0]>>14)-1,(a[j].posy[0]>>14));
+									 printf("%c%c%c",32,32,32);
+									 gotoxy(a[j].posx[0]>>14,(a[j].posy[0]>>14)+1);
+									 printf("%c",32);
+						     		 gotoxy(a[j].posx[0]>>14,(a[j].posy[0]>>14)-1);
+							    	 printf("%c",32);
+											break;
 									}
 						    int random = rand();
 						    if (random % 5 == 1)

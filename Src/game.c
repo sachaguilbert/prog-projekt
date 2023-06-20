@@ -19,9 +19,6 @@ void updatePlayer(player_t *p)
 }
 void updateEntities(player_t *p,bullet_t *bullets, planet_t *planet, asteroid_t *asteroids)
 {
-	deletePlayer(*p);
-	update_player_pos(p);
-	drawPlayer(*p);
 	updateBullets(bullets,planet);
 	asteroidHeatSeeking(asteroids, *p);
 	updateAsteroid(asteroids);
