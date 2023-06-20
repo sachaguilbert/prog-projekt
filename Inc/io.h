@@ -11,6 +11,7 @@
 #include "graphics.h"
 #include "stdlib.h"
 #include "ansi.h"
+#include "charset.h"
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
@@ -21,12 +22,35 @@
 /* Exported macro ------------------------------------------------------------*/
 
 /* Exported functions ------------------------------------------------------- */
+
+// ON BOARD JOYSTICK
+void initPinPC0();
+void initPinPA4();
+void initPinPB5();
+void initPinPC1();
+void initPinPB0();
+void initPins();
+void readJoystick();
+int returnCenter();
+int returnLeft();
+int returnRight();
+int returnDown();
+int returnUp();
+
+// KEYBOARD
 uint8_t get_keyboard_input();
-void update_player_input();
-void update_player_pos(player_t *p);
+
+// LED
 void LEDSetup();
 void LEDHP(player_t* p);
+void setLED(uint8_t r,uint8_t g,uint8_t b);
 
+// ADC / Joystick
+uint16_t ADCRead(uint8_t sel);
+void ADCSetup();
+
+// LCD
+void lcd_write_string(char str[],uint32_t loc);
 
 
 #endif /* _30010_IO_H_ */

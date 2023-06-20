@@ -1,21 +1,6 @@
 #include "entities.h"
 
 
-void initPlayer(player_t *p){
-	p->posx = 10 << 14;
-	p->posy = 10 << 14;
-	p->score = 0;
-	p->dir = 0;
-	p->velx = 0;
-	p->vely = 0;
-	p->accx = 1 << 14;
-	p->accy = 0;
-	p->radius = 4;
-	p->hitpoints = 3;
-	p->level = 1;
-	p->oldLevel = p->level;
-	p->dmg = 1;
-}
 void initAsteroid(asteroid_t *ast, int32_t x, int32_t y, int32_t dx, int32_t dy,player_t p){
 	ast->posx[0] = x;
 	ast->posy[0] = y;

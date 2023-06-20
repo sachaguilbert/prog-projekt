@@ -11,7 +11,6 @@
 #include "ansi.h"
 #include "math.h"
 #include "window.h"
-#include "math_st.h"
 
 /* Exported types ------------------------------------------------------------*/
 typedef struct{
@@ -52,7 +51,6 @@ typedef struct{
 /* Exported functions ------------------------------------------------------- */
 
 //Player
-void initPlayer(player_t *p);
 
 //Planets
 void initPlanet(planet_t *planet, int32_t x, int32_t y, uint8_t style);

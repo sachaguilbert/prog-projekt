@@ -39,12 +39,6 @@ void drawPlayer(player_t p){
 	drawRedPixel(p);
 }
 
-void bitShift(vector_t *v)
-{
-	v->x = v->x << 14;
-	v->y = v->y << 14;
-}
-
 
 void drawRedPixel(player_t p)
 {
