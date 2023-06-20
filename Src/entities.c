@@ -323,7 +323,21 @@ void bulletCollisions(bullet_t *b,asteroid_t *a,player_t *p){
 						}
 						if(a[j].hitpoints <= 0){
 							p->score += 10*a[j].style;
-							asteroidDeath(&a[j]);
+							switch((*a).style){
+									case 1:
+										gotoxy(((*a).posx[0])/pow(2,14),((*a).posy[0])/pow(2,14));
+										printf("%c",32);
+										break;
+									case 2:
+										gotoxy(((*a).posx[0])/pow(2,14)-1,((*a).posy[0])/pow(2,14));
+										printf("%c%c%c",32,32,32);
+										printf("%c%c%c",32,32,32);
+										gotoxy(((*a).posx[0])/pow(2,14),((*a).posy[0])/pow(2,14)-1);
+										printf("%c",32);
+										gotoxy(((*a).posx[0])/pow(2,14),((*a).posy[0])/pow(2,14)+1);
+										printf("%c",32);
+										break;
+									}
 						    int random = rand();
 						    if (random % 5 == 1)
 						    {
