@@ -13,6 +13,7 @@ void initPlayer(player_t *p){
 	p->radius = 4;
 	p->hitpoints = 3;
 	p->level = 1;
+	p->oldLevel = p->level;
 	p->dmg = 1;
 }
 void initAsteroid(asteroid_t *ast, int32_t x, int32_t y, int32_t dx, int32_t dy,player_t p){
@@ -114,6 +115,32 @@ void updateAsteroid(asteroid_t *a){
 		}
 	}
 
+}
+
+void asteroidHeatSeeking(asteroid_t *a, player_t p)
+{
+	for(int i = 0; i < 100; i++)
+	{
+		if (a[i].hitpoints >= 0)
+		{
+			if(p.posx > a[i].posx[0])
+			{
+				a[i].velx = (p.level+1) << 13;
+			}
+			if(p.posx < a[i].posx[0])
+			{
+				a[i].velx = -(p.level+1) << 13;
+			}
+			if(p.posy > a[i].posy[0])
+			{
+				a[i].vely = (p.level+2) << 12;
+			}
+			if(p.posy < a[i].posy[0])
+			{
+				a[i].vely = -(p.level+2) << 12;
+			}
+		}
+	}
 }
 
 void asteroidOB(asteroid_t *a){
