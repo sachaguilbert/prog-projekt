@@ -41,7 +41,7 @@ void asteroidRandom(asteroid_t *a, player_t p){
 	asteroid_t ast;
 	ast.style =2;
 	uint8_t sel = rand() % 4;
-	ast.velx = ((rand() % 3)<<14)>>1 * p.level;
+	ast.velx = ((rand() % 3)<<14)>>1 * p.level*3; // 3 is for difference in resolution
 	ast.vely = ((rand() % 3)<<14)>>1 * p.level;
 	switch(sel){
 	case 0:

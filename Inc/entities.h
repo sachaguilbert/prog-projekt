@@ -2,15 +2,15 @@
 #define ENTITIES_H_
 
 /* Includes ------------------------------------------------------------------*/
-#include "math_st.h"
-#include "stm32f30x_conf.h" // STM32 config
-#include "30010_io.h" // Input/output library for this course
-#include "stdio.h"
-#include "stdlib.h"
-#include "stdint.h"
-#include "ansi.h"
-#include "math.h"
-#include "window.h"
+			#include "math_st.h"
+			#include "stm32f30x_conf.h" // STM32 config
+			#include "30010_io.h" // Input/output library for this course
+			#include "stdio.h"
+			#include "stdlib.h"
+			#include "stdint.h"
+			#include "ansi.h"
+			#include "math.h"
+			#include "window.h"
 
 /* Exported types ------------------------------------------------------------*/
 typedef struct{

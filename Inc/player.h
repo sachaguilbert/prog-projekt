@@ -23,7 +23,7 @@
 // CONST
 #define JoystickHigh 2000
 #define JoystickLow 500
-
+#define MAXHP 3
 
 
 // FUNCTIONS

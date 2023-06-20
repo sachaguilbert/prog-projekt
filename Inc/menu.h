@@ -5,7 +5,6 @@
 #include "io.h"
 #include "entities.h"
 #include "graphics.h"
-#include "flashmem.h"
 #include "stm32f30x_conf.h"// STM32 config
 void mainMenu();
 void helpMenu();
