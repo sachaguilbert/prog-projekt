@@ -43,12 +43,12 @@ void initPlanet(planet_t *planet, int32_t x, int32_t y, uint8_t style){
 	planet->style = style;
 }
 
-void planetRandom(planet_t *pla, uint8_t nrOfPla){
-	for(int i=0;i<nrOfPla;i++){
+void planetRandom(planet_t *planet, uint8_t nrOfPlanet){
+	for(int i=0;i<nrOfPlanet;i++){
 		uint32_t planetx = (rand() % (WIN_WIDTH-20))<<14;
 		uint32_t planety = (rand() % (WIN_HEIGHT-10))<<14;
 		int32_t style = rand() % 3;
-		initPlanet(&pla[i], planetx, planety,style);
+		initPlanet(&planet[i], planetx, planety,style);
 	}
 }
 
@@ -179,60 +179,60 @@ void createBullet(player_t p,bullet_t *b){
 	uint8_t speedConst = 3; // Determines the speed, since pacc is always 1
 
 	// Create new bullet depending on player position and direction
-	bullet_t newB;
-	newB.posx = p.posx;
-	newB.posy = p.posy;
+	bullet_t newBullet;
+	newBullet.posx = p.posx;
+	newBullet.posy = p.posy;
 
 	switch(p.dir)
 	{
 	case 0:
-		newB.velx = p.velx+p.accx*speedConst;
-		newB.vely = p.vely+p.accy*speedConst;
+		newBullet.velx = p.velx+p.accx*speedConst;
+		newBullet.vely = p.vely+p.accy*speedConst;
 		break;
 	case 1:
-		newB.velx = p.velx+p.accx*speedConst;
-		newB.vely = p.vely-p.accx*speedConst;
+		newBullet.velx = p.velx+p.accx*speedConst;
+		newBullet.vely = p.vely-p.accx*speedConst;
 		break;
 	case 2:
-		newB.velx = p.velx+p.accy*speedConst;
-		newB.vely = p.vely-p.accx*speedConst;
+		newBullet.velx = p.velx+p.accy*speedConst;
+		newBullet.vely = p.vely-p.accx*speedConst;
 		break;
 	case 3:
-		newB.velx = p.velx-p.accx*speedConst;
-		newB.vely = p.vely-p.accx*speedConst;
+		newBullet.velx = p.velx-p.accx*speedConst;
+		newBullet.vely = p.vely-p.accx*speedConst;
 		break;
 	case 4:
-		newB.velx = p.velx-p.accx*speedConst;
-		newB.vely = p.vely+p.accy*speedConst;
+		newBullet.velx = p.velx-p.accx*speedConst;
+		newBullet.vely = p.vely+p.accy*speedConst;
 		break;
 	case 5:
-		newB.velx = p.velx-p.accx*speedConst;
-		newB.vely = p.vely+p.accx*speedConst;
+		newBullet.velx = p.velx-p.accx*speedConst;
+		newBullet.vely = p.vely+p.accx*speedConst;
 		break;
 	case 6:
-		newB.velx = p.velx+p.accy*speedConst;
-		newB.vely = p.vely+p.accx*speedConst;
+		newBullet.velx = p.velx+p.accy*speedConst;
+		newBullet.vely = p.vely+p.accx*speedConst;
 		break;
 	case 7:
-		newB.velx = p.velx+p.accx*speedConst;
-		newB.vely = p.vely+p.accx*speedConst;
+		newBullet.velx = p.velx+p.accx*speedConst;
+		newBullet.vely = p.vely+p.accx*speedConst;
 		break;
 	}
 
 
-	newB.accx = 0;
-	newB.accy = 0;
+	newBullet.accx = 0;
+	newBullet.accy = 0;
 
-	newB.damagevalue = p.dmg; // Changeable if new weapons are added
+	newBullet.damagevalue = p.dmg; // Changeable if new weapons are added
 	uint16_t j =0;
 
 	// Finds next "DeadSpot" in bullets array
-	while(j<100){
+	for(int i = 0; i < 100; i++)
+	{
 		if(b[j].damagevalue == 0){
-			b[j] = newB;
+			b[j] = newBullet;
 			return;
 		}
-		j++;
 	}
 }
 
@@ -248,12 +248,12 @@ void initBullets(bullet_t *b,uint8_t size)
 	bullet.vely =0;
 	for(int i = 0; i < size; i++)
 	{
-				b[i]=bullet;
+		b[i]=bullet;
 	}
 }
 
 
-void updateBullets(bullet_t *b, planet_t *pla){
+void updateBullets(bullet_t *b, planet_t *planet){
 	for(uint8_t i = 0;i<100;i++){
 
 		// move bullet if its initialised, ie dmg not 0
@@ -265,7 +265,7 @@ void updateBullets(bullet_t *b, planet_t *pla){
 		}
 	}
 	bulletOB(b);
-	updateBulletAcc(b,pla);
+	updateBulletAcc(b,planet);
 }
 
 void bulletDeath(bullet_t *b){
@@ -283,8 +283,6 @@ void bulletCollisions(bullet_t *b,asteroid_t *a,player_t *p){
 		if(b[i].damagevalue >=0){
 			for(uint8_t j =0;j<100;j++){
 				if(a[j].hitpoints > 0){
-
-
 					switch(a[j].style){
 					case 1:
 						if(b[i].posx>>14 == a[j].posx[0]>>14 && b[i].posy>>14 == a[j].posy[0]>>14){
@@ -292,71 +290,68 @@ void bulletCollisions(bullet_t *b,asteroid_t *a,player_t *p){
 							bulletDeath(&b[i]);
 
 							// VISUAL PAIN
-							 gotoxy(a[j].posx[0]>>14,a[j].posy[0]>>14);
-							 fgcolor(1);
-							 printf("%c",219);
-							 fgcolor(7);
+							gotoxy(a[j].posx[0]>>14,a[j].posy[0]>>14);
+							fgcolor(1);
+							printf("%c",219);
+							fgcolor(7);
 						}
-							break;
-						case 2:
-							for(uint8_t k = 0; k<5;k++){
-								if(b[i].posx>>14 == a[j].posx[k]>>14 && b[i].posy>>14 == a[j].posy[k]>>14){
-									a[j].hitpoints -= b[i].damagevalue;
-									bulletDeath(&b[i]);
-
-									// VISUAL PAIN
-										 fgcolor(1);
-										 gotoxy((a[j].posx[0]>>14)-1,(a[j].posy[0]>>14));
-										 printf("%c%c%c",219,219,219);
-										 gotoxy(a[j].posx[0]>>14,(a[j].posy[0]>>14)+1);
-										 printf("%c",223);
-										 gotoxy(a[j].posx[0]>>14,(a[j].posy[0]>>14)-1);
-										 printf("%c",220);
-										 fgcolor(7);
-
-
-									break;
-								}
+						break;
+					case 2:
+						for(uint8_t k = 0; k<5;k++){
+							if(b[i].posx>>14 == a[j].posx[k]>>14 && b[i].posy>>14 == a[j].posy[k]>>14){
+								a[j].hitpoints -= b[i].damagevalue;
+								bulletDeath(&b[i]);
+								// VISUAL PAIN
+								fgcolor(1);
+								gotoxy((a[j].posx[0]>>14)-1,(a[j].posy[0]>>14));
+								printf("%c%c%c",219,219,219);
+								gotoxy(a[j].posx[0]>>14,(a[j].posy[0]>>14)+1);
+								printf("%c",223);
+								gotoxy(a[j].posx[0]>>14,(a[j].posy[0]>>14)-1);
+								printf("%c",220);
+								fgcolor(7);
+								break;
 							}
-
-							break;
 						}
-						if(a[j].hitpoints <= 0){
-							p->score += 10*a[j].style;
-							switch((*a).style){
-									case 1:
-										gotoxy(((*a).posx[0])/pow(2,14),((*a).posy[0])/pow(2,14));
-										printf("%c",32);
-										break;
-									case 2:
-										gotoxy(((*a).posx[0])/pow(2,14)-1,((*a).posy[0])/pow(2,14));
-										printf("%c%c%c",32,32,32);
-										printf("%c%c%c",32,32,32);
-										gotoxy(((*a).posx[0])/pow(2,14),((*a).posy[0])/pow(2,14)-1);
-										printf("%c",32);
-										gotoxy(((*a).posx[0])/pow(2,14),((*a).posy[0])/pow(2,14)+1);
-										printf("%c",32);
-										break;
-									}
-						    int random = rand();
-						    if (random % 5 == 1)
-						    {
-						    	clearAnnouncement();
-								createAnnouncement("+1HP!");
-						    	p->hitpoints++;
-						    }
-						    if (random % 10 == 1)
-						    {
-						    	clearAnnouncement();
-						    	createAnnouncement("+1 dmg!");
-						    	p->dmg ++;
-						    }
+
+						break;
+					}
+					if(a[j].hitpoints <= 0){
+						p->score += 10*a[j].style;
+						switch((*a).style){
+								case 1:
+									gotoxy(((*a).posx[0])/pow(2,14),((*a).posy[0])/pow(2,14));
+									printf("%c",32);
+									break;
+								case 2:
+									gotoxy(((*a).posx[0])/pow(2,14)-1,((*a).posy[0])/pow(2,14));
+									printf("%c%c%c",32,32,32);
+									printf("%c%c%c",32,32,32);
+									gotoxy(((*a).posx[0])/pow(2,14),((*a).posy[0])/pow(2,14)-1);
+									printf("%c",32);
+									gotoxy(((*a).posx[0])/pow(2,14),((*a).posy[0])/pow(2,14)+1);
+									printf("%c",32);
+									break;
+						}
+						int random = rand();
+						if (random % 5 == 1)
+						{
+						    clearAnnouncement();
+							createAnnouncement("+1HP!");
+					    	p->hitpoints++;
+						}
+						if (random % 10 == 1)
+						{
+						    clearAnnouncement();
+						    createAnnouncement("+1 dmg!");
+						    p->dmg ++;
 						}
 					}
 				}
 			}
 		}
 	}
+}
 
 
 
