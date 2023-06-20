@@ -173,7 +173,7 @@ void gameWindow(uint16_t p1[2],uint16_t p2[2], uint8_t style){
 
 
 	switch(style){
-	case 1: ;
+	case 1:
 		ver = 179; hor = 196;TL = 218; TR = 191;BL=192;BR=217;
 		break;
 	case 2:
