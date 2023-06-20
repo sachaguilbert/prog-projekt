@@ -54,22 +54,22 @@ void planetRandom(planet_t *pla, uint8_t nrOfPla){
 
 void asteroidRandom(asteroid_t *a, player_t p){
 	asteroid_t ast;
-	ast.style =(rand() % 2)+ 1;
+	ast.style =2;
 	uint8_t sel = rand() % 4;
-	ast.velx = ((rand() % 3)<<14)*0.1 * p.level;
-	ast.vely = ((rand() % 3)<<14)*0.1 * p.level;
+	ast.velx = ((rand() % 3)<<14)>>1 * p.level;
+	ast.vely = ((rand() % 3)<<14)>>1 * p.level;
 	switch(sel){
 	case 0:
-		initAsteroid(&ast,(rand() % WIN_WIDTH - 1)<<14,2<<14,rand() %2 ? ast.velx : -ast.velx,ast.vely,p);
+		initAsteroid(&ast,((rand() % (WIN_WIDTH+5)) - 3)<<14,3<<14,rand() %2 ? ast.velx : -ast.velx,ast.vely,p);
 		break;
 	case 1:
-		initAsteroid(&ast,(rand() % WIN_WIDTH - 1)<<14,50<<14,rand() %2 ? ast.velx : -ast.velx,-ast.vely,p);
+		initAsteroid(&ast,((rand() % (WIN_WIDTH+5)) - 3)<<14,WIN_HEIGHT<<14,rand() %2 ? ast.velx : -ast.velx,-ast.vely,p);
 		break;
 	case 2:
-		initAsteroid(&ast,2<<14,(rand() % WIN_HEIGHT - 1)<<14,ast.velx,rand() %2 ? ast.vely : -ast.vely,p);
+		initAsteroid(&ast,3<<14,((rand() % (WIN_HEIGHT+5)) - 3)<<14,ast.velx,rand() %2 ? ast.vely : -ast.vely,p);
 		break;
 	case 3:
-		initAsteroid(&ast,(WIN_WIDTH - 2)<<14,(rand() % WIN_HEIGHT - 1)<<14,-ast.velx,rand() %2 ? ast.vely : -ast.vely,p);
+		initAsteroid(&ast,(WIN_WIDTH - 2)<<14,((rand() % (WIN_HEIGHT+5)) - 3)<<14,-ast.velx,rand() %2 ? ast.vely : -ast.vely,p);
 		break;
 
 	}
