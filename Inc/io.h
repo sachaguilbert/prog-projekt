@@ -52,5 +52,9 @@ void ADCSetup();
 // LCD
 void lcd_write_string(char str[],uint32_t loc);
 
+// MEMORY
+uint16_t memRead(uint16_t offset);
+void memWrite(uint16_t *in,uint8_t sizeofarr);
+void clearFlashMem();
 
 #endif /* _30010_IO_H_ */

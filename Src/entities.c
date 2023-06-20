@@ -368,7 +368,23 @@ void playerCollision(player_t *p, asteroid_t *a)
 		if(length < p->radius && a[i].hitpoints > 0)
 		{
 			p->hitpoints -= 1;
-			asteroidDeath(&a[i]);
+			a[i].hitpoints = 0;
+			switch(a[i].style){
+			case 1:
+				// VISUAL PAIN
+				gotoxy(a[i].posx[0]>>14,a[i].posy[0]>>14);
+				printf("%c",32);
+				break;
+			case 2:
+				// VISUAL PAIN
+				gotoxy((a[i].posx[0]>>14)-1,(a[i].posy[0]>>14));
+				printf("%c%c%c",32,32,32);
+				gotoxy(a[i].posx[0]>>14,(a[i].posy[0]>>14)+1);
+				printf("%c",32);
+				gotoxy(a[i].posx[0]>>14,(a[i].posy[0]>>14)-1);
+				printf("%c",32);
+				break;
+			}
 		}
 	}
 

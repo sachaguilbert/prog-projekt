@@ -4,7 +4,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "30010_io.h"
 #include "ansi.h"
-#include "ADC.h"
 #include "menu.h"
 #include "io.h"
 #include "player.h"

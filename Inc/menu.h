@@ -2,7 +2,7 @@
 #define MENU_H_
 #include "stdio.h"
 #include "stdint.h"
-#include "joystick.h"
+#include "io.h"
 #include "entities.h"
 #include "graphics.h"
 #include "flashmem.h"
