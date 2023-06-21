@@ -30,7 +30,6 @@
 void LEDHP(player_t* p);
 void initPlayer(player_t *p);
 void movement(player_t *p,bullet_t *b);
-void update_player_input();
 void update_player_pos(player_t *p);
 
 #endif /* PLAYER_H_ */

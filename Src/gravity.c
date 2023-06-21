@@ -14,10 +14,6 @@ void updateBulletAcc(bullet_t *b, planet_t *p,uint8_t arrsize){
 				b[i].accx = -G*(b[i].posx-p[0].posx)*(1<<5)/d;
 				b[i].accy = -G*(b[i].posy-p[0].posy)*(1<<5)/d;
 			}
-			gotoxy(180,1+i);
-			printf("X accel: %05d",b[i].accx);
-			gotoxy(180,2+i*2);
-			printf("Distance: %05d",d);
 		}
 	}
 	/*for(int i=0;i<100;i++){

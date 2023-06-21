@@ -6,6 +6,9 @@
 #include "entities.h"
 #include "graphics.h"
 #include "stm32f30x_conf.h"// STM32 config
+
+
+void bossKey();
 void mainMenu();
 void helpMenu();
 void settingsMenu();
