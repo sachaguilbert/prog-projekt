@@ -5,6 +5,7 @@
 #include "stdio.h"
 #include "stdint.h"
 #include "entities.h"
+#include "window.h"
 #include "math.h"
 
 /* Exported functions ------------------------------------------------------- */

@@ -30,9 +30,9 @@ void initPlanet(planet_t *planet, int32_t x, int32_t y, uint8_t style){
 
 void planetRandom(planet_t *pla, uint8_t nrOfPla){
 	for(int i=0;i<nrOfPla;i++){
-		uint32_t planetx = (rand() % (WIN_WIDTH-20))<<14;
-		uint32_t planety = (rand() % (WIN_HEIGHT-10))<<14;
-		int32_t style = rand() % 3;
+		uint32_t planetx = (10 +rand() % (WIN_WIDTH-20))<<14;
+		uint32_t planety = (10 +rand() % (WIN_HEIGHT-20))<<14;
+		int32_t style = 1;//rand() % 3;
 		initPlanet(&pla[i], planetx, planety,style);
 	}
 }
@@ -250,7 +250,7 @@ void updateBullets(bullet_t *b, planet_t *pla){
 		}
 	}
 	bulletOB(b);
-	updateBulletAcc(b,pla);
+	updateBulletAcc(b,pla,NB_PLANETS);
 }
 
 void bulletDeath(bullet_t *b){

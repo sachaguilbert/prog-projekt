@@ -2,7 +2,6 @@
 #define MENU_H_
 #include "stdio.h"
 #include "stdint.h"
-#include "io.h"
 #include "entities.h"
 #include "graphics.h"
 #include "stm32f30x_conf.h"// STM32 config
