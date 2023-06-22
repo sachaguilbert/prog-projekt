@@ -129,29 +129,29 @@ void drawAsteroids(asteroid_t *a){
 void drawPlanets(planet_t *p,uint8_t arrsize){
 	for(int i=0;i<arrsize;i++){
 		if(p[i].style == 0){
-			gotoxy(p[i].posx>>14,p[i].posy>>14);
+			gotoxy((p[i].posx>>14) -4,p[i].posy>>14);
 			printf(" ####O# ");
-			gotoxy(p[i].posx>>14,(p[i].posy>>14)+1);
+			gotoxy((p[i].posx>>14) -4,(p[i].posy>>14)+1);
 			printf("#O######");
-			gotoxy(p[i].posx>>14,(p[i].posy>>14)+2);
+			gotoxy((p[i].posx>>14) -4,(p[i].posy>>14)+2);
 			printf("###O####");
-			gotoxy(p[i].posx>>14,(p[i].posy>>14)+3);
+			gotoxy((p[i].posx>>14) -4,(p[i].posy>>14)+3);
 			printf(" ###### ");
 		}else if(p[i].style == 1){
-			gotoxy(p[i].posx>>14,p[i].posy>>14);
+			gotoxy((p[i].posx>>14) -4,p[i].posy>>14);
 			printf(" #X#### ");
-			gotoxy(p[i].posx>>14,(p[i].posy>>14)+1);
+			gotoxy((p[i].posx>>14) -4,(p[i].posy>>14)+1);
 			printf("####XX##");
-			gotoxy(p[i].posx>>14,(p[i].posy>>14)+2);
+			gotoxy((p[i].posx>>14) -4,(p[i].posy>>14)+2);
 			printf("##X####X");
-			gotoxy(p[i].posx>>14,(p[i].posy>>14)+3);
+			gotoxy((p[i].posx>>14) -4,(p[i].posy>>14)+3);
 			printf(" ###### ");
 		}else if(p[i].style == 2){
-			gotoxy(p[i].posx>>14,p[i].posy>>14);
+			gotoxy((p[i].posx>>14) -3,p[i].posy>>14);
 			printf(" ##@# ");
-			gotoxy(p[i].posx>>14,(p[i].posy>>14)+1);
+			gotoxy((p[i].posx>>14) -3,(p[i].posy>>14)+1);
 			printf("#@####");
-			gotoxy(p[i].posx>>14,(p[i].posy>>14)+2);
+			gotoxy((p[i].posx>>14) -3,(p[i].posy>>14)+2);
 			printf(" ###@");
 		}
 	}
