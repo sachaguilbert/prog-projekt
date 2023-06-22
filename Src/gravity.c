@@ -15,11 +15,12 @@ void updateBulletAcc(bullet_t *b, planet_t *p,uint8_t arrsize){
 			for(int j=0;j<NB_PLANETS;j++){
 				int32_t xdist = (b[i].posx - p[j].posx)>>5; //Bit-shifted with five for no overflow
 				int32_t ydist = (b[i].posy - p[j].posy)>>5; //Bit-shifted with five for no overflow
-				d = sqrt(xdist*xdist + ydist*ydist);
-				//if(d < (30)<<9){//For a smoother gravity effect without the bullets coming back
-					b[i].accx += (-G*(b[i].posx-p[j].posx)*(1<<5)/d);
-					b[i].accy += (-G*(b[i].posy-p[j].posy)*(1<<5)/d);
-				//}
+				uint8_t hitbox = 10;
+				if(xdist < (hitbox<<9) && xdist > -(hitbox<<9) && ydist < (hitbox<<9) && ydist > -(hitbox<<9)){
+					d = sqrt(xdist*xdist + ydist*ydist);
+					b[i].accx += (-G*(b[i].posx-p[j].posx)*(1<<5)/(d));
+					b[i].accy += (-G*(b[i].posy-p[j].posy)*(1<<5)/(d));
+				}
 			}
 		}
 	}
