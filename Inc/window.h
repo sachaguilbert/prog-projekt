@@ -2,8 +2,8 @@
 #define WINDOW_H_
 
 /* Exported constants --------------------------------------------------------*/
-#define WIN_WIDTH 250
-#define WIN_HEIGHT 90
+#define WIN_WIDTH 150
+#define WIN_HEIGHT 50
 
 #define NB_PLANETS 8
 
