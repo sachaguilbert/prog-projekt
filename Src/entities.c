@@ -14,7 +14,7 @@ void initAsteroid(asteroid_t *ast, int32_t x, int32_t y, int32_t dx, int32_t dy,
 	ast->posy[4] = y-1;
 	ast->velx = dx;
 	ast->vely = dy;
-	if(ast->style == 1){
+	if(ast->style == 1){ //hitpoints scales with player level
 		ast->hitpoints = 1+(p.level);
 	}else if(ast->style == 2){
 		ast->hitpoints = (p.level*3);
@@ -30,7 +30,7 @@ void initPlanet(planet_t *planet, int32_t x, int32_t y, uint8_t style){
 
 void planetRandom(planet_t *pla, uint8_t nrOfPla){
 	for(int i=0;i<nrOfPla;i++){
-		uint32_t planetx = (10 +rand() % (WIN_WIDTH-20))<<14;
+		uint32_t planetx = (10 +rand() % (WIN_WIDTH-20))<<14; // spawns the planet at random position
 		uint32_t planety = (10 +rand() % (WIN_HEIGHT-20))<<14;
 		int32_t style = 1;//rand() % 3;
 		initPlanet(&pla[i], planetx, planety,style);
@@ -43,6 +43,7 @@ void asteroidRandom(asteroid_t *a, player_t p){
 	uint8_t sel = rand() % 4;
 	ast.velx = ((rand() % 3)<<14)>>1 * p.level*3; // 3 is for difference in resolution
 	ast.vely = ((rand() % 3)<<14)>>1 * p.level;
+    //random places for the asteroid to spawn
 	switch(sel){
 	case 0:
 		initAsteroid(&ast,((rand() % (WIN_WIDTH+5)) - 3)<<14,3<<14,rand() %2 ? ast.velx : -ast.velx,ast.vely,p);
@@ -58,6 +59,7 @@ void asteroidRandom(asteroid_t *a, player_t p){
 		break;
 
 	}
+    //sets the property to the next dead asteroid in the array and spawns it
 	for(int i = 0; i < 100; i++)
 	{
 		if(a[i].hitpoints <= 0)
@@ -67,14 +69,6 @@ void asteroidRandom(asteroid_t *a, player_t p){
 		}
 	}
 
-	/*uint16_t j =0;
-	while(j<100){
-		if(a[j].hitpoints == 0){
-			a[j] = ast;
-			return;
-		}
-		j++;
-	}*/
 }
 
 void updateAsteroid(asteroid_t *a){
@@ -141,6 +135,7 @@ void asteroidOB(asteroid_t *a){
 
 void asteroidDeath(asteroid_t *a){
 	(*a).hitpoints = 0;
+    //to diffrent ways to kill the asteroid depending on the style
 	 switch((*a).style){
 		case 1:
 			gotoxy(((*a).posx[0]-(*a).velx)/pow(2,14),((*a).posy[0]-(*a).vely)/pow(2,14));
@@ -168,6 +163,7 @@ void createBullet(player_t p,bullet_t *b){
 	newB.posx = p.posx;
 	newB.posy = p.posy;
 
+    //bullets velocity is depending on the player direction.
 	switch(p.dir)
 	{
 	case 0:

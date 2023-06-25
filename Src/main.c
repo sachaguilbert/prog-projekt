@@ -47,7 +47,7 @@ int main(void){
 				switch(subTick){
 				case 0:
 					movement(&p,bullets);
-					if(i == 100){
+					if(i == 100){ // Asteroid spawns every 100' tick
 						asteroidRandom(asteroids,p);
 						i=0;
 					}
